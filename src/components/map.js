@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import Header from './header';
 
   const MyMap = withScriptjs(withGoogleMap(props =>
     <GoogleMap
       defaultZoom={9}
       onClick={ props.onMapClick }
       defaultCenter={{ lat: props.latitude, lng: props.longitude }}
-      center={{ lat: props.latitude, lng: props.longitude }}
+      //center={{ lat: props.latitude, lng: props.longitude }}
     >
       <Marker
         position={{ lat: props.latitude, lng: props.longitude }}
@@ -38,7 +39,10 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-map
       }
 
       render() { 
-          return <MyMap
+          return (
+            <div>
+          <Header lat={this.state.lat} lng={this.state.lng} city={this.props.city} />
+          <MyMap
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAutjbbZSVrwGSKMFq6F4b2wr4XHkssclk&v=3.exp&libraries=geometry,drawing,places"
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `400px` }} />}
@@ -46,7 +50,8 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-map
           latitude={ this.state.lat }
           longitude={ this.state.lng }
           center={ this.state.center }
-          onMapClick={ this.handleMapClick } />;
+          onMapClick={ this.handleMapClick } />
+          </div>);
       }
   }
 

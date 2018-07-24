@@ -13,9 +13,9 @@ super(props);
     this.state = {
       isLoaded: false,
       IP: null,
-      lat: 22.2266495,
-      lng: 114.1984607,
-      city: 'Repulse Bay, Hong Kong'
+      lat: 0,
+      lng: 0,
+      city: 'Not known'
     };
 }
 
@@ -34,7 +34,7 @@ getIP = () => {
   });
 }
 
-getInitialWeather = () => {
+/* getInitialWeather = () => {
   fetch(WEATHER_URL_HOME, {method:'GET'})
   .then(response => response.json())
   .then(json => {
@@ -46,7 +46,7 @@ getInitialWeather = () => {
         cityState: json.current_observation.display_location.full
       });
   });
-}
+} */
 
   componentDidMount() {
   //static getDerivedStateFromProps() {
@@ -57,9 +57,9 @@ getInitialWeather = () => {
 render() {
   if (this.state.IP) {
 return <div className="wrapper">
-<Header lat={this.state.lat} lng={this.state.lng} city={this.state.city} />
 <Map lat={this.state.lat}
      lng={this.state.lng}
+     city={this.state.city}
   />
   </div>} else {
     return <h1>Application is loading, please be patient...</h1>;
