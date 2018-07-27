@@ -1,6 +1,6 @@
 {
   "name": "orai",
-  "version": "0.1.0",
+  "version": "0.0.4",
   "private": true,
   "dependencies": {
     "googlemaps": "^1.12.0",
@@ -8,6 +8,7 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-google-maps": "^9.4.5",
+    "react-open-weather": "^0.4.0",
     "react-scripts": "1.1.4"
   },
   "scripts": {

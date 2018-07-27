@@ -1,14 +1,15 @@
 import React from 'react';
 
 const Header = (props) => {
+    console.log(props);
     return <header>
-            <div className="coords">Latitude: { props.lat.toFixed(4) }</div>
-            <div className="coords">Longitude: { props.lng.toFixed(4) }</div>
-            <div className="coords">Address: { props.city }</div>
+            <div className="coords">Latitude: { props.latitude.toFixed(4) }</div>
+            <div className="coords">Longitude: { props.longitude.toFixed(4) }</div>
+            <div className="coords">Address: { props.address }</div>
             <div className="form">
                 <form>
-                    <input id="city_search" value={ props.city } />
-                    <button>Submit</button>
+                    <input id="city_search" placeholder={ props.city } />
+                    <button>Search weather</button>
                 </form>
             </div>
         </header>
