@@ -23,8 +23,8 @@ import Weather from './weather';
         this.state = {
             latitude: props.lat,
             longitude: props.lng,
-            address: props.address,
-            city: ''
+            city: props.city,
+            address: ''
         }
     }
 
@@ -36,7 +36,7 @@ import Weather from './weather';
       .then(json => {
         if(json.status !== "ZERO_RESULTS") {
           this.setState({
-            address: json.results[1].formatted_address,
+            address: json.results[0].formatted_address,
             city: json.results[1].formatted_address
           })} else {
             this.setState({
@@ -68,7 +68,7 @@ import Weather from './weather';
               longitude={ this.state.longitude }
               onMapClick={ this.handleMapClick }
             />
-            <Weather latitude={ this.state.latitude } longitude={ this.state.longitude } />
+            <Weather latitude={ this.state.latitude } longitude={ this.state.longitude } city={ this.state.city } />
           </div>);
       }
   }

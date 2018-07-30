@@ -12,7 +12,7 @@ super(props);
       IP: null,
       lat: 0,
       lng: 0,
-      address: 'Not known'
+      city: 'Not known'
     };
 }
 
@@ -25,7 +25,7 @@ getIP = () => {
         IP: json.query,
         lat: json.lat,
         lng: json.lon,
-        address: json.city
+        city: json.city
       });
   });
 }
@@ -35,11 +35,11 @@ getIP = () => {
   };
 
 render() {
-  if (this.state.IP) {
+  if (this.state.isLoaded) {
     return <div className="wrapper">
       <Map lat={ this.state.lat }
           lng={ this.state.lng }
-          address={ this.state.address }
+          city={ this.state.city }
         />
       </div>} else {
     return <h1>Application is loading, please be patient...</h1>;
