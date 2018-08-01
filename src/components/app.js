@@ -15,7 +15,7 @@ class App extends Component {
 
   getIP = () => {
     const IP_URL_HOME = 'http://ip-api.com/json';
-    fetch(IP_URL_HOME, {method:'GET'})
+    fetch(IP_URL_HOME, { method:'GET' })
     .then(response => response.json())
     .then(json => {
         this.setState({
@@ -38,6 +38,7 @@ render() {
       <Map lat={ this.state.lat }
            lng={ this.state.lng }
            city={ this.state.city }
+           address={ this.state.city }
         />
       </div>} else {
     return <h1>Application is loading, please be patient...</h1>;

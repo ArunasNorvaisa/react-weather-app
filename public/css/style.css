@@ -1,5 +1,126 @@
 home, html {
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-size: 0.75em;
     padding: 0;
     margin: 0;
+}
+header {
+    width: 100%;
+    min-height: 5%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #222;
+    color: #fff;
+}
+header div {
+    padding: 0.6em;
+}
+header form {
+    display: flex;
+    flex-wrap: nowrap;
+}
+header form input {
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+button {
+    border-radius: 0 8px 8px 0;
+    color: #fff;
+    background-color: #009900;
+    border: none;
+    font-size: inherit;
+}
+
+button:hover {
+    color: #fcf9f9;
+    background-color: #568ac5;
+}
+
+header form input {
+    border-radius: 8px 0 0 8px;
+    padding: 0.63em;
+    font-size: inherit;
+}
+
+.renderedWeather {
+    height: auto;
+    min-height: 91vh;
+    display: flex;
+    flex-flow: row;
+    justify-content: safe;
+    color: #fff;
+    background-color:#EF6C00;
+    background-color: rgba(0, 0, 0, .3);
+    background-blend-mode: darken;
+    background-image: url('https://source.unsplash.com/category/nature/1280x720');
+    background-position: center center;
+    background-size: cover;
+}
+
+.cityName {
+    align-self: center;
+    font-size: 6rem;
+    margin: 0 4vw;
+}
+
+.todayWeather, .dailyWeather {
+    display: flex;
+    grid-template-columns: 3fr 2fr;
+    align-self: center;
+    padding: 2rem;
+    font-size: 1.3rem;
+}
+
+.todayWeather .date, .todayWeather .tToday, .dailyWeather .tToday {
+    font-size: 3rem;
+    justify-self: center;
+}
+
+.dailyWeather .date {
+    font-size: 2.1rem;
+}
+
+.icon img {
+    width: 5rem;
+}
+
+.todayWeather .icon img {
+    width: 15rem;
+}
+
+.futureForecast hr {
+    display: block;
+    height: 2px;
     background-color: #fff;
+}
+
+@media screen and (max-width:920px) {
+    .renderedWeather {
+        display: block;
+        height: auto;
+        grid-template-columns: 1fr;
+        grid-template-rows: 4fr auto;
+        background-blend-mode: darken;
+        background-image: url('https://source.unsplash.com/category/darkness/720x405');
+        background-position: center center;
+        background-size: cover;
+    }
+    .futureForecast hr {
+        width: 80%;
+        justify-self: center;
+        height: .02px;
+    }
+}
+@media screen and (max-width:420px) {
+    .renderedWeather {
+        background-image: url('');
+        background-color: orange;
+    }
+    .cityName {
+        font-size: 6rem;
+        margin: 0 1vw;
+    }
 }

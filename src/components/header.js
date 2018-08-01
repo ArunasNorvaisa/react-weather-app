@@ -8,10 +8,10 @@ const Header = (props) => {
             <div className="form">
                 <form>
                     <input id="city_search" placeholder={ props.city } />
-                    <button>Search weather</button>
+                    <button><img src="./images/icons/search.svg" width={`21px`} /> </button>
                 </form>
             </div>
         </header>
 }
- 
+
 export default Header;

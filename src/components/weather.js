@@ -16,7 +16,11 @@ class Weather extends Component {
     }
 
     getForecast(date) {
+        let icon = "./images/icons/" + this.state.JSON.daily.data[date].icon + ".svg";
         return <div>
+            <div className="icon">
+                <img src={ icon } />
+            </div>
             <div className="date">{ this.getDate(this.state.JSON.daily.data[date].time) }</div>
             <div className="tToday">
                 {this.state.JSON.daily.data[date].temperatureLow.toFixed(0)}&deg;
@@ -45,7 +49,7 @@ class Weather extends Component {
             });
         });
     };
-      
+
     componentDidMount() {
         this.fetchWeather();
     };
@@ -61,12 +65,15 @@ class Weather extends Component {
             return <div className="renderedWeather">
                 <div className="todayWeather">
                     <div className="cityName">{ this.props.city }</div>
-                    <div>{ this.getForecast(0) }</div>
-                    <div className="intelligentForecast">{ this.state.JSON.daily.summary }</div>
+                    <div>{ this.getForecast(0) }
+                        <span className="intelligentForecast">{ this.state.JSON.daily.summary }</span>
+                    </div>
                 </div>
                 <div className="futureForecast">
                     <div className="dailyWeather">{ this.getForecast(1) }</div>
+                    <hr />
                     <div className="dailyWeather">{ this.getForecast(2) }</div>
+                    <hr />
                     <div className="dailyWeather">{ this.getForecast(3) }</div>
                 </div>
             </div>;
@@ -75,5 +82,5 @@ class Weather extends Component {
         }
     }
 }
- 
+
 export default Weather;
