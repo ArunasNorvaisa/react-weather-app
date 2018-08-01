@@ -19,7 +19,7 @@ class Weather extends Component {
         let icon = "./images/icons/" + this.state.JSON.daily.data[date].icon + ".svg";
         return <div>
             <div className="icon">
-                <img src={ icon } />
+                <img src={ icon } alt="icon"/>
             </div>
             <div className="date">{ this.getDate(this.state.JSON.daily.data[date].time) }</div>
             <div className="tToday">
