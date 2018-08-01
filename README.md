@@ -3,7 +3,7 @@
 entering city in the search bar.
 
 ### Version
-> 0.0.4
+> 0.0.6
 
 ### Usage
 > Open index.html

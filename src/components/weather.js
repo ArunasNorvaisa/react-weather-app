@@ -5,24 +5,22 @@ class Weather extends Component {
         super(props);
         this.state = {
             isLoaded: false,
-            //latitude: props.latitude,
-            //longitude: props.longitude,
             city: props.city,
             JSON: ''
         }
     }
 
     getDate(time) {
-        let options = { weekday: 'short', month: 'long', day: 'numeric', timeZone: this.state.JSON.timezone };
+        let options = { weekday: 'short', month: 'short', day: 'numeric', timeZone: this.state.JSON.timezone };
         return new Date(time * 1e3).toLocaleDateString('en', options);
     }
 
     getForecast(date) {
         return <div>
-            <div className="date">{ this.getDate(this.state.JSON.daily.data[date].time ) }</div>
+            <div className="date">{ this.getDate(this.state.JSON.daily.data[date].time) }</div>
             <div className="tToday">
                 {this.state.JSON.daily.data[date].temperatureLow.toFixed(0)}&deg;
-                / &nbsp;
+                /&nbsp;
                 {this.state.JSON.daily.data[date].temperatureHigh.toFixed(0)}&deg;
             </div>
             <div className="forecastSummary">{ this.state.JSON.daily.data[date].summary }</div>
@@ -31,7 +29,7 @@ class Weather extends Component {
 
     fetchWeather = () => {
         let WEATHER_URL_HOME = 'https://cors-anywhere.herokuapp.com/';
-        WEATHER_URL_HOME += 'https://api.darksky.net/forecast/ca6e7e0fcf7c0c02e8ab0f3412e145b8/';
+        WEATHER_URL_HOME += 'https://api.forecast.io/forecast/ca6e7e0fcf7c0c02e8ab0f3412e145b8/';
         WEATHER_URL_HOME += `${this.props.latitude},${this.props.longitude}`;
         WEATHER_URL_HOME += '?units=si&exclude=hourly%2Cflags%2Cminutely';
         this.setState({
@@ -43,12 +41,10 @@ class Weather extends Component {
         .then(json => {
             this.setState({
                 isLoaded: true,
-                //latitude: json.latitude,
-                //longitude: json.longitude,
                 JSON: json
             });
         });
-    }
+    };
       
     componentDidMount() {
         this.fetchWeather();
@@ -75,7 +71,7 @@ class Weather extends Component {
                 </div>
             </div>;
         } else {
-            return <h2>Loading, please wait...</h2>;
+            return <h3>Loading, please wait...</h3>;
         }
     }
 }
