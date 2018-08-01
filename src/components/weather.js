@@ -33,7 +33,7 @@ class Weather extends Component {
 
     fetchWeather = () => {
         let WEATHER_URL_HOME = 'https://cors-anywhere.herokuapp.com/';
-        WEATHER_URL_HOME += 'https://api.forecast.io/forecast/ca6e7e0fcf7c0c02e8ab0f3412e145b8/';
+        WEATHER_URL_HOME += 'https://api.forecast.io/forecast/API_KEY/';
         WEATHER_URL_HOME += `${this.props.latitude},${this.props.longitude}`;
         WEATHER_URL_HOME += '?units=si&exclude=hourly%2Cflags%2Cminutely';
         this.setState({

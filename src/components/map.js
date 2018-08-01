@@ -29,7 +29,7 @@ class Map extends Component {
   }
 
   ReverseGeocoding = (lat, lng) => {
-      let GEO_URL_HOME = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAutjbbZSVrwGSKMFq6F4b2wr4XHkssclk&latlng=";
+      let GEO_URL_HOME = "https://maps.googleapis.com/maps/api/geocode/json?key=API_KEY&latlng=";
       GEO_URL_HOME += +lat + ',' + lng;
       fetch(GEO_URL_HOME, { method: 'GET' })
           .then(response => response.json())

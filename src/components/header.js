@@ -8,7 +8,7 @@ const Header = (props) => {
             <div className="form">
                 <form>
                     <input id="city_search" placeholder={ props.city } />
-                    <button><img src="./images/icons/search.svg" width={`21px`} /> </button>
+                    <button><img src="./images/icons/search.svg" width={`21px`} alt="search weather" /> </button>
                 </form>
             </div>
         </header>
