@@ -62,9 +62,9 @@ class Map extends Component {
           <Header latitude={ this.state.latitude } longitude={ this.state.longitude } address={ this.state.address } city={ this.state.city } />
           <Weather latitude={ this.state.latitude } longitude={ this.state.longitude } city={ this.state.city } />
           <MyMap
-            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAutjbbZSVrwGSKMFq6F4b2wr4XHkssclk&v=3.exp&libraries=geometry,drawing,places"
+            googleMapURL="https://maps.googleapis.com/maps/api/js?key=API_KEY&v=3.exp&libraries=geometry,drawing,places"
             loadingElement={<div style={{ height: `100%` }} />}
-            containerElement={<div style={{ height: `29vh` }} />}
+            containerElement={<div style={{ height: `91vh` }} />}
             mapElement={<div style={{ height: `100%` }} />}
             latitude={ this.state.latitude }
             longitude={ this.state.longitude }
