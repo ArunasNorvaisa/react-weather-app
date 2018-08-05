@@ -50,7 +50,7 @@ header form input {
     min-height: 91vh;
     display: flex;
     flex-flow: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     color: #fff;
     background-color:#EF6C00;
@@ -65,20 +65,26 @@ header form input {
 .cityName {
     align-self: center;
     font-size: 6rem;
-    margin: 0 4vw;
+    margin: 4vw;
 }
 
 .todayWeather, .dailyWeather {
     display: flex;
+    flex-wrap: nowrap;
     align-self: center;
     padding: 2rem;
     font-size: 1.7rem;
 }
 
-.todayWeather .date, .todayWeather .tToday, .dailyWeather .tToday {
+.todayWeather .date, .tToday {
     font-size: 3rem;
     justify-self: center;
     margin: 0 0 1rem 0;
+}
+
+.dailyWeather {
+    width: 500px;
+    max-width: 32vw;
 }
 
 .dailyWeather .date {
@@ -100,23 +106,35 @@ header form input {
     background-color: #fff;
 }
 
+@media screen and (max-width:1200px) {
+    .todayWeather {
+        flex-wrap: wrap;
+    }
+}
+
 @media screen and (max-width:720px) {
     .renderedWeather {
-        display: block;
         height: auto;
         background-blend-mode: darken;
         background-image: url('https://source.unsplash.com/category/darkness/720x405');
         background-position: center center;
         background-size: cover;
+        margin: 10px;
     }
-    .todayWeather {
+
+    .todayWeather, .renderedWeather, .futureForecast, .dailyWeather {
         display: block;
     }
+
+    .todayWeather, .futureForecast, .dailyWeather, .forecastSummary {
+        width: 100%;
+    }
+
     .futureForecast hr {
         height: .02px;
     }
 }
-@media screen and (max-width:320px) {
+@media screen and (max-width:420px) {
     .renderedWeather {
         background-image: url('');
         background:#EF6C00;

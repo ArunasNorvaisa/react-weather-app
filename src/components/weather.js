@@ -11,12 +11,12 @@ class Weather extends Component {
     }
 
     getDate(time) {
-        let options = { weekday: 'short', month: 'short', day: 'numeric', timeZone: this.state.JSON.timezone };
+        const options = { weekday: 'short', month: 'short', day: 'numeric', timeZone: this.state.JSON.timezone };
         return new Date(time * 1e3).toLocaleDateString('en', options);
     }
 
     getForecast(date) {
-        let icon = "./images/icons/" + this.state.JSON.daily.data[date].icon + ".svg";
+        const icon = "./images/icons/" + this.state.JSON.daily.data[date].icon + ".svg";
         return <div>
             <div className="icon">
                 <img src={ icon } alt="icon"/>
@@ -32,7 +32,7 @@ class Weather extends Component {
     }
 
     fetchWeather = () => {
-        let WEATHER_URL_HOME = 'https://cors-anywhere.herokuapp.com/';
+        let WEATHER_URL_HOME = 'https://crossorigin.me/';
         WEATHER_URL_HOME += 'https://api.forecast.io/forecast/API_KEY/';
         WEATHER_URL_HOME += `${this.props.latitude},${this.props.longitude}`;
         WEATHER_URL_HOME += '?units=si&exclude=hourly%2Cflags%2Cminutely';
@@ -61,8 +61,8 @@ class Weather extends Component {
     }
 
     render() {
-        if (this.state.isLoaded) {
-            return <div className="renderedWeather">
+        return this.state.isLoaded
+            ? <div className="renderedWeather">
                 <div className="todayWeather">
                     <div className="cityName">{ this.props.city }</div>
                     <div>{ this.getForecast(0) }
@@ -76,10 +76,8 @@ class Weather extends Component {
                     <hr />
                     <div className="dailyWeather">{ this.getForecast(3) }</div>
                 </div>
-            </div>;
-        } else {
-            return <h3>Loading, please wait...</h3>;
-        }
+            </div>
+        : <h3>Loading, please wait...</h3>;
     }
 }
 

@@ -1,49 +1,74 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Map from './map';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoaded: false,
-      IP: null,
-      lat: 0,
-      lng: 0,
-      city: 'Not known'
-    };
-  }
+class App extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoaded: false,
+            latitude: null,
+            longitude: null,
+            city: null
+        };
+    }
 
-  getIP = () => {
-    const IP_URL_HOME = 'http://ip-api.com/json';
-    fetch(IP_URL_HOME, { method:'GET' })
-    .then(response => response.json())
-    .then(json => {
-        this.setState({
-          isLoaded: true,
-          IP: json.query,
-          lat: json.lat,
-          lng: json.lon,
-          city: json.city
+    getIP = () => {
+        const IP_URL_HOME = 'https://ipapi.co/json/';
+        fetch(IP_URL_HOME, { method:'GET' })
+        .then(response => response.json())
+        .then(json => {
+            this.setState({
+                isLoaded: true,
+                latitude: json.latitude,
+                longitude: json.longitude,
+                city: json.city
+            });
         });
-    });
-  }
+    }
 
-  componentDidMount() {
-    this.getIP();
-  };
+    reverseGeocoded = (lat, lng) => {
+        let GEO_URL_HOME = "https://maps.googleapis.com/maps/api/geocode/json?key=API_KEY&latlng=";
+        GEO_URL_HOME += +lat + ',' + lng;
+        fetch(GEO_URL_HOME, { method: 'GET' })
+            .then(response => response.json())
+            .then(json => {
+                this.setState({
+                    isLoaded: true,
+                    city: json.results[1].address_components[1].short_name
+                });
+            });
+        };
 
-render() {
-  if (this.state.isLoaded) {
-    return <div className="wrapper">
-      <Map lat={ this.state.lat }
-           lng={ this.state.lng }
-           city={ this.state.city }
-           address={ this.state.city }
-        />
-      </div>} else {
-    return <h1>Application is loading, please be patient...</h1>;
-  }
-}
+    getLocation = () => {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                this.reverseGeocoded(position.coords.latitude, position.coords.longitude);
+                this.setState({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                });
+            },
+            (error) => {
+                this.getIP();
+            }
+        );
+    }
+
+    componentDidMount() {
+        this.getLocation();
+    };
+
+    render() {
+        return this.state.isLoaded
+        ? <div className="wrapper">
+            <Map lat={ this.state.latitude }
+                lng={ this.state.longitude }
+                city={ this.state.city }
+                address={ this.state.city }
+            />
+        </div>
+        : <h2>Application is loading, please be patient...</h2>
+    }
 }
 
 export default App;
