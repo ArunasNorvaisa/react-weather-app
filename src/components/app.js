@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import Map from './map';
 
+const API_KEY =`${process.env.REACT_APP_API_KEY_GL}`;
+
 class App extends PureComponent {
     constructor(props) {
         super(props);
@@ -27,7 +29,7 @@ class App extends PureComponent {
     }
 
     reverseGeocoded = (lat, lng) => {
-        let GEO_URL_HOME = "https://maps.googleapis.com/maps/api/geocode/json?key=API_KEY&latlng=";
+        let GEO_URL_HOME = `https://maps.googleapis.com/maps/api/geocode/json?key=${API_KEY}&latlng=`;
         GEO_URL_HOME += +lat + ',' + lng;
         fetch(GEO_URL_HOME, { method: 'GET' })
             .then(response => response.json())

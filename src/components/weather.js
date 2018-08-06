@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+const API_KEY =`${process.env.REACT_APP_API_KEY_DS}`;
+
 class Weather extends Component {
     constructor(props) {
         super(props);
@@ -32,8 +34,8 @@ class Weather extends Component {
     }
 
     fetchWeather = () => {
-        let WEATHER_URL_HOME = 'https://crossorigin.me/';
-        WEATHER_URL_HOME += 'https://api.forecast.io/forecast/API_KEY/';
+        let WEATHER_URL_HOME = 'https://cors-anywhere.herokuapp.com/';
+        WEATHER_URL_HOME += `https://api.forecast.io/forecast/${API_KEY}/`;
         WEATHER_URL_HOME += `${this.props.latitude},${this.props.longitude}`;
         WEATHER_URL_HOME += '?units=si&exclude=hourly%2Cflags%2Cminutely';
         this.setState({

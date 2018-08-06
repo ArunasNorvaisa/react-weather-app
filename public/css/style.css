@@ -119,7 +119,7 @@ header form input {
         background-image: url('https://source.unsplash.com/category/darkness/720x405');
         background-position: center center;
         background-size: cover;
-        margin: 10px;
+        padding: 10px;
     }
 
     .todayWeather, .renderedWeather, .futureForecast, .dailyWeather {
@@ -127,7 +127,7 @@ header form input {
     }
 
     .todayWeather, .futureForecast, .dailyWeather, .forecastSummary {
-        width: 100%;
+        max-width: 96%;
     }
 
     .futureForecast hr {
