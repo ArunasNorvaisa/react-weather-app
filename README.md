@@ -18,7 +18,7 @@ $ touch .env
 * Get the API keys from [Google](https://developers.google.com/maps/documentation/javascript/get-api-key) and [Dark Sky](https://darksky.net/dev).
 * Update .env file in the project root (that was created at the previous step) directory with the following content:
 
-> REACT_APP_API_KEY_GL = INSERT_YOUR_GOOGLE_API_KEY
+> REACT_APP_API_KEY_GL = INSERT_YOUR_GOOGLE_API_KEY<br>
 > REACT_APP_API_KEY_DS = INSERT_YOUR_DARKSKY_API_KEY
 
 ```sh
