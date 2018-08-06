@@ -77,6 +77,7 @@ class Weather extends Component {
                     <div className="dailyWeather">{ this.getForecast(2) }</div>
                     <hr />
                     <div className="dailyWeather">{ this.getForecast(3) }</div>
+                    <div className="poweredBy">Powered by <a href="http://darksky.net/poweredby/">Dark Sky</a></div>
                 </div>
             </div>
         : <h3>Loading, please wait...</h3>;

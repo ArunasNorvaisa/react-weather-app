@@ -5,11 +5,15 @@ home, html {
     margin: 0;
 }
 header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
     width: 100%;
     min-height: 5%;
     display: flex;
-    justify-content: space-evenly;
     flex-direction: row;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     align-items: center;
     background-color: #222;
@@ -46,6 +50,7 @@ header form input {
 }
 
 .renderedWeather {
+    position: relative;
     height: auto;
     min-height: 91vh;
     display: flex;
@@ -56,10 +61,11 @@ header form input {
     background-color:#EF6C00;
     background-color: rgba(0, 0, 0, .3);
     background-blend-mode: darken;
-    background-image: url('https://source.unsplash.com/category/nature/1280x720');
+    background-image: url('https://source.unsplash.com/1280x720/?sky');
     background-position: center center;
     background-size: cover;
-    margin: 0 0 .7rem 0;
+    margin: 0 0 .2rem 0;
+    padding: 10px;
 }
 
 .cityName {
@@ -80,6 +86,18 @@ header form input {
     font-size: 3rem;
     justify-self: center;
     margin: 0 0 1rem 0;
+}
+
+.poweredBy {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    font-size: 1.3rem;
+}
+
+.poweredBy a {
+    text-decoration: none;
+    color: inherit;
 }
 
 .dailyWeather {
@@ -107,6 +125,10 @@ header form input {
 }
 
 @media screen and (max-width:1200px) {
+    .renderedWeather {
+        padding: 10px 10px 30px;
+    }
+
     .todayWeather {
         flex-wrap: wrap;
     }
@@ -116,10 +138,9 @@ header form input {
     .renderedWeather {
         height: auto;
         background-blend-mode: darken;
-        background-image: url('https://source.unsplash.com/category/darkness/720x405');
+        background-image: url('https://source.unsplash.com/720x405/?sky');
         background-position: center center;
         background-size: cover;
-        padding: 10px;
     }
 
     .todayWeather, .renderedWeather, .futureForecast, .dailyWeather {
@@ -141,6 +162,6 @@ header form input {
 	    background: linear-gradient(280deg, rgba(4, 0, 255, 1) 0%, rgba(30, 81, 125, 1) 100%);
     }
     .cityName {
-        margin: 0 1vw;
+        margin: 0 2vw;
     }
 }
