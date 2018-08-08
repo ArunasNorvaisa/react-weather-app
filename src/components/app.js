@@ -54,7 +54,10 @@ class App extends PureComponent {
                 console.warn(`ERROR(${err.code}): ${err.message}`);
                 this.getIP();
             },
-            { timeout:6000 }
+            {
+                timeout: 6000,
+                enableHighAccuracy: false
+            }
         );
     }
 
@@ -63,12 +66,13 @@ class App extends PureComponent {
     };
 
     render() {
+        const { latitude, longitude, city } = this.state;
         return this.state.isLoaded
         ? <div className="wrapper">
-            <Map lat={ this.state.latitude }
-                lng={ this.state.longitude }
-                city={ this.state.city }
-                address={ this.state.city }
+            <Map lat={ latitude }
+                lng={ longitude }
+                city={ city }
+                address={ city }
             />
         </div>
         : <h2>Application is loading, please be patient...</h2>

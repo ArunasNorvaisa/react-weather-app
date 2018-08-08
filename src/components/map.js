@@ -59,17 +59,18 @@ class Map extends Component {
     }
 
 render() {
+    const { latitude, longitude, city, address } = this.state;
     return (
         <div>
-            <Header latitude={ this.state.latitude } longitude={ this.state.longitude } address={ this.state.address } city={ this.state.city } />
-            <Weather latitude={ this.state.latitude } longitude={ this.state.longitude } city={ this.state.city } />
+            <Header latitude={ latitude } longitude={ longitude } address={ address } city={ this.state.city } />
+            <Weather latitude={ latitude } longitude={ longitude } city={ city } />
             <MyMap
                 googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
                 loadingElement={ <div style={{ height: `100%` }} /> }
                 containerElement={ <div style={{ height: `97vh` }} /> }
                 mapElement={ <div style={{ height: `100%` }} /> }
-                latitude={ this.state.latitude }
-                longitude={ this.state.longitude }
+                latitude={ latitude }
+                longitude={ longitude }
                 onMapClick={ this.handleMapClick }
             />
         </div>);

@@ -18,18 +18,19 @@ class Weather extends Component {
     }
 
     getForecast(date) {
-        const icon = "./images/icons/" + this.state.JSON.daily.data[date].icon + ".svg";
+        const { icon, time, temperatureLow, temperatureHigh, summary } = this.state.JSON.daily.data[date];
+        const icon_URL = "./images/icons/" + icon + ".svg";
         return <div>
             <div className="icon">
-                <img src={ icon } alt="icon"/>
+                <img src={ icon_URL } alt="icon"/>
             </div>
-            <div className="date">{ this.getDate(this.state.JSON.daily.data[date].time) }</div>
+            <div className="date">{ this.getDate(time) }</div>
             <div className="tToday">
-                {this.state.JSON.daily.data[date].temperatureLow.toFixed(0)}&deg;
+                {temperatureLow.toFixed(0)}&deg;
                 /&nbsp;
-                {this.state.JSON.daily.data[date].temperatureHigh.toFixed(0)}&deg;
+                {temperatureHigh.toFixed(0)}&deg;
             </div>
-            <div className="forecastSummary">{ this.state.JSON.daily.data[date].summary }</div>
+            <div className="forecastSummary">{ summary }</div>
         </div>;
     }
 
