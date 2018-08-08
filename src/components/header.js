@@ -12,6 +12,6 @@ const Header = (props) => {
                 </form>
             </div>
         </header>
-}
+};
 
 export default Header;

@@ -50,9 +50,11 @@ class App extends PureComponent {
                     longitude: position.coords.longitude
                 });
             },
-            (error) => {
+            (err) => {
+                console.warn(`ERROR(${err.code}): ${err.message}`);
                 this.getIP();
-            }
+            },
+            { timeout:6000 }
         );
     }
 

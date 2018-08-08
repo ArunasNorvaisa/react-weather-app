@@ -1,6 +1,6 @@
 {
-  "name": "orai",
-  "version": "0.2.0",
+  "name": "WeatherApp",
+  "version": "0.2.1",
   "private": true,
   "dependencies": {
     "autoprefixer": "7.1.6",
