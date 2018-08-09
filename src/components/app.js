@@ -1,9 +1,9 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import Map from './map';
 
 const API_KEY =`${process.env.REACT_APP_API_KEY_GL}`;
 
-class App extends PureComponent {
+export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -78,5 +78,3 @@ class App extends PureComponent {
         : <h2>Application is loading, please be patient...</h2>
     }
 }
-
-export default App;

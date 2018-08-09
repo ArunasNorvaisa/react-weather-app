@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 
 const API_KEY =`${process.env.REACT_APP_API_KEY_DS}`;
 
-class Weather extends Component {
+export default class Weather extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isLoaded: false,
-            city: props.city,
-            JSON: ''
+            JSON: null
         }
     }
 
@@ -18,6 +17,8 @@ class Weather extends Component {
     }
 
     getForecast(date) {
+        // de-structuring icon, time, temperatureLow, temperatureHigh, summary from the
+        // application state so we don't have to keep typing this.state.JSON.etc...
         const { icon, time, temperatureLow, temperatureHigh, summary } = this.state.JSON.daily.data[date];
         const icon_URL = "./images/icons/" + icon + ".svg";
         return <div>
@@ -84,5 +85,3 @@ class Weather extends Component {
         : <h3>Loading, please wait...</h3>;
     }
 }
-
-export default Weather;

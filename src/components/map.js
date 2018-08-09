@@ -17,7 +17,7 @@ const MyMap = withScriptjs(withGoogleMap(props =>
   </GoogleMap>
 ));
 
-class Map extends Component {
+export default class Map extends Component {
 
     constructor(props) {
         super(props);
@@ -59,6 +59,8 @@ class Map extends Component {
     }
 
 render() {
+    // de-structuring latitude, longitude, city, address from the
+    // application state so we don't have to keep typing this.state.
     const { latitude, longitude, city, address } = this.state;
     return (
         <div>
@@ -76,5 +78,3 @@ render() {
         </div>);
     }
 }
-
-export default Map;
