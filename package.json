@@ -1,6 +1,6 @@
 {
-  "name": "WeatherApp",
-  "version": "0.2.2",
+  "name": "weatherapp",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "autoprefixer": "7.1.6",
