@@ -24,9 +24,8 @@ class Header extends Component {
             <div>
                 <form onSubmit={ this.handleFormSubmit }>
                     <input type="text" id="city_search" placeholder={ this.props.city } onChange={ this.handleInputChange } />
-                    <button type="submit" hidden>
-                        {/* <img src="./images/icons/search.svg" width={`21px`} alt="search_weather" /> */}
-                    </button>
+                    <img src="./images/icons/search.svg" width={`21px`} alt="search_weather" />
+                    <button type="submit"></button>
                 </form>
             </div>
         </header>

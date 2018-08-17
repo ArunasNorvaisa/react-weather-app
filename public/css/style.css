@@ -25,6 +25,7 @@ header div {
 }
 
 header form {
+    position: relative;
     display: flex;
     flex-wrap: nowrap;
 }
@@ -34,9 +35,17 @@ header form input {
     font-family: 'Ubuntu Condensed', sans-serif;
     color: #666;
     border-radius: 1.3em;
-    padding: 0.83em 0.5em 0.83em 1.3em;
+    padding: 0.83em 0.5em 0.83em 2.65em;
     font-size: 1.3em;
     border: none;
+}
+
+header form img {
+    position: absolute;
+    left: 13px;
+    top: 1px;
+    height: 41px;
+    color: #888;
 }
 
 button {
