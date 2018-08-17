@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-const API_KEY =`${process.env.REACT_APP_API_KEY_DS}`;
+const API_KEY_DARKSKY =`${process.env.REACT_APP_API_KEY_DS}`;
 
 export default class Weather extends Component {
     constructor(props) {
@@ -27,9 +27,9 @@ export default class Weather extends Component {
             </div>
             <div className="date">{ this.getDate(time) }</div>
             <div className="tToday">
-                {temperatureLow.toFixed(0)}&deg;
+                { temperatureLow.toFixed(0) }&deg;
                 /&nbsp;
-                {temperatureHigh.toFixed(0)}&deg;
+                { temperatureHigh.toFixed(0) }&deg;
             </div>
             <div className="forecastSummary">{ summary }</div>
         </div>;
@@ -37,7 +37,7 @@ export default class Weather extends Component {
 
     fetchWeather = () => {
         let WEATHER_URL_HOME = 'https://cors-anywhere.herokuapp.com/';
-        WEATHER_URL_HOME += `https://api.forecast.io/forecast/${API_KEY}/`;
+        WEATHER_URL_HOME += `https://api.forecast.io/forecast/${API_KEY_DARKSKY}/`;
         WEATHER_URL_HOME += `${this.props.latitude},${this.props.longitude}`;
         WEATHER_URL_HOME += '?units=si&exclude=hourly%2Cflags%2Cminutely';
         this.setState({

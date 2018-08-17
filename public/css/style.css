@@ -19,34 +19,28 @@ header {
     background-color: #222;
     color: #fff;
 }
+
 header div {
     padding: 0.6em;
 }
+
 header form {
     display: flex;
     flex-wrap: nowrap;
 }
+
 header form input {
+    width: 22rem;
     font-family: 'Ubuntu Condensed', sans-serif;
+    color: #666;
+    border-radius: 1.3em;
+    padding: 0.83em 0.5em 0.83em 1.3em;
+    font-size: 1.3em;
+    border: none;
 }
 
 button {
-    border-radius: 0 8px 8px 0;
-    color: #fff;
-    background-color: #009900;
-    border: none;
-    font-size: inherit;
-}
-
-button:hover {
-    color: #fcf9f9;
-    background-color: #568ac5;
-}
-
-header form input {
-    border-radius: 8px 0 0 8px;
-    padding: 0.63em;
-    font-size: inherit;
+    visibility: hidden;
 }
 
 .renderedWeather {

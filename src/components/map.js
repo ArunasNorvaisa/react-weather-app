@@ -3,7 +3,7 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-map
 import Header from './header';
 import Weather from './weather';
 
-const API_KEY =`${process.env.REACT_APP_API_KEY_GL}`;
+const API_KEY_GOOGLE =`${process.env.REACT_APP_API_KEY_GL}`;
 
 const MyMap = withScriptjs(withGoogleMap(props =>
     <GoogleMap
@@ -32,7 +32,7 @@ export default class Map extends Component {
 
     handleAddressSearch = name => {
         let GOOGLE_URL_HOME = "https://maps.googleapis.com/maps/api/geocode/json?address=";
-        GOOGLE_URL_HOME += name + `&key=${API_KEY}`;
+        GOOGLE_URL_HOME += name + `&key=${API_KEY_GOOGLE}`;
 
         fetch(GOOGLE_URL_HOME, {method:'GET'})
         .then(response => response.json())
@@ -47,7 +47,7 @@ export default class Map extends Component {
     }
 
     reverseGeocoding = (lat, lng) => {
-        let GEO_URL_HOME = `https://maps.googleapis.com/maps/api/geocode/json?key=${API_KEY}&latlng=`;
+        let GEO_URL_HOME = `https://maps.googleapis.com/maps/api/geocode/json?key=${API_KEY_GOOGLE}&latlng=`;
         GEO_URL_HOME += +lat + ',' + lng;
         fetch(GEO_URL_HOME, { method: 'GET' })
         .then(response => response.json())
@@ -89,7 +89,7 @@ export default class Map extends Component {
                 />
                 <Weather latitude={ latitude } longitude={ longitude } city={ city } />
                 <MyMap
-                    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+                    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${API_KEY_GOOGLE}&v=3.exp&libraries=geometry,drawing,places`}
                     loadingElement={ <div style={{ height: `100%` }} /> }
                     containerElement={ <div style={{ height: `97vh` }} /> }
                     mapElement={ <div style={{ height: `100%` }} /> }
