@@ -159,6 +159,7 @@ button {
 }
 @media screen and (max-width:420px) {
     .renderedWeather {
+        padding: 10px;
         background-image: url('');
         background:#EF6C00;
 	    background: linear-gradient(280deg, rgba(4, 0, 255, 1) 0%, rgba(30, 81, 125, 1) 100%);
@@ -174,9 +175,15 @@ button {
 
     .icon img {
         width: 3rem;
+        margin-bottom: 8px;
     }
 
     .todayWeather, .todayWeather .date, .dailyWeather, .dailyWeather .date, .tToday {
         font-size: 1.3rem;
+    }
+
+    .poweredBy {
+        margin-top: 10px;
+        font-size: 1rem;
     }
 }
