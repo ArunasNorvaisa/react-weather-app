@@ -40,16 +40,15 @@ header form input {
     border: none;
 }
 
-header form img {
+header form i {
     position: absolute;
-    left: 13px;
-    top: 1px;
-    height: 41px;
-    color: #888;
+    left: 10px;
+    top: 9px;
+    color: #666;
 }
 
 button {
-    visibility: hidden;
+    display: none;
 }
 
 .renderedWeather {
@@ -64,7 +63,7 @@ button {
     background-color:#EF6C00;
     background-color: rgba(0, 0, 0, .3);
     background-blend-mode: darken;
-    background-image: url('https://source.unsplash.com/1280x720/?sky');
+    background-image: url('https://source.unsplash.com/1280x720/?sun');
     background-position: center center;
     background-size: cover;
     margin: 0 0 .2rem 0;
@@ -165,6 +164,19 @@ button {
 	    background: linear-gradient(280deg, rgba(4, 0, 255, 1) 0%, rgba(30, 81, 125, 1) 100%);
     }
     .cityName {
-        margin: 0 2vw;
+        margin: 0 1vw 2vw 0;
+        font-size: 3rem;
+    }
+
+    .todayWeather .icon img {
+        width: 5rem;
+    }
+
+    .icon img {
+        width: 3rem;
+    }
+
+    .todayWeather, .todayWeather .date, .dailyWeather, .dailyWeather .date, .tToday {
+        font-size: 1.3rem;
     }
 }
