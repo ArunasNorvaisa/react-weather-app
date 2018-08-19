@@ -1,7 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Svg Vector Icons : http://www.onlinewebfonts.com/icon -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
-<metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
-<g><g transform="matrix(1 0 0 -1 0 480)"><path d="M968.2-369.9L667.1-68.8c83.8,136.6,66.9,317.6-51.4,436c-138.6,138.6-363.2,138.6-501.7,0C-24.6,228.6-24.6,4,113.9-134.5C219.2-250.4,412.8-263,547.3-186.4l302.2-302.2c43.6-43.6,76.9-14.9,104.2,12.4C981-448.9,1011.8-413.5,968.2-369.9L968.2-369.9z M528.1-45.6c-90.9-90.9-238.2-90.9-329,0c-90.9,90.9-90.9,238.2,0,329c90.9,90.9,238.2,90.9,329,0C618.9,192.5,618.9,45.3,528.1-45.6L528.1-45.6z"/></g></g>
-</svg>
+<svg aria-hidden="true" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg>

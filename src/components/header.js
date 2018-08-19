@@ -24,7 +24,8 @@ class Header extends Component {
             <div>
                 <form onSubmit={ this.handleFormSubmit }>
                     <input type="text" id="city_search" placeholder={ this.props.city } onChange={ this.handleInputChange } />
-                    <img src="./images/icons/search.svg" width={`21px`} alt="search_weather" />
+                    {/* <img src="./images/icons/search.svg" alt="search_weather" /> */}
+                    <i className="fas fa-search fa-2x"></i>
                     <button type="submit"></button>
                 </form>
             </div>
