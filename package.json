@@ -1,6 +1,6 @@
 {
   "name": "weatherapp",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "private": true,
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.1.0-11",
