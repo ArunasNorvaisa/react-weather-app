@@ -23,7 +23,7 @@ header {
     -webkit-box-direction: normal;
     flex-direction: row;
     -ms-flex-negative: 1;
-        flex-shrink: 1;
+    flex-shrink: 1;
     -webkit-box-pack: space-evenly;
     -ms-flex-pack: space-evenly;
     justify-content: space-evenly;
