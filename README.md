@@ -27,5 +27,8 @@ $ npm build
 * Open /build/index.html in your browser and, if everything works as intended,
 * Upload contents of BUILD folder to your hosting provider.
 
+### TODO
+* Fahrenheit support
+
 ##### Disclaimer
 Information displayed in this web application cannot be used for commercial purposes. Weather info is [Powered by Dark Sky](http://darksky.net/poweredby/).
