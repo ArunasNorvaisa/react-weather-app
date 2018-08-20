@@ -53,7 +53,7 @@ button {
 
 .renderedWeather {
     position: relative;
-    height: auto;
+    height: 50%;
     min-height: 91vh;
     display: flex;
     flex-flow: row;
@@ -63,7 +63,7 @@ button {
     background-color:#EF6C00;
     background-color: rgba(0, 0, 0, .3);
     background-blend-mode: darken;
-    background-image: url('https://source.unsplash.com/1280x720/?sun');
+    background-image: url('https://source.unsplash.com/1280x720/?city');
     background-position: center center;
     background-size: cover;
     margin: 0 0 .2rem 0;
@@ -126,13 +126,24 @@ button {
     background-color: #fff;
 }
 
+/* IE 8, 9, 10 hack */
+@media screen\0 {
+    header, header form, .renderedWeather, .todayWeather, .dailyWeather {
+        display: block;
+    }
+}
+
 @media screen and (max-width:1200px) {
     .renderedWeather {
-        padding: 10px 10px 30px;
+        padding: 10px 20px 30px 100px;
     }
 
     .todayWeather {
         flex-wrap: wrap;
+    }
+
+    .cityName {
+        margin: 4vw 0;
     }
 }
 
@@ -140,9 +151,10 @@ button {
     .renderedWeather {
         height: auto;
         background-blend-mode: darken;
-        background-image: url('https://source.unsplash.com/720x405/?sky');
+        background-image: url('https://source.unsplash.com/720x405/?city');
         background-position: center center;
         background-size: cover;
+        padding: 10px 20px 30px 50px;
     }
 
     .todayWeather, .renderedWeather, .futureForecast, .dailyWeather {
