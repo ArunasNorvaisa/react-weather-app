@@ -1,4 +1,6 @@
 home, html {
+    width: 100%;
+    height: 100%;
     font-family: 'Ubuntu Condensed', sans-serif;
     font-size: 0.75em;
     padding: 0;
@@ -11,10 +13,24 @@ header {
     z-index: 1;
     width: 100%;
     min-height: 5%;
+    height: 8%;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-box;
     display: flex;
+    -ms-flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
     flex-direction: row;
+    -ms-flex-negative: 1;
+        flex-shrink: 1;
+    -webkit-box-pack: space-evenly;
+    -ms-flex-pack: space-evenly;
     justify-content: space-evenly;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     background-color: #222;
     color: #fff;
@@ -26,7 +42,17 @@ header div {
 
 header form {
     position: relative;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-box;
     display: flex;
+    -ms-flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
 }
 
@@ -55,15 +81,26 @@ button {
     position: relative;
     height: 50%;
     min-height: 91vh;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-box;
     display: flex;
-    flex-flow: row;
+    -ms-flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     color: #fff;
     background-color:#EF6C00;
     background-color: rgba(0, 0, 0, .3);
     background-blend-mode: darken;
-    background-image: url('https://source.unsplash.com/1280x720/?city');
+    background-image: url('https://source.unsplash.com/1920x1080/?hongkong');
     background-position: center center;
     background-size: cover;
     margin: 0 0 .2rem 0;
@@ -71,14 +108,23 @@ button {
 }
 
 .cityName {
+    -ms-flex-item-align: center;
+    -ms-grid-row-align: center;
     align-self: center;
     font-size: 6rem;
     margin: 4vw;
 }
 
 .todayWeather, .dailyWeather {
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-box;
     display: flex;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
+    -ms-flex-item-align: center;
     align-self: center;
     padding: 2rem;
     font-size: 1.7rem;
@@ -86,6 +132,7 @@ button {
 
 .todayWeather .date, .tToday {
     font-size: 3rem;
+    -ms-grid-column-align: center;
     justify-self: center;
     margin: 0 0 1rem 0;
 }
@@ -127,18 +174,20 @@ button {
 }
 
 /* IE 8, 9, 10 hack */
-@media screen\0 {
+/* @media screen\0 {
     header, header form, .renderedWeather, .todayWeather, .dailyWeather {
         display: block;
     }
-}
+} */
 
 @media screen and (max-width:1200px) {
     .renderedWeather {
         padding: 10px 20px 30px 100px;
+        background-image: url('https://source.unsplash.com/1280x720/?kyoto');
     }
 
     .todayWeather {
+        -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     }
 
@@ -151,7 +200,7 @@ button {
     .renderedWeather {
         height: auto;
         background-blend-mode: darken;
-        background-image: url('https://source.unsplash.com/720x405/?city');
+        background-image: url('https://source.unsplash.com/720x405/?sunshine');
         background-position: center center;
         background-size: cover;
         padding: 10px 20px 30px 50px;
@@ -174,6 +223,8 @@ button {
         padding: 10px;
         background-image: url('');
         background:#EF6C00;
+	    background: -webkit-linear-gradient(170deg, rgba(4, 0, 255, 1) 0%, rgba(30, 81, 125, 1) 100%);
+	    background: -o-linear-gradient(170deg, rgba(4, 0, 255, 1) 0%, rgba(30, 81, 125, 1) 100%);
 	    background: linear-gradient(280deg, rgba(4, 0, 255, 1) 0%, rgba(30, 81, 125, 1) 100%);
     }
     .cityName {
