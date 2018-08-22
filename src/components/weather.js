@@ -6,6 +6,7 @@ export default class Weather extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isTemperatureInC: true,
             isLoaded: false,
             JSON: null
         }
@@ -19,8 +20,13 @@ export default class Weather extends Component {
     getForecast(date) {
         // de-structuring icon, time, temperatureLow, temperatureHigh, summary from the
         // application state so we don't have to keep typing this.state.JSON.etc...
-        const { icon, time, temperatureLow, temperatureHigh, summary } = this.state.JSON.daily.data[date];
+        let { icon, time, temperatureLow, temperatureHigh, summary } = this.state.JSON.daily.data[date];
         const icon_URL = "./images/icons/" + icon + ".svg";
+        // Calculating temperature in Fahrenheit
+        if(!this.state.isTemperatureInC) {
+            temperatureLow = temperatureLow * 1.8 + 32;
+            temperatureHigh = temperatureHigh * 1.8 + 32;
+        }
         return <div>
             <div className="icon">
                 <img src={ icon_URL } alt="icon"/>
@@ -32,6 +38,7 @@ export default class Weather extends Component {
                 { temperatureHigh.toFixed(0) }&deg;
             </div>
             <div className="forecastSummary">{ summary }</div>
+            <hr />
         </div>;
     }
 
@@ -54,19 +61,33 @@ export default class Weather extends Component {
         });
     };
 
+    whichTemperatureUnitsToDisplay = () => {
+        return (this.state.isTemperatureInC ? "F" : "C");
+    };
+
+    handleTemperatureUnitChange = event => {
+        event.preventDefault();
+        this.setState({
+            isTemperatureInC: !this.state.isTemperatureInC
+        });
+    }
+
     componentDidMount() {
         this.fetchWeather();
     };
 
     componentDidUpdate(prevProps) {
-        if (this.props.latitude !== prevProps.latitude || this.props.longitude !== prevProps.longitude) {
+        if(this.props.latitude !== prevProps.latitude || this.props.longitude !== prevProps.longitude) {
             this.fetchWeather();
         }
-    }
+    };
 
     render() {
         return this.state.isLoaded
             ? <div className="renderedWeather">
+                <button className="cOrF" onClick={ (event) => this.handleTemperatureUnitChange(event) }>
+                    Switch to &deg;{ this.whichTemperatureUnitsToDisplay() }
+                </button>
                 <div className="todayWeather">
                     <div className="cityName">{ this.props.city }</div>
                     <div>{ this.getForecast(0) }
@@ -75,13 +96,11 @@ export default class Weather extends Component {
                 </div>
                 <div className="futureForecast">
                     <div className="dailyWeather">{ this.getForecast(1) }</div>
-                    <hr />
                     <div className="dailyWeather">{ this.getForecast(2) }</div>
-                    <hr />
                     <div className="dailyWeather">{ this.getForecast(3) }</div>
                     <div className="poweredBy">Powered by <a href="http://darksky.net/poweredby/">Dark Sky</a></div>
                 </div>
             </div>
-        : <h3>Loading, please wait...</h3>;
+        : <h3>Loading weather, please wait...</h3>;
     }
 }

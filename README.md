@@ -1,8 +1,8 @@
 # Weather application
-Weather app made with ReactJS. Automatically recognizes user's location, based on browser's settings or IP. Weather can be searched both by location on the map or entering city in the search bar (latter not yet done).
+Weather app made with ReactJS. Automatically recognizes user's location, based on browser's settings or IP. Weather can be searched both by location on the map or entering city in the search bar.
 
 ### Version
-* 1.0.4
+* 1.0.5
 
 ### Demo
 * [https://arunas.org/weather](https://arunas.org/weather)
@@ -26,9 +26,6 @@ $ npm build
 ```
 * Open /build/index.html in your browser and, if everything works as intended,
 * Upload contents of BUILD folder to your hosting provider.
-
-### TODO
-* Fahrenheit support
 
 ##### Disclaimer
 Information displayed in this web application cannot be used for commercial purposes. Weather info is [Powered by Dark Sky](http://darksky.net/poweredby/).

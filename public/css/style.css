@@ -6,6 +6,7 @@ home, html {
     padding: 0;
     margin: 0;
 }
+
 header {
     position: -webkit-sticky;
     position: sticky;
@@ -73,8 +74,22 @@ header form i {
     color: #666;
 }
 
-button {
+header form button {
     display: none;
+}
+
+hr {
+    display: block;
+    height: 1.2px;
+    width: 80%;
+    background-color: #fff;
+    margin-left: 0;
+    border: none;
+}
+
+.futureForecast hr {
+    margin-top: 1em;
+    width: 90%;
 }
 
 .renderedWeather {
@@ -97,10 +112,9 @@ button {
     -ms-flex-align: center;
     align-items: center;
     color: #fff;
-    background-color:#EF6C00;
     background-color: rgba(0, 0, 0, .3);
     background-blend-mode: darken;
-    background-image: url('https://source.unsplash.com/1920x1080/?hongkong');
+    background-image: url('https://source.unsplash.com/1920x1080/?weather');
     background-position: center center;
     background-size: cover;
     margin: 0 0 .2rem 0;
@@ -126,7 +140,7 @@ button {
     flex-wrap: nowrap;
     -ms-flex-item-align: center;
     align-self: center;
-    padding: 2rem;
+    padding: 3.8rem 2rem 2rem;
     font-size: 1.7rem;
 }
 
@@ -135,6 +149,18 @@ button {
     -ms-grid-column-align: center;
     justify-self: center;
     margin: 0 0 1rem 0;
+}
+
+.renderedWeather .cOrF {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: transparent;
+    color: #fff;
+    font-size: 1.3rem;
+    padding: 5px;
+    border: 2px solid #fff;
+    border-radius: 5px;
 }
 
 .poweredBy {
@@ -165,20 +191,6 @@ button {
 .todayWeather .icon img {
     width: 15rem;
 }
-
-.futureForecast hr {
-    display: block;
-    height: 2px;
-    width: 80%;
-    background-color: #fff;
-}
-
-/* IE 8, 9, 10 hack */
-/* @media screen\0 {
-    header, header form, .renderedWeather, .todayWeather, .dailyWeather {
-        display: block;
-    }
-} */
 
 @media screen and (max-width:1200px) {
     .renderedWeather {
@@ -213,20 +225,23 @@ button {
     .todayWeather, .futureForecast, .dailyWeather, .forecastSummary {
         max-width: 96%;
     }
-
-    .futureForecast hr {
-        height: .02px;
-    }
 }
+
 @media screen and (max-width:420px) {
     .renderedWeather {
         padding: 10px;
         background-image: url('');
-        background:#EF6C00;
 	    background: -webkit-linear-gradient(170deg, rgba(4, 0, 255, 1) 0%, rgba(30, 81, 125, 1) 100%);
 	    background: -o-linear-gradient(170deg, rgba(4, 0, 255, 1) 0%, rgba(30, 81, 125, 1) 100%);
 	    background: linear-gradient(280deg, rgba(4, 0, 255, 1) 0%, rgba(30, 81, 125, 1) 100%);
     }
+
+    .renderedWeather .cOrF {
+        top: 15px;
+        left: 72%;
+        font-size: 1rem;
+    }
+
     .cityName {
         margin: 0 1vw 2vw 0;
         font-size: 3rem;
@@ -243,6 +258,10 @@ button {
 
     .todayWeather, .todayWeather .date, .dailyWeather, .dailyWeather .date, .tToday {
         font-size: 1.3rem;
+    }
+
+    .todayWeather .date, .dailyWeather .date {
+        margin-bottom: 6px;
     }
 
     .poweredBy {
