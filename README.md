@@ -28,4 +28,4 @@ $ npm build
 * Upload contents of BUILD folder to your hosting provider.
 
 ##### Disclaimer
-Information displayed in this web application cannot be used for commercial purposes. Weather info is [Powered by Dark Sky](http://darksky.net/poweredby/).
+Information displayed in this web application cannot be used for commercial purposes. Weather info is [powered by Dark Sky](http://darksky.net/poweredby/).
