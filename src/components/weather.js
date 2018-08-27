@@ -62,10 +62,6 @@ export default class Weather extends Component {
         });
     };
 
-    whichTemperatureUnitsToDisplay = () => {
-        return (this.state.isTemperatureInC ? "F" : "C");
-    };
-
     handleTemperatureUnitChange = event => {
         event.preventDefault();
         this.setState({
@@ -89,7 +85,7 @@ export default class Weather extends Component {
                 <WeatherByTheHour JSON={ this.state.JSON } isTemperatureInC={ this.state.isTemperatureInC }/>
                 <div className="renderedWeather">
                     <button className="cOrF" onClick={ (event) => this.handleTemperatureUnitChange(event) }>
-                        Switch to &deg;{ this.whichTemperatureUnitsToDisplay() }
+                        Switch to &deg;{ this.state.isTemperatureInC ? "F" : "C" }
                     </button>
                     <div className="todayWeather">
                         <div className="cityName">{ this.props.city }</div>

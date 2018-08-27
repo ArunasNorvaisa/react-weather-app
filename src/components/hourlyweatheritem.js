@@ -26,7 +26,7 @@ const HourlyWeatherItem = props => {
             <div>{ getTime(props.item.time) }</div>
             <div><img src={ icon_URL } alt={ props.item.icon } /></div>
             <div>{ temperature }&deg;</div>
-        </div>
+        </div>;
 };
 
 export default HourlyWeatherItem;
