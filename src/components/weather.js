@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import WeatherByTheHour from './weatherbythehour';
 
 const API_KEY_DARKSKY =`${process.env.REACT_APP_API_KEY_DS}`;
 
@@ -12,12 +13,12 @@ export default class Weather extends Component {
         }
     }
 
-    getDate(time) {
+    getDate = time => {
         const options = { weekday: 'short', month: 'short', day: 'numeric', timeZone: this.state.JSON.timezone };
         return new Date(time * 1e3).toLocaleDateString('en', options);
     }
 
-    getForecast(date) {
+    getForecast = date => {
         // de-structuring icon, time, temperatureLow, temperatureHigh, summary from the
         // application state so we don't have to keep typing this.state.JSON.etc...
         let { icon, time, temperatureLow, temperatureHigh, summary } = this.state.JSON.daily.data[date];
@@ -46,7 +47,7 @@ export default class Weather extends Component {
         let WEATHER_URL_HOME = 'https://cors-anywhere.herokuapp.com/';
         WEATHER_URL_HOME += `https://api.forecast.io/forecast/${API_KEY_DARKSKY}/`;
         WEATHER_URL_HOME += `${this.props.latitude},${this.props.longitude}`;
-        WEATHER_URL_HOME += '?units=si&exclude=hourly%2Cflags%2Cminutely';
+        WEATHER_URL_HOME += '?units=si&exclude=flags%2Cminutely';
         this.setState({
             isLoaded: false
         });
@@ -84,21 +85,24 @@ export default class Weather extends Component {
 
     render() {
         return this.state.isLoaded
-            ? <div className="renderedWeather">
-                <button className="cOrF" onClick={ (event) => this.handleTemperatureUnitChange(event) }>
-                    Switch to &deg;{ this.whichTemperatureUnitsToDisplay() }
-                </button>
-                <div className="todayWeather">
-                    <div className="cityName">{ this.props.city }</div>
-                    <div>{ this.getForecast(0) }
-                        <span className="intelligentForecast">{ this.state.JSON.daily.summary }</span>
+            ? <div>
+                <WeatherByTheHour JSON={ this.state.JSON } isTemperatureInC={ this.state.isTemperatureInC }/>
+                <div className="renderedWeather">
+                    <button className="cOrF" onClick={ (event) => this.handleTemperatureUnitChange(event) }>
+                        Switch to &deg;{ this.whichTemperatureUnitsToDisplay() }
+                    </button>
+                    <div className="todayWeather">
+                        <div className="cityName">{ this.props.city }</div>
+                        <div>{ this.getForecast(0) }
+                            <span className="intelligentForecast">{ this.state.JSON.daily.summary }</span>
+                        </div>
                     </div>
-                </div>
-                <div className="futureForecast">
-                    <div className="dailyWeather">{ this.getForecast(1) }</div>
-                    <div className="dailyWeather">{ this.getForecast(2) }</div>
-                    <div className="dailyWeather">{ this.getForecast(3) }</div>
-                    <div className="poweredBy">Powered by <a href="http://darksky.net/poweredby/">Dark Sky</a></div>
+                    <div className="futureForecast">
+                        <div className="dailyWeather">{ this.getForecast(1) }</div>
+                        <div className="dailyWeather">{ this.getForecast(2) }</div>
+                        <div className="dailyWeather">{ this.getForecast(3) }</div>
+                        <div className="poweredBy">Powered by <a href="http://darksky.net/poweredby/">Dark Sky</a></div>
+                    </div>
                 </div>
             </div>
         : <h3>Loading weather, please wait...</h3>;

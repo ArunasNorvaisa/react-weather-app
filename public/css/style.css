@@ -87,6 +87,43 @@ hr {
     border: none;
 }
 
+.weatherByTheHour, .renderedWeather {
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    color: #fff;
+}
+
+.weatherByTheHour {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -ms-flex-pack: distribute;
+    justify-content: space-between;
+    background-color: #222;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.weatherByTheHour::-webkit-scrollbar {
+    display: none;
+}
+
+.hourlyWeatherItem {
+    display: inline-block;
+    font-size: 1.1em;
+    padding: 3px 10px 3px 5px;
+}
+
+.hourlyWeatherItem img {
+    width: 27px;
+}
+
 .futureForecast hr {
     margin-top: 1em;
     width: 90%;
@@ -96,14 +133,6 @@ hr {
     position: relative;
     height: 50%;
     min-height: 91vh;
-    display: -ms-flexbox;
-    display: -moz-flex;
-    display: -webkit-box;
-    display: flex;
-    -ms-flex-direction: row;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    flex-direction: row;
     -ms-flex-negative: 1;
     flex-shrink: 1;
     -ms-flex-pack: distribute;
@@ -111,7 +140,6 @@ hr {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    color: #fff;
     background-color: rgba(0, 0, 0, .3);
     background-blend-mode: darken;
     background-image: url('https://source.unsplash.com/1920x1080/?weather');
