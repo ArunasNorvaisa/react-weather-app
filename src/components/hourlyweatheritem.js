@@ -12,14 +12,14 @@ const HourlyWeatherItem = props => {
         const options = { timeZone: props.JSON.timezone, hour: '2-digit', minute: '2-digit', hour12: false };
         return new Date(time * 1e3).toLocaleTimeString('en', options);
     }
+    
     return props.item.precipType
         ? <div className="hourlyWeatherItem">
             <div>{ getTime(props.item.time) }</div>
             <div><img src={ icon_URL } alt={ props.item.icon } /></div>
             <div>{ temperature }&deg;</div>
             <div>
-                <span>{ props.item.precipType }</span> &nbsp;
-                <span>{ (props.item.precipProbability * 100).toFixed(0) }%</span>
+                { props.item.precipType } { (props.item.precipProbability * 100).toFixed(0) }%
             </div>
         </div>
         : <div className="hourlyWeatherItem">

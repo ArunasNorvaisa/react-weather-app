@@ -114,6 +114,28 @@ hr {
     display: none;
 }
 
+.renderedHourlyWeather {
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    color: #fff;
+}
+
+.weekday {
+    background-color: #AAFF00;
+    color: #000;
+    text-transform: uppercase;
+    padding: 10px 0;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    writing-mode: tb-rl;
+}
+
 .hourlyWeatherItem {
     display: inline-block;
     font-size: 1.1em;
