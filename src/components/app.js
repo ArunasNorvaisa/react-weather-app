@@ -37,7 +37,6 @@ export default class App extends Component {
                 this.setState({
                     isLoaded: true,
                     city: json.results[0].address_components[2].short_name
-                    // city: json.results[2].formatted_address
                 });
             }
         );
