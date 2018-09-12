@@ -130,7 +130,7 @@ hr {
     background-color: #AAFF00;
     color: #000;
     text-transform: uppercase;
-    padding: 10px 0;
+    padding: 10px 1px;
     writing-mode: vertical-rl;
     text-orientation: mixed;
     writing-mode: tb-rl;

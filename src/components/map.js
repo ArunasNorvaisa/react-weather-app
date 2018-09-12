@@ -40,8 +40,8 @@ export default class Map extends Component {
             this.setState({
                 latitude: json.results[0].geometry.location.lat,
                 longitude: json.results[0].geometry.location.lng,
-                city: json.results[0].formatted_address,
-                address: json.results[0].formatted_address
+                city: json.results[0].address_components[2].short_name,
+                address: json.results[2].formatted_address
             });
         });
     }
@@ -54,8 +54,8 @@ export default class Map extends Component {
         .then(json => {
             if (json.status !== "ZERO_RESULTS") {
                 this.setState({
-                    address: json.results[0].formatted_address,
-                    city: json.results[1].address_components[1].short_name
+                    address: json.results[2].formatted_address,
+                    city: json.results[0].address_components[2].short_name
                 })
             } else {
                 this.setState({

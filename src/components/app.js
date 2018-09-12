@@ -36,7 +36,8 @@ export default class App extends Component {
             .then(json => {
                 this.setState({
                     isLoaded: true,
-                    city: json.results[1].address_components[1].short_name
+                    city: json.results[0].address_components[2].short_name
+                    // city: json.results[2].formatted_address
                 });
             }
         );
