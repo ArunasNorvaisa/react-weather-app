@@ -16,7 +16,7 @@ export default class Weather extends Component {
     getDate = time => {
         const options = { weekday: 'short', month: 'short', day: 'numeric', timeZone: this.state.JSON.timezone };
         return new Date(time * 1e3).toLocaleDateString('en', options);
-    }
+    };
 
     getForecast = date => {
         // de-structuring icon, time, temperatureLow, temperatureHigh, summary from the
@@ -41,7 +41,7 @@ export default class Weather extends Component {
             <div className="forecastSummary">{ summary }</div>
             <hr />
         </div>;
-    }
+    };
 
     fetchWeather = () => {
         let WEATHER_URL_HOME = 'https://cors-anywhere.herokuapp.com/';
@@ -52,7 +52,7 @@ export default class Weather extends Component {
             isLoaded: false
         });
 
-        fetch(WEATHER_URL_HOME, {method:'GET'})
+        fetch(WEATHER_URL_HOME, { method:'GET' })
         .then(response => response.json())
         .then(json => {
             this.setState({
@@ -67,7 +67,7 @@ export default class Weather extends Component {
         this.setState({
             isTemperatureInC: !this.state.isTemperatureInC
         });
-    }
+    };
 
     componentDidMount() {
         this.fetchWeather();
@@ -80,11 +80,11 @@ export default class Weather extends Component {
     };
 
     render() {
-        return this.state.isLoaded
-            ? <div>
+        return this.state.isLoaded ?
+            <React.Fragment>
                 <WeatherByTheHour JSON={ this.state.JSON } isTemperatureInC={ this.state.isTemperatureInC }/>
                 <div className="renderedWeather">
-                    <button className="cOrF" onClick={ (event) => this.handleTemperatureUnitChange(event) }>
+                    <button className="cOrF" onClick={ event => this.handleTemperatureUnitChange(event) }>
                         Switch to &deg;{ this.state.isTemperatureInC ? "F" : "C" }
                     </button>
                     <div className="todayWeather">
@@ -100,7 +100,7 @@ export default class Weather extends Component {
                         <div className="poweredBy">Powered by <a href="http://darksky.net/poweredby/">Dark Sky</a></div>
                     </div>
                 </div>
-            </div>
-        : <h3>Loading weather, please wait...</h3>;
+            </React.Fragment> :
+        <h3>Loading weather, please wait...</h3>;
     }
 }

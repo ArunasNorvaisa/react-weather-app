@@ -20,6 +20,6 @@ const WeatherByTheHour = props => {
         </div>;
     });
     return <div className="weatherByTheHour">{ items }</div>;
-}
+};
 
 export default WeatherByTheHour;

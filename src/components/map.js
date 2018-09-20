@@ -44,7 +44,7 @@ export default class Map extends Component {
                 address: json.results[0].formatted_address
             });
         });
-    }
+    };
 
     reverseGeocoding = (lat, lng) => {
         let GEO_URL_HOME = `https://maps.googleapis.com/maps/api/geocode/json?key=${API_KEY_GOOGLE}&latlng=`;
@@ -62,9 +62,9 @@ export default class Map extends Component {
                     address: "There's nothing here, please check where you click",
                     city: "There's nothing here, please check where you click"
                 });
-            };
+            }
         });
-    }
+    };
 
     handleMapClick = event => {
         this.setState({
@@ -72,14 +72,14 @@ export default class Map extends Component {
             longitude: event.latLng.lng()
         });
         this.reverseGeocoding(event.latLng.lat(), event.latLng.lng());
-    }
+    };
 
     render() {
         // de-structuring latitude, longitude, city, address from the
         // application state so we don't have to keep typing this.state.
         const { latitude, longitude, city, address } = this.state;
         return (
-            <div>
+            <React.Fragment>
                 <Header
                     latitude={ latitude }
                     longitude={ longitude }
@@ -97,7 +97,7 @@ export default class Map extends Component {
                     longitude={ longitude }
                     onMapClick={ this.handleMapClick }
                 />
-            </div>
+            </React.Fragment>
         );
     }
 }

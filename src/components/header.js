@@ -9,7 +9,7 @@ class Header extends Component {
 
     handleInputChange = event => {
         this.setState({ searchTerm: event.target.value });
-    }
+    };
 
     handleFormSubmit = event => {
         event.preventDefault();
@@ -30,6 +30,6 @@ class Header extends Component {
             </div>
         </header>
     }
-};
+}
 
 export default Header;

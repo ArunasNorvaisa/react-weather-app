@@ -26,7 +26,7 @@ export default class App extends Component {
                 city: json.city
             });
         });
-    }
+    };
 
     reverseGeocoded = (lat, lng) => {
         let GEO_URL_HOME = `https://maps.googleapis.com/maps/api/geocode/json?key=${API_KEY_GOOGLE}&latlng=`;
@@ -44,14 +44,14 @@ export default class App extends Component {
 
     getLocation = () => {
         navigator.geolocation.getCurrentPosition(
-            (position) => {
+            position => {
                 this.reverseGeocoded(position.coords.latitude, position.coords.longitude);
                 this.setState({
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude
                 });
             },
-            (err) => {
+            err => {
                 console.warn(`ERROR(${err.code}): ${err.message}`);
                 this.getIP();
             },
@@ -60,7 +60,7 @@ export default class App extends Component {
                 enableHighAccuracy: false
             }
         );
-    }
+    };
 
     componentDidMount() {
         this.getLocation();
@@ -68,14 +68,14 @@ export default class App extends Component {
 
     render() {
         const { latitude, longitude, city } = this.state;
-        return this.state.isLoaded
-        ? <div className="wrapper">
+        return this.state.isLoaded ?
+        <div className="wrapper">
             <Map lat={ latitude }
                 lng={ longitude }
                 city={ city }
                 address={ city }
             />
-        </div>
-        : <h2>Application is loading, please be patient...</h2>
+        </div> :
+        <h2>Application is loading, please be patient...</h2>
     }
 }
