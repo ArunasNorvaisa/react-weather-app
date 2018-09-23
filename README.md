@@ -2,7 +2,7 @@
 Weather app made with ReactJS. Automatically recognizes user's location, based on browser's settings or IP. Weather can be searched both by location on the map or entering city in the search bar.
 
 ### Version
-* 1.1.0
+* 1.1.1
 
 ### Demo
 * [https://reactweatherapp.com](https://reactweatherapp.com)
