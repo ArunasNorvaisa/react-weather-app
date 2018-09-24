@@ -32,7 +32,6 @@ header form {
     position: relative;
     display: flex;
     flex-direction: row;
-    -ms-flex-negative: 1;
     flex-shrink: 1;
     flex-wrap: nowrap;
 }
@@ -93,11 +92,11 @@ hr {
 }
 
 .weekday {
-    background-color: #AAFF00;
+    background-color: #aaff00;
     color: #000;
     text-transform: uppercase;
     padding: 10px 1px;
-    writing-mode: vertical-rl;
+    /*writing-mode: vertical-rl;*/
     text-orientation: mixed;
     writing-mode: tb-rl;
 }
@@ -246,9 +245,6 @@ hr {
 @media screen and (max-width:420px) {
     .renderedWeather {
         padding: 10px;
-        background-image: url('');
-	    background: -webkit-linear-gradient(170deg, rgba(4, 0, 255, 1) 0%, rgba(30, 81, 125, 1) 100%);
-	    background: -o-linear-gradient(170deg, rgba(4, 0, 255, 1) 0%, rgba(30, 81, 125, 1) 100%);
 	    background: linear-gradient(280deg, rgba(4, 0, 255, 1) 0%, rgba(30, 81, 125, 1) 100%);
     }
 
@@ -278,10 +274,6 @@ hr {
 }
 
 /* GitHub corner start */
-
-.leftPanel .small {
-    font-size: 1rem;
-}
 
 .github-corner:hover .octo-arm {
 	animation: octocat-wave 560ms ease-in-out

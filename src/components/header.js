@@ -23,7 +23,12 @@ class Header extends Component {
             <div>Address: { this.props.address }</div>
             <div>
                 <form onSubmit={ this.handleFormSubmit }>
-                    <input type="text" id="city_search" placeholder={ this.props.city } onChange={ this.handleInputChange } />
+                    <input
+                        type="text"
+                        id="city_search"
+                        placeholder={ this.props.city }
+                        onChange={ this.handleInputChange }
+                    />
                     <i className="fas fa-search fa-2x"></i>
                     <button type="submit"></button>
                 </form>

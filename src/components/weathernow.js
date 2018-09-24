@@ -33,8 +33,6 @@ const WeatherNow = props => {
             </div>
             <hr />
             <div>{ props.JSON.hourly.summary }</div>
-            <div className="small">{ props.JSON.currently.time }</div>
-            <div className="small">{ timeNow }</div>
         </div> :
         <div className="todayWeather">
             <div>{ getTime(timeNow) }</div>
@@ -43,8 +41,6 @@ const WeatherNow = props => {
             <div>{ props.JSON.currently.summary }</div>
             <hr />
             <div>{ props.JSON.hourly.summary }</div>
-            <div className="small">{ props.JSON.currently.time }</div>
-            <div className="small">{ timeNow }</div>
         </div>;
 };
 
