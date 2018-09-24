@@ -124,10 +124,8 @@ hr {
     flex-shrink: 1;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(0, 0, 0, .3);
     background-blend-mode: darken;
-    background-image: url('https://source.unsplash.com/1920x1080/?weather');
-    background-position: center center;
+    background: rgba(0, 0, 0, .3) url('https://source.unsplash.com/1920x1080/?weather') center center;
     background-size: cover;
     margin: 0 0 .2rem 0;
     padding: 10px;
@@ -226,8 +224,7 @@ hr {
     .renderedWeather {
         height: auto;
         background-blend-mode: darken;
-        background-image: url('https://source.unsplash.com/720x405/?sunshine');
-        background-position: center center;
+        background: url('https://source.unsplash.com/720x405/?sunshine') center center;
         background-size: cover;
         padding: 10px 20px 30px 50px;
     }
@@ -281,6 +278,10 @@ hr {
 }
 
 /* GitHub corner start */
+
+.leftPanel .small {
+    font-size: 1rem;
+}
 
 .github-corner:hover .octo-arm {
 	animation: octocat-wave 560ms ease-in-out

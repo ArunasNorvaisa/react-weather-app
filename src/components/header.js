@@ -18,9 +18,9 @@ class Header extends Component {
 
     render() {
         return <header>
-            <div className="coords">Latitude: { this.props.latitude.toFixed(4) }</div>
-            <div className="coords">Longitude: { this.props.longitude.toFixed(4) }</div>
-            <div className="coords">Address: { this.props.address }</div>
+            <div>Latitude: { this.props.latitude.toFixed(4) }</div>
+            <div>Longitude: { this.props.longitude.toFixed(4) }</div>
+            <div>Address: { this.props.address }</div>
             <div>
                 <form onSubmit={ this.handleFormSubmit }>
                     <input type="text" id="city_search" placeholder={ this.props.city } onChange={ this.handleInputChange } />
@@ -28,7 +28,7 @@ class Header extends Component {
                     <button type="submit"></button>
                 </form>
             </div>
-        </header>
+        </header>;
     }
 }
 
