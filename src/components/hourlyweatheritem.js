@@ -12,7 +12,7 @@ const HourlyWeatherItem = props => {
         const options = { timeZone: props.JSON.timezone, hour: '2-digit', minute: '2-digit', hour12: false };
         return new Date(time * 1e3).toLocaleTimeString('en', options);
     };
-    
+
     return props.item.precipType ?
         <div className="hourlyWeatherItem">
             <div>{ getTime(props.item.time) }</div>

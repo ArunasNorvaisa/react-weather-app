@@ -146,7 +146,7 @@ hr {
     width: 27px;
 }
 
-.futureForecast hr {
+.rightPanel hr {
     margin-top: 1em;
     width: 90%;
 }
@@ -174,12 +174,23 @@ hr {
 .cityName {
     -ms-flex-item-align: center;
     -ms-grid-row-align: center;
-    align-self: center;
+    align-self: baseline;
     font-size: 6rem;
-    margin: 4vw;
+    margin: 1vw 0;
 }
 
-.todayWeather, .dailyWeather {
+.todayWeather, .todayWeather hr {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.todayWeather div {
+    font-size: 2.3rem;
+}
+
+.dailyWeather {
+    font-size: 1.7rem;
+    padding: 3.8rem 2rem 2rem;
     display: -ms-flexbox;
     display: -moz-flex;
     display: -webkit-box;
@@ -190,15 +201,24 @@ hr {
     flex-wrap: nowrap;
     -ms-flex-item-align: center;
     align-self: center;
-    padding: 3.8rem 2rem 2rem;
-    font-size: 1.7rem;
+    width: 500px;
+    max-width: 32vw;
 }
 
-.todayWeather .date, .tToday {
+.dailyWeather .date {
+    font-size: 2.1rem;
+}
+
+.tToday {
     font-size: 3rem;
     -ms-grid-column-align: center;
     justify-self: center;
     margin: 0 0 1rem 0;
+}
+
+.leftPanel img {
+    width: 12vw;
+    margin: 10px;
 }
 
 .renderedWeather .cOrF {
@@ -225,21 +245,8 @@ hr {
     color: inherit;
 }
 
-.dailyWeather {
-    width: 500px;
-    max-width: 32vw;
-}
-
-.dailyWeather .date {
-    font-size: 2.1rem;
-}
-
 .icon img {
     width: 5rem;
-}
-
-.todayWeather .icon img {
-    width: 15rem;
 }
 
 @media screen and (max-width:1200px) {
@@ -248,13 +255,8 @@ hr {
         background-image: url('https://source.unsplash.com/1280x720/?kyoto');
     }
 
-    .todayWeather {
-        -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    }
-
     .cityName {
-        margin: 4vw 0;
+        margin: 6% 0;
     }
 }
 
@@ -268,12 +270,17 @@ hr {
         padding: 10px 20px 30px 50px;
     }
 
-    .todayWeather, .renderedWeather, .futureForecast, .dailyWeather {
+    .renderedWeather, .rightPanel, .dailyWeather {
         display: block;
     }
 
-    .todayWeather, .futureForecast, .dailyWeather, .forecastSummary {
+    .rightPanel, .dailyWeather, .forecastSummary {
         max-width: 96%;
+    }
+
+    .cityName {
+        margin: 19vw 1vw 2vw 0;
+        font-size: 3rem;
     }
 }
 
@@ -292,25 +299,16 @@ hr {
         font-size: 1rem;
     }
 
-    .cityName {
-        margin: 0 1vw 2vw 0;
-        font-size: 3rem;
-    }
-
-    .todayWeather .icon img {
-        width: 5rem;
-    }
-
     .icon img {
         width: 3rem;
         margin-bottom: 8px;
     }
 
-    .todayWeather, .todayWeather .date, .dailyWeather, .dailyWeather .date, .tToday {
+    .dailyWeather, .dailyWeather .date, .tToday {
         font-size: 1.3rem;
     }
 
-    .todayWeather .date, .dailyWeather .date {
+    .dailyWeather .date {
         margin-bottom: 6px;
     }
 

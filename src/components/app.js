@@ -69,13 +69,13 @@ export default class App extends Component {
     render() {
         const { latitude, longitude, city } = this.state;
         return this.state.isLoaded ?
-        <div className="wrapper">
-            <Map lat={ latitude }
-                lng={ longitude }
-                city={ city }
-                address={ city }
-            />
-        </div> :
+            <React.Fragment>
+                <Map lat={ latitude }
+                    lng={ longitude }
+                    city={ city }
+                    address={ city }
+                />
+            </React.Fragment> :
         <h2>Application is loading, please be patient...</h2>
     }
 }

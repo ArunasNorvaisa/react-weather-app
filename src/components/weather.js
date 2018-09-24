@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import WeatherByTheHour from './weatherbythehour';
+import WeatherNow from './weathernow';
 
 const API_KEY_DARKSKY =`${process.env.REACT_APP_API_KEY_DS}`;
 
@@ -87,13 +88,15 @@ export default class Weather extends Component {
                     <button className="cOrF" onClick={ event => this.handleTemperatureUnitChange(event) }>
                         Switch to &deg;{ this.state.isTemperatureInC ? "F" : "C" }
                     </button>
-                    <div className="todayWeather">
+                    <div className="leftPanel">
                         <div className="cityName">{ this.props.city }</div>
-                        <div>{ this.getForecast(0) }
-                            <span className="intelligentForecast">{ this.state.JSON.daily.summary }</span>
-                        </div>
+                        <WeatherNow
+                            JSON={ this.state.JSON }
+                            isTemperatureInC={ this.state.isTemperatureInC }
+                        />
                     </div>
-                    <div className="futureForecast">
+                    <div className="rightPanel">
+                        <div className="dailyWeather">{ this.getForecast(0) }</div>
                         <div className="dailyWeather">{ this.getForecast(1) }</div>
                         <div className="dailyWeather">{ this.getForecast(2) }</div>
                         <div className="dailyWeather">{ this.getForecast(3) }</div>

@@ -4,7 +4,7 @@ import DateSeparator from './dateseparator';
 
 const WeatherByTheHour = props => {
 
-    const items = props.JSON.hourly.data.map((item) => {
+    const items = props.JSON.hourly.data.map(item => {
         return <div className="renderedHourlyWeather">
             <DateSeparator
                 key={ item.time + 1 }
