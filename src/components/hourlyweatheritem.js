@@ -9,7 +9,12 @@ const HourlyWeatherItem = props => {
         temperature = (props.item.temperature * 1.8 + 32).toFixed(0);
 
     const getTime = time => {
-        const options = { timeZone: props.JSON.timezone, hour: '2-digit', minute: '2-digit', hour12: false };
+        const options = {
+            timeZone: props.JSON.timezone,
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+        };
         return new Date(time * 1e3).toLocaleTimeString('en', options);
     };
 

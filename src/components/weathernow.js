@@ -10,7 +10,15 @@ const WeatherNow = props => {
         temperature = (props.JSON.currently.temperature * 1.8 + 32).toFixed(0);
 
     const getTime = time => {
-        const options = { timeZone: props.JSON.timezone, weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true };
+        const options = {
+            timeZone: props.JSON.timezone,
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true
+        };
         return new Date(time * 1e3).toLocaleTimeString('en', options);
     };
 
@@ -18,11 +26,12 @@ const WeatherNow = props => {
         <div className="todayWeather">
             <div>{ getTime(timeNow) }</div>
             <div><img src={ icon_URL } alt={ props.JSON.currently.icon } /></div>
-            <div>{ temperature }&deg;</div>
+            <div className="tToday">{ temperature }&deg;</div>
             <div>{ props.JSON.currently.summary }</div>
             <div>
                 { props.JSON.currently.precipType } { (props.JSON.currently.precipProbability * 100).toFixed(0) }%
             </div>
+            <hr />
             <div>{ props.JSON.hourly.summary }</div>
             <div>{ props.JSON.currently.time }</div>
             <div>{ timeNow }</div>
@@ -30,8 +39,9 @@ const WeatherNow = props => {
         <div className="todayWeather">
             <div>{ getTime(timeNow) }</div>
             <div><img src={ icon_URL } alt={ props.JSON.currently.icon } /></div>
-            <div>{ temperature }&deg;</div>
+            <div className="tToday">{ temperature }&deg;</div>
             <div>{ props.JSON.currently.summary }</div>
+            <hr />
             <div>{ props.JSON.hourly.summary }</div>
             <div>{ props.JSON.currently.time }</div>
             <div>{ timeNow }</div>

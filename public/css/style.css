@@ -8,30 +8,17 @@ home, html {
 }
 
 header {
-    position: -webkit-sticky;
     position: sticky;
     top: 0;
     z-index: 1;
     width: 100%;
     min-height: 5%;
     height: 8%;
-    display: -ms-flexbox;
-    display: -moz-flex;
-    display: -webkit-box;
     display: flex;
-    -ms-flex-direction: row;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
     flex-direction: row;
-    -ms-flex-negative: 1;
     flex-shrink: 1;
-    -webkit-box-pack: space-evenly;
-    -ms-flex-pack: space-evenly;
     justify-content: space-evenly;
-    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
     background-color: #222;
     color: #fff;
@@ -43,17 +30,10 @@ header div {
 
 header form {
     position: relative;
-    display: -ms-flexbox;
-    display: -moz-flex;
-    display: -webkit-box;
     display: flex;
-    -ms-flex-direction: row;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
     flex-direction: row;
     -ms-flex-negative: 1;
     flex-shrink: 1;
-    -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
 }
 
@@ -88,21 +68,13 @@ hr {
 }
 
 .weatherByTheHour, .renderedWeather {
-    display: -ms-flexbox;
-    display: -moz-flex;
-    display: -webkit-box;
     display: flex;
-    -ms-flex-direction: row;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
     flex-direction: row;
     color: #fff;
 }
 
 .weatherByTheHour {
-    -ms-flex-negative: 0;
     flex-shrink: 0;
-    -ms-flex-pack: distribute;
     justify-content: space-between;
     background-color: #222;
     overflow-x: scroll;
@@ -115,13 +87,7 @@ hr {
 }
 
 .renderedHourlyWeather {
-    display: -ms-flexbox;
-    display: -moz-flex;
-    display: -webkit-box;
     display: flex;
-    -ms-flex-direction: row;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
     flex-direction: row;
     color: #fff;
 }
@@ -155,12 +121,8 @@ hr {
     position: relative;
     height: 50%;
     min-height: 91vh;
-    -ms-flex-negative: 1;
     flex-shrink: 1;
-    -ms-flex-pack: distribute;
-    justify-content: space-around;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
+    justify-content: space-between;
     align-items: center;
     background-color: rgba(0, 0, 0, .3);
     background-blend-mode: darken;
@@ -172,15 +134,13 @@ hr {
 }
 
 .cityName {
-    -ms-flex-item-align: center;
-    -ms-grid-row-align: center;
-    align-self: baseline;
+    align-self: center;
     font-size: 6rem;
-    margin: 1vw 0;
+    margin: -19% 1vw 2vw 3vw;
 }
 
 .todayWeather, .todayWeather hr {
-    margin: 0 auto;
+    margin: 0 10px;
     text-align: center;
 }
 
@@ -191,15 +151,9 @@ hr {
 .dailyWeather {
     font-size: 1.7rem;
     padding: 3.8rem 2rem 2rem;
-    display: -ms-flexbox;
-    display: -moz-flex;
-    display: -webkit-box;
     display: flex;
-    -ms-flex-negative: 1;
     flex-shrink: 1;
-    -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
-    -ms-flex-item-align: center;
     align-self: center;
     width: 500px;
     max-width: 32vw;
@@ -209,11 +163,19 @@ hr {
     font-size: 2.1rem;
 }
 
-.tToday {
-    font-size: 3rem;
-    -ms-grid-column-align: center;
+.tToday, .todayWeather .tToday {
+    font-size: 3.6rem;
     justify-self: center;
     margin: 0 0 1rem 0;
+}
+
+.todayWeather .tToday {
+    font-size: 5.6rem;
+}
+
+.leftPanel hr {
+    text-align: center;
+    margin: 10px auto;
 }
 
 .leftPanel img {
@@ -317,3 +279,32 @@ hr {
         font-size: 1rem;
     }
 }
+
+/* GitHub corner start */
+
+.github-corner:hover .octo-arm {
+	animation: octocat-wave 560ms ease-in-out
+}
+
+@keyframes octocat-wave {
+	0%,	100% {
+		transform: rotate(0)
+	}
+	20%, 60% {
+		transform: rotate(-25deg)
+	}
+	40%, 80% {
+		transform: rotate(10deg)
+	}
+}
+
+@media (max-width:500px) {
+	.github-corner:hover .octo-arm {
+		animation: none
+	}
+	.github-corner .octo-arm {
+		animation: octocat-wave 560ms ease-in-out
+	}
+}
+
+/* GitHub corner end */

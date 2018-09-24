@@ -15,7 +15,12 @@ export default class Weather extends Component {
     }
 
     getDate = time => {
-        const options = { weekday: 'short', month: 'short', day: 'numeric', timeZone: this.state.JSON.timezone };
+        const options = {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric',
+            timeZone: this.state.JSON.timezone
+        };
         return new Date(time * 1e3).toLocaleDateString('en', options);
     };
 

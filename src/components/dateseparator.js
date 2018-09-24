@@ -8,13 +8,11 @@ const DateSeparator = props => {
         const weekday = new Date(unixTime * 1e3).toLocaleDateString('en', options);
         if(time === "00:00") {
             return weekday;
-        } else {
-            return false;
         }
     };
-    return getWeekday(props.time)
-        ? <div className="weekday">{ getWeekday(props.time) }</div>
-        : null;
+    return getWeekday(props.time) ?
+        <div className="weekday">{ getWeekday(props.time) }</div> :
+        null;
 };
 
 export default DateSeparator;
