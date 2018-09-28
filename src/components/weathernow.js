@@ -29,9 +29,10 @@ const WeatherNow = props => {
                 sunrise={ props.JSON.daily.data[0].sunriseTime }
                 sunset={ props.JSON.daily.data[0].sunsetTime }
             />
-            <div>{ getTime(timeNow) }</div>
-            <div><img src={ icon_URL } alt={ props.JSON.currently.icon } /></div>
-            <div className="tToday">{ temperature }&deg;{ props.isTemperatureInC ? "C" : "F" }</div>
+            <div className="timeNow">{ getTime(timeNow) }</div>
+            <div className="tToday">{ temperature }&deg;{ props.isTemperatureInC ? "C" : "F" }
+                <img src={ icon_URL } alt={ props.JSON.currently.icon } />
+            </div>
             <div>{ props.JSON.currently.summary }</div>
             <div>
                 { props.JSON.currently.precipType } { (props.JSON.currently.precipProbability * 100).toFixed(0) }%
@@ -44,9 +45,10 @@ const WeatherNow = props => {
                 sunrise={ props.JSON.daily.data[0].sunriseTime }
                 sunset={ props.JSON.daily.data[0].sunsetTime }
             />
-            <div>{ getTime(timeNow) }</div>
-            <div><img src={ icon_URL } alt={ props.JSON.currently.icon } /></div>
-            <div className="tToday">{ temperature }&deg;{ props.isTemperatureInC ? "C" : "F" }</div>
+            <div className="timeNow">{ getTime(timeNow) }</div>
+            <div className="tToday">{ temperature }&deg;{ props.isTemperatureInC ? "C" : "F" }
+                <img src={ icon_URL } alt={ props.JSON.currently.icon } />
+            </div>
             <div>{ props.JSON.currently.summary }</div>
             <hr />
             <div>{ props.JSON.hourly.summary }</div>

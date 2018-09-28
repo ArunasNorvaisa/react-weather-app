@@ -135,6 +135,13 @@ hr {
     margin: 6vw 3vw;
 }
 
+.todayWeather {
+    padding: 13% 0;
+    min-width: 100%;
+    min-height: 100%;
+    background-color: rgba(7, 7, 7, .59)
+}
+
 .todayWeather, .todayWeather hr {
     margin: 10px;
     text-align: center;
@@ -165,8 +172,8 @@ hr {
     margin: 0 0 1rem 0;
 }
 
-.todayWeather .tToday {
-    font-size: 5.6rem;
+.leftPanel {
+    flex-grow: 1;
 }
 
 .leftPanel hr {
@@ -175,8 +182,12 @@ hr {
 }
 
 .leftPanel img {
-    width: 12vw;
-    margin: 10px;
+    width: 4.4rem;
+    margin-left: 19px;
+}
+
+.timeNow {
+    margin-bottom: 26px;
 }
 
 .renderedWeather .cOrF {
