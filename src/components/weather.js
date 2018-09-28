@@ -34,6 +34,7 @@ export default class Weather extends Component {
             temperatureLow = temperatureLow * 1.8 + 32;
             temperatureHigh = temperatureHigh * 1.8 + 32;
         }
+
         return <div>
             <div className="icon">
                 <img src={ icon_URL } alt="icon"/>
@@ -43,6 +44,7 @@ export default class Weather extends Component {
                 { temperatureLow.toFixed(0) }&deg;
                 /&nbsp;
                 { temperatureHigh.toFixed(0) }&deg;
+                { this.state.isTemperatureInC ? "C" : "F" }
             </div>
             <div className="forecastSummary">{ summary }</div>
             <hr />
@@ -101,7 +103,6 @@ export default class Weather extends Component {
                         />
                     </div>
                     <div className="rightPanel">
-                        <div className="dailyWeather">{ this.getForecast(0) }</div>
                         <div className="dailyWeather">{ this.getForecast(1) }</div>
                         <div className="dailyWeather">{ this.getForecast(2) }</div>
                         <div className="dailyWeather">{ this.getForecast(3) }</div>
