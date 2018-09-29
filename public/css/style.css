@@ -1,8 +1,8 @@
 home, html {
     width: 100%;
     height: 100%;
-    font-family: 'Ubuntu Condensed', sans-serif;
-    font-size: 0.75em;
+    font-family: 'Cagliostro', sans-serif;
+    font-size: 0.69em;
     padding: 0;
     margin: 0;
 }
@@ -139,7 +139,7 @@ hr {
     padding: 13% 0;
     min-width: 100%;
     min-height: 100%;
-    background-color: rgba(7, 7, 7, .59)
+    background-color: rgba(9, 9, 9, .49)
 }
 
 .todayWeather, .todayWeather hr {
@@ -216,6 +216,22 @@ hr {
 
 .icon img {
     width: 5rem;
+}
+
+.sunCycle {
+    position: relative;
+    width: 90%;
+    height: 50vw;
+    border: 2px solid yellow;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.sun img {
+    position: absolute;
+    height: 27px;
+    padding: 0;
+    margin: 0;
 }
 
 @media screen and (max-width:1200px) {
