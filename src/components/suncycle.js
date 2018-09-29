@@ -1,10 +1,10 @@
 import React from 'react';
 
 const SunCycle = props => {
-    let dayLenght = props.sunset - props.sunrise;
+    let dayLength = props.sunset - props.sunrise;
     let dayProgress = props.sunset - (new Date() / 1e3).toFixed(0);
-    const posX = Math.cos((dayProgress / dayLenght) * Math.PI) + 1;
-    const posY = Math.sin((dayProgress / dayLenght) * Math.PI);
+    const posX = Math.cos((dayProgress / dayLength) * Math.PI) + 1;
+    const posY = Math.sin((dayProgress / dayLength) * Math.PI);
 
     return <div className="sunCycle">
         <span className="sun">
@@ -17,7 +17,7 @@ const SunCycle = props => {
                 }}
             />
         </span>
-        <div>{dayLenght}</div>
+        <div>{dayLength}</div>
         <div>{dayProgress}</div>
         <div>{posX}</div>
         <div>{posY}</div>

@@ -48,7 +48,7 @@ export default class Map extends Component {
 
     reverseGeocoding = (lat, lng) => {
         let GEO_URL_HOME = `https://maps.googleapis.com/maps/api/geocode/json?key=${API_KEY_GOOGLE}&latlng=`;
-        GEO_URL_HOME += +lat + ',' + lng;
+        GEO_URL_HOME += + lat + ',' + lng;
         fetch(GEO_URL_HOME, { method: 'GET' })
         .then(response => response.json())
         .then(json => {
