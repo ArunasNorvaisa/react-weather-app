@@ -28,6 +28,7 @@ const WeatherNow = props => {
             <SunCycle
                 sunrise={ props.JSON.daily.data[0].sunriseTime }
                 sunset={ props.JSON.daily.data[0].sunsetTime }
+                timezone={ props.JSON.timezone }
             />
             <div className="timeNow">{ getTime(timeNow) }</div>
             <div className="tToday">{ temperature }&deg;{ props.isTemperatureInC ? "C" : "F" }

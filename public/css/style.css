@@ -123,7 +123,7 @@ hr {
     justify-content: space-evenly;
     align-items: center;
     background-blend-mode: darken;
-    background: rgba(0, 0, 0, .3) url('https://source.unsplash.com/1920x1080/?hongkong') center center;
+    background: rgba(8, 8, 8, .68) url('https://source.unsplash.com/1920x1080/?rain') center center;
     background-size: cover;
     margin: 0 0 .2rem 0;
     padding: 10px;
@@ -136,10 +136,10 @@ hr {
 }
 
 .todayWeather {
-    padding: 13% 0;
+    position: relative;
+    padding: 23% 0 13%;
     min-width: 100%;
     min-height: 100%;
-    background-color: rgba(9, 9, 9, .49)
 }
 
 .todayWeather, .todayWeather hr {
@@ -152,7 +152,7 @@ hr {
 }
 
 .dailyWeather {
-    font-size: 1.7rem;
+    font-size: 2rem;
     padding: 3.8rem 2rem 2rem;
     display: flex;
     flex-shrink: 1;
@@ -163,7 +163,7 @@ hr {
 }
 
 .dailyWeather .date {
-    font-size: 2.1rem;
+    font-size: 2.5rem;
 }
 
 .tToday, .todayWeather .tToday {
@@ -219,12 +219,17 @@ hr {
 }
 
 .sunCycle {
-    position: relative;
-    width: 90%;
-    height: 50vw;
-    border: 2px solid yellow;
-    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 38%;
     margin: 0 auto;
+    width: 600px;
+    height: 300px;
+    border: 2px solid yellow;
+    border-bottom: 0;
+    border-top-left-radius: 300px;
+    border-top-right-radius: 300px;
 }
 
 .sun img {
@@ -238,7 +243,7 @@ hr {
     .renderedWeather {
         height: auto;
         background-blend-mode: darken;
-        background: url('https://source.unsplash.com/720x405/?kyoto') center center;
+        background:  rgba(8, 8, 8, .68) url('https://source.unsplash.com/720x405/?rain') center center;
         background-size: cover;
         padding: 10px 20px 30px 50px;
     }
@@ -257,25 +262,42 @@ hr {
     }
 }
 
-@media screen and (max-width:420px) {
+@media screen and (max-width:900px) {
+    .sunCycle {
+        width: 400px;
+        height: 200px;
+        border-top-left-radius: 200px;
+        border-top-right-radius: 200px;
+    }
+
+    .todayWeather div {
+        font-size: 1.8rem;
+    }
+}
+
+@media screen and (max-width:600px) {
     .renderedWeather {
         padding: 10px;
-	    background: linear-gradient(280deg, rgba(4, 0, 255, 1) 0%, rgba(30, 81, 125, 1) 100%);
+        background: linear-gradient(280deg, rgba(4, 0, 255, 1) 0%, rgba(30, 81, 125, 1) 100%);
+    }
+
+    .todayWeather div {
+        font-size: 1.3rem;
     }
 
     .renderedWeather .cOrF {
         top: 15px;
         left: 72%;
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     .icon img {
-        width: 3rem;
+        width: 2rem;
         margin-bottom: 8px;
     }
 
     .dailyWeather, .dailyWeather .date, .tToday {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
     }
 
     .dailyWeather .date {
@@ -284,8 +306,9 @@ hr {
 
     .poweredBy {
         margin-top: 10px;
-        font-size: 1rem;
+        font-size: 0.8rem;
     }
+
 }
 
 /* GitHub corner start */
