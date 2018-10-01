@@ -166,7 +166,7 @@ hr {
     font-size: 2.5rem;
 }
 
-.tToday, .todayWeather .tToday {
+.tNow, .todayWeather .tNow {
     font-size: 3.6rem;
     justify-self: center;
     margin: 0 0 1rem 0;
@@ -239,6 +239,34 @@ hr {
     margin: 0;
 }
 
+.sunrise img, .sunset img {
+    position: absolute;
+    bottom: -38px;
+    width: 27px;
+}
+
+.sunrise img {
+    left: -32px;
+}
+
+.sunset img {
+    right: -13px;
+}
+
+.sunriseTime, .sunsetTime {
+    position: absolute;
+    bottom: -35px;
+    font-size: 1.4rem;
+}
+
+.sunrise span {
+    left: 23px;
+}
+
+.sunset span {
+    right: 23px;
+}
+
 @media screen and (max-width:1200px) {
     .renderedWeather {
         height: auto;
@@ -296,7 +324,7 @@ hr {
         margin-bottom: 8px;
     }
 
-    .dailyWeather, .dailyWeather .date, .tToday {
+    .dailyWeather, .dailyWeather .date, .tNow {
         font-size: 1.5rem;
     }
 
@@ -309,6 +337,12 @@ hr {
         font-size: 0.8rem;
     }
 
+}
+
+@media screen and (max-width:450px) {
+	.sunCycle {
+		display: none;
+	}
 }
 
 /* GitHub corner start */
