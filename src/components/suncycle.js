@@ -4,7 +4,7 @@ const SunCycle = props => {
 
     const dayLength = props.sunset - props.sunrise;
     const timeNow = (new Date() / 1e3).toFixed(0);
-    let dayProgress = props.sunset - timeNow;
+    const dayProgress = props.sunset - timeNow;
     let sunPositionX = Math.cos((dayProgress / dayLength) * Math.PI) + 1;
     let sunPositionY = Math.sin((dayProgress / dayLength) * Math.PI);
 
@@ -19,9 +19,9 @@ const SunCycle = props => {
     const getTime = time => {
         const options = {
             timeZone: props.timezone,
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: true
+            hour    : '2-digit',
+            minute  : '2-digit',
+            hour12  : true
         };
         return new Date(time * 1e3).toLocaleTimeString('en', options);
     };

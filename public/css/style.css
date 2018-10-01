@@ -132,12 +132,12 @@ hr {
 .cityName {
     align-self: center;
     font-size: 6rem;
-    margin: 6vw 3vw;
+    margin: 4vw 3vw;
 }
 
 .todayWeather {
     position: relative;
-    padding: 23% 0 13%;
+    padding: 17% 0 18%;
     min-width: 100%;
     min-height: 100%;
 }
@@ -222,7 +222,7 @@ hr {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 38%;
+    bottom: 47%;
     margin: 0 auto;
     width: 600px;
     height: 300px;
@@ -310,7 +310,7 @@ hr {
     }
 
     .todayWeather div {
-        font-size: 1.3rem;
+        font-size: 1.7rem;
     }
 
     .renderedWeather .cOrF {
@@ -320,12 +320,12 @@ hr {
     }
 
     .icon img {
-        width: 2rem;
+        width: 4rem;
         margin-bottom: 8px;
     }
 
     .dailyWeather, .dailyWeather .date, .tNow {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
 
     .dailyWeather .date {
@@ -334,7 +334,7 @@ hr {
 
     .poweredBy {
         margin-top: 10px;
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
 
 }
@@ -342,6 +342,9 @@ hr {
 @media screen and (max-width:450px) {
 	.sunCycle {
 		display: none;
+    }
+    .github-corner {
+		display: none
 	}
 }
 
@@ -370,15 +373,6 @@ hr {
 	}
 	40%, 80% {
 		transform: rotate(10deg)
-	}
-}
-
-@media (max-width:500px) {
-	.github-corner:hover .octo-arm {
-		animation: none
-	}
-	.github-corner .octo-arm {
-		animation: octocat-wave 560ms ease-in-out
 	}
 }
 
