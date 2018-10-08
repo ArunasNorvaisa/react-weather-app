@@ -19,6 +19,7 @@ package-lock.json
 .env.production.local
 /.idea
 /.idea/workspace.xml
+/public/proxy/env.json
 
 npm-debug.log*
 yarn-debug.log*
