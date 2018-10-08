@@ -92,6 +92,7 @@ hr {
 }
 
 .weekday {
+    font-size: 1.2rem;
     background-color: #aaff00;
     color: #000;
     text-transform: uppercase;
@@ -132,7 +133,7 @@ hr {
 .cityName {
     align-self: center;
     font-size: 6rem;
-    margin: 4vw 3vw;
+    margin: 4vw 3vw 1vw;
 }
 
 .todayWeather {
