@@ -1,5 +1,8 @@
 <?php
 
+// Send the CORS header
+header("Access-Control-Allow-Origin: *");
+
 // Get the API key
 // !!! Update the path of env.json, do not store it in the same folder as this file !!!
 $env = json_decode(file_get_contents("env.json"), true);
