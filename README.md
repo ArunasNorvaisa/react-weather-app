@@ -38,5 +38,11 @@ $ npm build
 * Open /build/index.html in your browser and, if everything works as intended,
 * Upload contents of BUILD folder to your hosting provider.
 
+### Support:
+
+* Star the repo
+* Create PR and make it better
+* Say 'hello' - an@reactweatherapp.com
+
 ##### Disclaimer
 Information displayed in this web application cannot be used for commercial purposes. Weather info is [powered by Dark Sky](http://darksky.net/poweredby/).
