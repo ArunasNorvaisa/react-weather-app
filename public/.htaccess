@@ -1,3 +1,5 @@
+# You may leave this out / delete if you have no CORS problem
+
 <IfModule mod_headers.c>
     Header set Access-Control-Allow-Origin "*"
 </IfModule>
