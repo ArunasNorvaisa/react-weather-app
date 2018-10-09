@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import WeatherByTheHour from './weatherbythehour';
 import WeatherNow from './weathernow';
 
+// Uncomment this constant if you will not use local proxy as explained below
+// const API_KEY_DARKSKY =`${process.env.REACT_APP_API_KEY_DS}`;
+
 export default class Weather extends Component {
     constructor(props) {
         super(props);
@@ -50,9 +53,20 @@ export default class Weather extends Component {
     };
 
     fetchWeather = () => {
-        // Change the below URL to reflect your domain and path to proxy.php
+        // Change the below URL to reflect your path to proxy.php
+        // OR, in non-production environment you may use the commented-out shortcut below
         let WEATHER_URL_HOME = 'https://reactweatherapp.com/proxy/proxy.php';
         WEATHER_URL_HOME += `?lat=${this.props.latitude}&lon=${this.props.longitude}`;
+
+/*         If you aren't ready to mess up with local proxy stuff, here goes the shortcut.
+        Just change above WEATHER_URL_HOME with code below (and uncomment constant
+        API_KEY_DARKSKY above):
+
+        let WEATHER_URL_HOME = 'https://cors-anywhere.herokuapp.com/';
+        WEATHER_URL_HOME += `https://api.forecast.io/forecast/${API_KEY_DARKSKY}/`;
+        WEATHER_URL_HOME += `${this.props.latitude},${this.props.longitude}`;
+        WEATHER_URL_HOME += '?units=si&exclude=flags%2Cminutely'; */
+
         this.setState({
             isLoaded: false
         });

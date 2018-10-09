@@ -2,7 +2,7 @@
 Weather app made with ReactJS. Automatically recognizes user's location, based on browser's settings or IP. Weather can be searched both by location on the map or entering city in the search bar.
 
 ### Version
-* 1.2.0
+* 1.3.0
 
 ### Demo
 * [https://reactweatherapp.com](https://reactweatherapp.com)
@@ -13,6 +13,7 @@ $ git clone git@github.com:ArunasNorvaisa/react-weather-app.git
 $ cd react-weather-app
 $ npm install -d
 $ touch .env
+$ touch ./proxy/env.json
 ```
 
 * Get the API keys from [Google](https://developers.google.com/maps/documentation/javascript/get-api-key) and [Dark Sky](https://darksky.net/dev).
@@ -20,6 +21,16 @@ $ touch .env
 
 > REACT_APP_API_KEY_GL = INSERT_YOUR_GOOGLE_API_KEY<br>
 > REACT_APP_API_KEY_DS = INSERT_YOUR_DARKSKY_API_KEY
+
+* Update ./proxy/env.json file with the following content:
+
+```sh
+{
+  "DARKSKY_API_KEY": "INSERT_YOUR_DARKSKY_API_KEY"
+}
+```
+
+* Update ./proxy/.htaccess file to reflect your referring domain
 
 ```sh
 $ npm build

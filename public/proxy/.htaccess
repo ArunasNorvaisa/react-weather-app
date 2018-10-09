@@ -1,3 +1,9 @@
-<RequireAll>
-    Require local
-</RequireAll>
+RewriteEngine on
+
+# Change URL below to your specific referrer or it won't work
+# I have 2 referring pages, so you can ignore arunas.org part/line. :)
+RewriteCond %{HTTP_REFERER} ^https?://reactweatherapp.com [OR]
+RewriteCond %{HTTP_REFERER} ^https?://arunas.org
+RewriteRule ^ - [L]
+
+RewriteRule ^ - [F]
