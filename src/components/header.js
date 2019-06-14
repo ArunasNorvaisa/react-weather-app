@@ -1,40 +1,35 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Header extends Component {
+const Header = props => {
 
-  constructor(props) {
-    super(props);
-    this.state = { searchTerm: null }
-  }
+  const [searchTerm, setSearchTerm] = React.useState(null);
 
-  handleInputChange = event => {
-    this.setState({ searchTerm: event.target.value });
+  const handleInputChange = event => {
+    setSearchTerm(event.target.value);
   };
 
-  handleFormSubmit = event => {
+  const handleFormSubmit = event => {
     event.preventDefault();
-    this.props.handleAddressSearch(this.state.searchTerm);
+    props.handleAddressSearch(searchTerm);
   };
 
-  render() {
-    return <header>
-      <div>Latitude: { this.props.latitude.toFixed(4) }</div>
-      <div>Longitude: { this.props.longitude.toFixed(4) }</div>
-      <div>Address: { this.props.address }</div>
-      <div>
-        <form onSubmit={ this.handleFormSubmit }>
-          <input
-            type="text"
-            id="city_search"
-            placeholder={ this.props.city }
-            onChange={ this.handleInputChange }
-          />
-          <i className="fas fa-search fa-2x"></i>
-          <button type="submit"></button>
-        </form>
-      </div>
-    </header>;
-  }
-}
+  return <header>
+    <div>Latitude: { props.latitude.toFixed(4) }</div>
+    <div>Longitude: { props.longitude.toFixed(4) }</div>
+    <div>Address: { props.address }</div>
+    <div>
+      <form onSubmit={ handleFormSubmit }>
+        <input
+          type="text"
+          id="city_search"
+          placeholder={ props.city }
+          onChange={ handleInputChange }
+        />
+        <i className="fas fa-search fa-2x" />
+        <button type="submit" />
+      </form>
+    </div>
+  </header>;
+};
 
 export default Header;
