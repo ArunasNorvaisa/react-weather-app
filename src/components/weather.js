@@ -1,126 +1,103 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import WeatherByTheHour from './weatherbythehour';
 import WeatherNow from './weathernow';
+import { getDate, CtoF } from '../functions/functions';
 
-// Uncomment this constant if you will not use local proxy as explained below
-const API_KEY_DARKSKY =`${process.env.REACT_APP_API_KEY_DS}`;
+export default function Weather(props) {
 
-export default class Weather extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isTemperatureInC: true,
-      isLoaded: false,
-      JSON: null
+  // Uncomment this constant if you will not use local proxy as explained below
+  const API_KEY_DARKSKY = `${ process.env.REACT_APP_API_KEY_DS }`;
+
+  // Change the below URL to reflect your path to proxy.php
+  // OR, in non-production environment you may use the commented-out shortcut below
+  // let WEATHER_URL_HOME = 'https://reactweatherapp.com/proxy/proxy.php';
+  // WEATHER_URL_HOME += `?lat=${ props.latitude }&lon=${ props.longitude }`;
+
+  // If you aren't ready to mess up with local proxy stuff, here goes the shortcut.
+  // Just change above WEATHER_URL_HOME with code below (and uncomment constant
+  // API_KEY_DARKSKY above):
+
+  let WEATHER_URL_HOME = 'https://cors-anywhere.herokuapp.com/';
+  WEATHER_URL_HOME += `https://api.forecast.io/forecast/${ API_KEY_DARKSKY }/`;
+  WEATHER_URL_HOME += `${ props.latitude },${ props.longitude }`;
+  WEATHER_URL_HOME += '?units=si&exclude=flags%2Cminutely';
+
+  const [isTemperatureInC, setIsTemperatureInC] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [JSON, setJSON] = useState([]);
+
+  useEffect(() => {
+    async function fetchWeather() {
+      setIsLoaded(false);
+
+      const response = await fetch(WEATHER_URL_HOME, { method: 'GET' });
+      const json = await response.json();
+      setJSON(json);
+      setIsLoaded(true);
     }
-  }
+    fetchWeather();
+  }, [JSON, WEATHER_URL_HOME]);
 
-  getDate = time => {
-    const options = {
-      weekday: 'short',
-      month: 'short',
-      day: 'numeric',
-      timeZone: this.state.JSON.timezone
-    };
-    return new Date(time * 1e3).toLocaleDateString('en', options);
-  };
-
-  getForecast = date => {
-    // de-structuring icon, time, temperatureLow, temperatureHigh, summary from the
-    // application state so we don't have to keep typing this.state.JSON.etc...
-    let { icon, time, temperatureLow, temperatureHigh, summary } = this.state.JSON.daily.data[date];
+  const getForecast = date => {
+    let {icon, time, temperatureLow, temperatureHigh, summary} = JSON.daily.data[date];
     const icon_URL = "./images/icons/" + icon + ".svg";
     // Calculating temperature in Fahrenheit
-    if(!this.state.isTemperatureInC) {
-      temperatureLow = temperatureLow * 1.8 + 32;
-      temperatureHigh = temperatureHigh * 1.8 + 32;
+    if (!isTemperatureInC) {
+      temperatureLow = CtoF(temperatureLow);
+      temperatureHigh = CtoF(temperatureHigh);
     }
 
-    return <div>
+    return <>
       <div className="icon">
         <img src={ icon_URL } alt="icon"/>
       </div>
-      <div className="date">{ this.getDate(time) }</div>
+      <div className="date">
+        {getDate(time, {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric',
+            timeZone: JSON.timezone
+          }
+        )}
+      </div>
       <div className="tToday">
         { temperatureLow.toFixed(0) }&deg;
         /&nbsp;
         { temperatureHigh.toFixed(0) }&deg;
-        { this.state.isTemperatureInC ? "C" : "F" }
+        { isTemperatureInC ? "C" : "F" }
       </div>
       <div className="forecastSummary">{ summary }</div>
-      <hr />
-    </div>;
+      <hr/>
+    </>;
   };
 
-  fetchWeather = () => {
-    // Change the below URL to reflect your path to proxy.php
-    // OR, in non-production environment you may use the commented-out shortcut below
-    // let WEATHER_URL_HOME = 'https://reactweatherapp.com/proxy/proxy.php';
-    // WEATHER_URL_HOME += `?lat=${this.props.latitude}&lon=${this.props.longitude}`;
-
-     //         If you aren't ready to mess up with local proxy stuff, here goes the shortcut.
-     // Just change above WEATHER_URL_HOME with code below (and uncomment constant
-     // API_KEY_DARKSKY above):
-
-     let WEATHER_URL_HOME = 'https://cors-anywhere.herokuapp.com/';
-     WEATHER_URL_HOME += `https://api.forecast.io/forecast/${API_KEY_DARKSKY}/`;
-     WEATHER_URL_HOME += `${this.props.latitude},${this.props.longitude}`;
-     WEATHER_URL_HOME += '?units=si&exclude=flags%2Cminutely';
-
-    this.setState({
-      isLoaded: false
-    });
-
-    fetch(WEATHER_URL_HOME, { method:'GET' })
-      .then(response => response.json())
-      .then(json => {
-        this.setState({
-          isLoaded: true,
-          JSON: json
-        });
-      });
-  };
-
-  handleTemperatureUnitChange = event => {
+  const handleTemperatureUnitChange = event => {
     event.preventDefault();
-    this.setState({
-      isTemperatureInC: !this.state.isTemperatureInC
-    });
+    setIsTemperatureInC(!isTemperatureInC);
   };
 
-  componentDidMount() {
-    this.fetchWeather();
-  };
-
-  componentDidUpdate(prevProps) {
-    if(this.props.latitude !== prevProps.latitude || this.props.longitude !== prevProps.longitude) {
-      this.fetchWeather();
-    }
-  };
-
-  render() {
-    return this.state.isLoaded ?
-      <React.Fragment>
-        <WeatherByTheHour JSON={ this.state.JSON } isTemperatureInC={ this.state.isTemperatureInC }/>
-        <div className="renderedWeather">
-          <button className="cOrF" onClick={ event => this.handleTemperatureUnitChange(event) }>
-            Switch to &deg;{ this.state.isTemperatureInC ? "F" : "C" }
-          </button>
-          <div className="leftPanel">
-            <div className="cityName">{ this.props.city }</div>
-            <WeatherNow
-              JSON={ this.state.JSON }
-              isTemperatureInC={ this.state.isTemperatureInC }
-            />
-          </div>
-          <div className="rightPanel">
-            <div className="dailyWeather">{ this.getForecast(1) }</div>
-            <div className="dailyWeather">{ this.getForecast(2) }</div>
-            <div className="dailyWeather">{ this.getForecast(3) }</div>
-            <div className="poweredBy">Powered by <a href="http://darksky.net/poweredby/">Dark Sky</a></div>
-          </div>
+  return isLoaded ?
+    <div>
+      <WeatherByTheHour JSON={ JSON } isTemperatureInC={ isTemperatureInC }/>
+      <div className="renderedWeather">
+        <button className="cOrF" onClick={ handleTemperatureUnitChange }>
+          Switch to &deg;{ isTemperatureInC ? "F" : "C" }
+        </button>
+        <div className="leftPanel">
+          <div className="cityName">{ props.city }</div>
+          <WeatherNow
+            JSON={ JSON }
+            isTemperatureInC={ isTemperatureInC }
+          />
         </div>
-      </React.Fragment> :
-      <h3>Loading weather, please wait...</h3>;
-  }
+        <div className="rightPanel">
+          <div className="dailyWeather">{ getForecast(1) }</div>
+          <div className="dailyWeather">{ getForecast(2) }</div>
+          <div className="dailyWeather">{ getForecast(3) }</div>
+          <div className="poweredBy">Powered by <a href="http://darksky.net/poweredby/">Dark
+            Sky</a></div>
+        </div>
+      </div>
+    </div> :
+    <h3>Loading weather, please wait...</h3>;
 }
