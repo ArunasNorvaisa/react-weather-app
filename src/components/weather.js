@@ -47,7 +47,7 @@ export default function Weather(props) {
       temperatureHigh = CtoF(temperatureHigh);
     }
 
-    return <>
+    return <div>
       <div className="icon">
         <img src={ icon_URL } alt="icon"/>
       </div>
@@ -68,7 +68,7 @@ export default function Weather(props) {
       </div>
       <div className="forecastSummary">{ summary }</div>
       <hr/>
-    </>;
+    </div>;
   };
 
   const handleTemperatureUnitChange = event => {
