@@ -1,5 +1,6 @@
 import React from 'react';
 import SunCycle from './suncycle';
+import { CtoF, getDate } from "../functions/functions";
 
 const WeatherNow = props => {
   const icon_URL = "./images/icons/" + props.JSON.currently.icon + ".svg";
@@ -13,23 +14,10 @@ const WeatherNow = props => {
     temperatureMin = props.JSON.daily.data[0].temperatureLow.toFixed(0);
     temperatureMax = props.JSON.daily.data[0].temperatureHigh.toFixed(0);
   } else {
-    temperatureNow = (props.JSON.currently.temperature * 1.8 + 32).toFixed(0);
-    temperatureMin = (props.JSON.daily.data[0].temperatureLow * 1.8 + 32).toFixed(0);
-    temperatureMax = (props.JSON.daily.data[0].temperatureHigh * 1.8 + 32).toFixed(0);
+    temperatureNow = CtoF(props.JSON.currently.temperature).toFixed(0);
+    temperatureMin = CtoF(props.JSON.daily.data[0].temperatureLow).toFixed(0);
+    temperatureMax = CtoF(props.JSON.daily.data[0].temperatureHigh).toFixed(0);
   }
-
-  const getTime = time => {
-    const options = {
-      timeZone: props.JSON.timezone,
-      weekday : 'short',
-      month   : 'short',
-      day     : 'numeric',
-      hour    : '2-digit',
-      minute  : '2-digit',
-      hour12  : true
-    };
-    return new Date(time * 1e3).toLocaleTimeString('en', options);
-  };
 
   // We'll show precipitation if it's expected only; see final return statement
   const getPrecipitation = () => {
@@ -39,7 +27,17 @@ const WeatherNow = props => {
         { (props.JSON.currently.precipProbability * 100).toFixed(0) }%
       </div>;
     }
-  }
+  };
+
+  const timeOptions = {
+    timeZone: props.JSON.timezone,
+    weekday : 'short',
+    month   : 'short',
+    day     : 'numeric',
+    hour    : '2-digit',
+    minute  : '2-digit',
+    hour12  : true
+  };
 
   return <div className="todayWeather">
     <SunCycle
@@ -53,7 +51,7 @@ const WeatherNow = props => {
       <img src={ icon_URL } alt={ props.JSON.currently.icon } />
     </div>
     { getPrecipitation() } {/* showing precipitation only if it's expected */}
-    <div className="timeNow">{ getTime(timeNow) }</div>
+    <div className="timeNow">{ getDate(timeNow, timeOptions) }</div>
     <hr />
     <div>{ props.JSON.hourly.summary }</div>
   </div>;
