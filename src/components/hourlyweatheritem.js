@@ -17,12 +17,12 @@ const HourlyWeatherItem = props => {
   };
 
   return <div className="hourlyWeatherItem">
-    <div>{ getTime(props.item.time, timeOptions) }</div>
-    <div><img src={ icon_URL } alt={ props.item.icon } /></div>
-    <div>{ temperature }&deg;{ props.isTemperatureInC ? "C" : "F" }</div>
-    { props.item.precipType &&
+    <div>{getTime(props.item.time, timeOptions)}</div>
+    <div><img src={icon_URL} alt={props.item.icon} /></div>
+    <div>{temperature}&deg;{props.isTemperatureInC ? "C" : "F"}</div>
+    {props.item.precipType &&
       <div>
-        { props.item.precipType } { (props.item.precipProbability * 100).toFixed(0) }%
+        {props.item.precipType} {(props.item.precipProbability * 100).toFixed(0)}%
       </div>
     }
   </div>;

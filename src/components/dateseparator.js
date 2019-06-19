@@ -1,7 +1,7 @@
 import React from 'react';
 import { getTime, getDate } from "../functions/functions";
 
-const DateSeparator = props => {
+function DateSeparator(props) {
 
   const getWeekday = unixTime => {
     let timeOptions = {
@@ -17,11 +17,10 @@ const DateSeparator = props => {
     };
     const weekday = getDate(unixTime, timeOptions);
     if(time === "00:00") return weekday;
+    return false;
   };
 
-  return getWeekday(props.time) ?
-    <div className="weekday">{ getWeekday(props.time) }</div> :
-    null;
-};
+  return getWeekday(props.time) && <div className="weekday">{getWeekday(props.time)}</div>;
+}
 
 export default DateSeparator;

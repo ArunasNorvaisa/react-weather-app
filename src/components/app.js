@@ -3,7 +3,7 @@ import Map from './map';
 
 export default function App() {
 
-  const API_KEY_GOOGLE =`${ process.env.REACT_APP_API_KEY_GL }`;
+  const API_KEY_GOOGLE =`${process.env.REACT_APP_API_KEY_GL}`;
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [latitude, setLatitude] = useState(null);
@@ -11,7 +11,7 @@ export default function App() {
 
   const [city, setCity] = useState(null);
   useEffect(() => {
-    async function getLocation() {
+    const getLocation = async () => {
       navigator.geolocation.getCurrentPosition(
         position => {
           reverseGeocoded(position.coords.latitude, position.coords.longitude);
@@ -27,39 +27,35 @@ export default function App() {
           enableHighAccuracy: false
         }
       );
-    }
+    };
     getLocation();
 
   });
 
-  async function getIP() {
+  const getIP = async () => {
     const IP_URL_HOME = 'https://ipapi.co/json/';
-    const response = await fetch(IP_URL_HOME, { method:'GET' });
+    const response = await fetch(IP_URL_HOME, {method:'GET'});
     const json = await response.json();
     setLatitude(json.latitude);
     setLongitude(json.longitude);
     setCity(json.city);
     setIsLoaded(true);
-  }
+  };
 
-  const reverseGeocoded = (lat, lng) => {
-    let GEO_URL_HOME = `https://maps.googleapis.com/maps/api/geocode/json?key=${API_KEY_GOOGLE}&latlng=`;
-    GEO_URL_HOME += lat + ',' + lng;
-    fetch(GEO_URL_HOME, { method: 'GET' })
-      .then(response => response.json())
-      .then(json => {
-        setIsLoaded(true);
-        setCity(json.results[0].address_components[2].short_name);
-      }
-    );
+  const reverseGeocoded = async (lat, lng) => {
+    const GEO_URL_HOME = `https://maps.googleapis.com/maps/api/geocode/json?key=${API_KEY_GOOGLE}&latlng=${lat},${lng}`;
+    const response = await fetch(GEO_URL_HOME, {method: 'GET'});
+    const json = await response.json();
+    setCity(json.results[0].address_components[2].short_name);
+    setIsLoaded(true);
   };
 
   return isLoaded ?
     <React.Fragment>
-      <Map lat={ latitude }
-           lng={ longitude }
-           city={ city }
-           address={ city }
+      <Map lat={latitude}
+           lng={longitude}
+           city={city}
+           address={city}
       />
     </React.Fragment> :
     <h2>Application is loading, please be patient...</h2>

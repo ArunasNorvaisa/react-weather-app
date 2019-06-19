@@ -2,7 +2,7 @@ import React from 'react';
 import SunCycle from './suncycle';
 import { CtoF, getDate } from "../functions/functions";
 
-const WeatherNow = props => {
+function WeatherNow(props) {
   const icon_URL = "./images/icons/" + props.JSON.currently.icon + ".svg";
   const timeNow = Math.round(new Date().getTime()/1000);
   let temperatureNow;
@@ -23,8 +23,8 @@ const WeatherNow = props => {
   const getPrecipitation = () => {
     if(props.JSON.currently.precipType) {
       return <div>
-        { props.JSON.currently.precipType }&nbsp;
-        { (props.JSON.currently.precipProbability * 100).toFixed(0) }%
+        {props.JSON.currently.precipType}&nbsp;
+        {(props.JSON.currently.precipProbability * 100).toFixed(0)}%
       </div>;
     }
   };
@@ -41,20 +41,20 @@ const WeatherNow = props => {
 
   return <div className="todayWeather">
     <SunCycle
-      sunrise={ props.JSON.daily.data[0].sunriseTime }
-      sunset={ props.JSON.daily.data[0].sunsetTime }
-      timezone={ props.JSON.timezone }
+      sunrise={props.JSON.daily.data[0].sunriseTime}
+      sunset={props.JSON.daily.data[0].sunsetTime}
+      timezone={props.JSON.timezone}
     />
-    <div className="tToday">{ temperatureMin } / { temperatureMax }&deg;{ props.isTemperatureInC ? "C" : "F" }</div>
-    <div>{ props.JSON.currently.summary }</div>
-    <div className="tNow">{ temperatureNow }&deg;{ props.isTemperatureInC ? "C" : "F" }
-      <img src={ icon_URL } alt={ props.JSON.currently.icon } />
+    <div className="tToday">{temperatureMin} / {temperatureMax}&deg;{props.isTemperatureInC ? "C" : "F"}</div>
+    <div>{props.JSON.currently.summary}</div>
+    <div className="tNow">{temperatureNow}&deg;{props.isTemperatureInC ? "C" : "F"}
+      <img src={icon_URL} alt={props.JSON.currently.icon} />
     </div>
-    { getPrecipitation() } {/* showing precipitation only if it's expected */}
-    <div className="timeNow">{ getDate(timeNow, timeOptions) }</div>
+    {getPrecipitation()} {/* showing precipitation only if it's expected */}
+    <div className="timeNow">{getDate(timeNow, timeOptions)}</div>
     <hr />
-    <div>{ props.JSON.hourly.summary }</div>
+    <div>{props.JSON.hourly.summary}</div>
   </div>;
-};
+}
 
 export default WeatherNow;
