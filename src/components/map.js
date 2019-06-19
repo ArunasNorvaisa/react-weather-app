@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 import Header from './header';
 import Weather from './weather';
@@ -28,21 +29,19 @@ export default function Map(props) {
   const handleAddressSearch = async name => {
     const GOOGLE_URL_HOME = `https://maps.googleapis.com/maps/api/geocode/json?address=${name}&key=${API_KEY_GOOGLE}`;
 
-    const response = await fetch(GOOGLE_URL_HOME, {method:'GET'});
-    const json = await response.json();
-    setLatitude(json.results[0].geometry.location.lat);
-    setLongitude(json.results[0].geometry.location.lng);
-    setCity(json.results[0].formatted_address);
-    setAddress(json.results[0].formatted_address);
+    const json = await axios.get(GOOGLE_URL_HOME);
+    setLatitude(json.data.results[0].geometry.location.lat);
+    setLongitude(json.data.results[0].geometry.location.lng);
+    setCity(json.data.results[0].formatted_address);
+    setAddress(json.data.results[0].formatted_address);
   };
 
   const reverseGeocoding = async (lat, lng) => {
     const GEO_URL_HOME = `https://maps.googleapis.com/maps/api/geocode/json?key=${API_KEY_GOOGLE}&latlng=${lat},${lng}`;
-    const response = await fetch(GEO_URL_HOME, {method: 'GET'});
-    const json = await response.json();
-    if (json.status !== "ZERO_RESULTS") {
-      setAddress(json.results[0].formatted_address);
-      setCity(json.results[0].address_components[2].short_name);
+    const json = await axios.get(GEO_URL_HOME);
+    if (json.data.status !== "ZERO_RESULTS") {
+      setAddress(json.data.results[0].formatted_address);
+      setCity(json.data.results[0].address_components[2].short_name);
     } else {
       setAddress("There's nothing here, please check where you click");
       setCity("There's nothing here, please check where you click");

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import WeatherByTheHour from './weatherbythehour';
 import WeatherNow from './weathernow';
 import { getDate, CtoF } from '../functions/functions';
@@ -28,15 +29,14 @@ export default function Weather(props) {
 
   useEffect(() => {
     fetchWeather();
-  }, [WEATHER_URL_HOME]);
+    // eslint-disable-next-line
+  }, [props.city]);
 
   const fetchWeather = async () => {
     setIsLoaded(false);
-    const response = await fetch(WEATHER_URL_HOME, {method: 'GET'});
-    const json = await response.json();
-    setJSON(json);
+    const response = await axios.get(WEATHER_URL_HOME);
+    setJSON(response.data);
     setIsLoaded(true);
-    console.log('L36 json.timezone ===', json.timezone);
   };
 
   const getForecast = date => {
