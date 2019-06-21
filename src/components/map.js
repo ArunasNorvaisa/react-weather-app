@@ -19,7 +19,7 @@ export default function Map(props) {
       />
     </GoogleMap>
   ));
-  
+
   return (
     <>
       <Header
