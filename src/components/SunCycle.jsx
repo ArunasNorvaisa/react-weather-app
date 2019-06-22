@@ -27,27 +27,28 @@ const SunCycle = props => {
     hour12   : true
   };
 
-  return <div className="sunCycle">
-    <span className="sunrise">
-      <img src="./images/icons/sunrise.svg" alt="Sunrise"/>
-      <span className="sunriseTime">{getTime(props.sunrise, timeOptions)}</span>
-    </span>
-    <span className="sunset">
-      <span className="sunsetTime">{getTime(props.sunset, timeOptions)}</span>
-      <img src="./images/icons/sunset.svg" alt="Sunset"/>
-    </span>
-    <span className="sun">
-      <img
-        src="./images/icons/sun.svg"
-        alt="Sun"
-        style={{
-          left: `calc(${sunPositionX} * 50% - 23px)`,
-          bottom: `calc((${sunPositionY} * 100%) - 12px)`
-        }}
-      />
-    </span>
-  </div>;
-
+  return (
+    <div className="sunCycle">
+      <span className="sunrise">
+        <img src="./images/icons/sunrise.svg" alt="Sunrise"/>
+        <span className="sunriseTime">{getTime(props.sunrise, timeOptions)}</span>
+      </span>
+      <span className="sunset">
+        <span className="sunsetTime">{getTime(props.sunset, timeOptions)}</span>
+        <img src="./images/icons/sunset.svg" alt="Sunset"/>
+      </span>
+      <span className="sun">
+        <img
+          src="./images/icons/sun.svg"
+          alt="Sun"
+          style={{
+            left: `calc(${sunPositionX} * 50% - 23px)`,
+            bottom: `calc((${sunPositionY} * 100%) - 12px)`
+          }}
+        />
+      </span>
+    </div>
+  );
 };
 
 export default SunCycle;
