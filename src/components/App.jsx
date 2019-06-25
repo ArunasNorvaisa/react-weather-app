@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import axios from 'axios';
 import Map from './Map';
-import { GlobalStoreContext } from "./Store";
+import { GlobalStoreContext } from './Store';
 
 export default function App() {
 
@@ -71,27 +71,26 @@ export default function App() {
   const reverseGeocoding = async (lat, lng) => {
     const GEO_URL_HOME = `https://maps.googleapis.com/maps/api/geocode/json?key=${API_KEY_GOOGLE}&latlng=${lat},${lng}`;
     const json = await axios.get(GEO_URL_HOME);
-    if (json.data.status !== "ZERO_RESULTS") {
+    if (json.data.status !== 'ZERO_RESULTS') {
       setGlobalStore({
         ...globalStore,
         city: json.data.results[0].address_components[2].short_name,
-        address: json.data.results[0].formatted_address
+        address: json.data.results[0].formatted_address,
+        latitude: lat,
+        longitude: lng
       });
     } else {
       setGlobalStore({
         ...globalStore,
         city: "There's nothing here, please check where you click",
-        address: "There's nothing here, please check where you click"
+        address: "There's nothing here, please check where you click",
+        latitude: lat,
+        longitude: lng
       });
     }
   };
 
   const handleMapClick = event => {
-    setGlobalStore({
-      ...globalStore,
-      latitude: event.latLng.lat(),
-      longitude: event.latLng.lng(),
-    });
     reverseGeocoding(event.latLng.lat(), event.latLng.lng());
   };
 

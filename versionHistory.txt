@@ -3,4 +3,5 @@
 1.1.0 - design update;
 1.3.0 - major design update - Sun cycle added;
 2.0.0 - added React hooks, axios;
-2.0.1 - lifted state up, to the very top.
+2.0.1 - lifted state up, to the very top;
+2.1.0 - added React Context.

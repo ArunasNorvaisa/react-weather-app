@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { GlobalStoreContext } from "./Store";
+import { GlobalStoreContext } from './Store';
 
 function Header(props) {
 
@@ -22,13 +22,13 @@ function Header(props) {
       <div>
         <form onSubmit={handleFormSubmit}>
           <input
-            type="text"
-            id="city_search"
-            placeholder={props.city}
+            type='text'
+            id='city_search'
+            placeholder={globalStore.city}
             onChange={handleInputChange}
           />
-          <i className="fas fa-search fa-2x" />
-          <button type="submit" />
+          <i className='fas fa-search fa-2x' />
+          <button type='submit' />
         </form>
       </div>
     </header>

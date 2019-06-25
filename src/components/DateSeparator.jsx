@@ -1,5 +1,5 @@
 import React from 'react';
-import { getTime, getDate } from "../functions/functions";
+import { getTime, getDate } from '../functions/functions';
 
 function DateSeparator(props) {
 
@@ -16,11 +16,11 @@ function DateSeparator(props) {
       timeZone: props.timezone
     };
     const weekday = getDate(unixTime, timeOptions);
-    if(time === "00:00") return weekday;
+    if(time === '00:00') return weekday;
     return false;
   };
 
-  return getWeekday(props.time) && <div className="weekday">{getWeekday(props.time)}</div>;
+  return getWeekday(props.time) && <div className='weekday'>{getWeekday(props.time)}</div>;
 }
 
 export default DateSeparator;
