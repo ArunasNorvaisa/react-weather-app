@@ -3,8 +3,10 @@
 # Weather application
 Weather app made with ReactJS. Automatically recognizes user's location, based on browser's settings or IP. Weather can be searched both by location on the map or entering city in the search bar.
 
+Made using React hooks (useState, useEffect, useContext) and React context (absolutely unnecessary for a small application like this, but it was fun to learn).
+
 ### Version
-* 2.0.1
+* 2.1.0
 
 ### Demo
 * [https://reactweatherapp.com](https://reactweatherapp.com)
@@ -13,7 +15,7 @@ Weather app made with ReactJS. Automatically recognizes user's location, based o
 ```sh
 $ git clone git@github.com:ArunasNorvaisa/react-weather-app.git
 $ cd react-weather-app
-$ npm install -d
+$ npm i -d (OR $ yarn)
 $ touch .env
 $ touch ./proxy/env.json
 ```
@@ -39,6 +41,7 @@ $ npm build
 ```
 * Open /build/index.html in your browser and, if everything works as intended,
 * Upload contents of BUILD folder to your hosting provider.
+* If you have CORS/proxy related problems, read comments in /components/Weather.jsx to either enable or disable proxy.
 
 ### Support:
 
