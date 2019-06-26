@@ -46,11 +46,13 @@ header form input {
     border: none;
 }
 
-header form i {
+header form img {
     position: absolute;
     left: 10px;
     top: 9px;
     color: #666;
+    width: 2rem;
+    height: 2rem;
 }
 
 header form button {

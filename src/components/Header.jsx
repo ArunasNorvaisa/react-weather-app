@@ -27,7 +27,7 @@ function Header(props) {
             placeholder={globalStore.city}
             onChange={handleInputChange}
           />
-          <i className='fas fa-search fa-2x' />
+          <img src='./images/icons/search.png' alt='search icon' />
           <button type='submit' />
         </form>
       </div>
