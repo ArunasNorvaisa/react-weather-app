@@ -1,17 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { GlobalStoreContext } from './Store';
 
 function Header(props) {
 
-  const [globalStore, setGlobalStore] = useContext(GlobalStoreContext);
+  const [globalStore] = useContext(GlobalStoreContext);
+  const [searchText, setSearchText] = useState(globalStore.city);
 
   const handleInputChange = event => {
-    setGlobalStore({...globalStore, searchTerm: event.target.value});
+    setSearchText(event.target.value);
   };
 
   const handleFormSubmit = event => {
     event.preventDefault();
-    props.handleAddressSearch(globalStore.searchTerm);
+    props.handleAddressSearch(searchText);
   };
 
   return (
