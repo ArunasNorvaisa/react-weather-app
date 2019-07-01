@@ -13,6 +13,13 @@ function DailyWeather({date}) {
     temperatureHigh = CtoF(temperatureHigh);
   }
 
+  const dateOptions = {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+    timeZone: globalStore.JSON.timezone
+  };
+
   return (
     <div className='dailyWeather'>
       <div>
@@ -20,13 +27,7 @@ function DailyWeather({date}) {
           <img src={icon_URL} alt='icon'/>
         </div>
         <div className='date'>
-          {getDate(time, {
-              weekday: 'short',
-              month: 'short',
-              day: 'numeric',
-              timeZone: globalStore.JSON.timezone
-            }
-          )}
+          {getDate(time, dateOptions)}
         </div>
         <div className='tToday'>
           {temperatureLow.toFixed(0)}&deg;

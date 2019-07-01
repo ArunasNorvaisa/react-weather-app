@@ -11,20 +11,20 @@ export default function Weather() {
   const [weatherLoaded, setWeatherLoaded] = useState(false);
 
   // Uncomment this constant if you will not use local proxy as explained below
-  const API_KEY_DARKSKY = `${process.env.REACT_APP_API_KEY_DS}`;
+  // const API_KEY_DARKSKY = `${process.env.REACT_APP_API_KEY_DS}`;
 
   // Change the below URL to reflect your path to proxy.php
   // OR, in non-production environment you may use the commented-out shortcut below
-  // let WEATHER_URL_HOME = 'https://reactweatherapp.com/proxy/proxy.php';
-  // WEATHER_URL_HOME += `?lat=${globalStore.latitude}&lon=${globalStore.longitude}`;
+  let WEATHER_URL_HOME = 'https://reactweatherapp.com/proxy/proxy.php';
+  WEATHER_URL_HOME += `?lat=${globalStore.latitude}&lon=${globalStore.longitude}`;
 
   // If you aren't ready to mess up with local proxy stuff, here goes the shortcut.
   // Just change above WEATHER_URL_HOME with code below (and uncomment constant
   // API_KEY_DARKSKY above):
-  let WEATHER_URL_HOME = 'https://cors-anywhere.herokuapp.com/';
-  WEATHER_URL_HOME += `https://api.forecast.io/forecast/${API_KEY_DARKSKY}/`;
-  WEATHER_URL_HOME += `${globalStore.latitude},${globalStore.longitude}`;
-  WEATHER_URL_HOME += '?units=si&exclude=flags%2Cminutely';
+  // let WEATHER_URL_HOME = 'https://cors-anywhere.herokuapp.com/';
+  // WEATHER_URL_HOME += `https://api.forecast.io/forecast/${API_KEY_DARKSKY}/`;
+  // WEATHER_URL_HOME += `${globalStore.latitude},${globalStore.longitude}`;
+  // WEATHER_URL_HOME += '?units=si&exclude=flags%2Cminutely';
 
   useEffect(() => {
     fetchWeather();
