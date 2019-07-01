@@ -1,9 +1,9 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { GlobalStoreContext } from './Store';
 import axios from 'axios';
+import DailyWeather from './DailyWeather';
 import WeatherByTheHour from './WeatherByTheHour';
 import WeatherNow from './WeatherNow';
-import { getDate, CtoF } from '../functions/functions';
 
 export default function Weather() {
 
@@ -38,41 +38,6 @@ export default function Weather() {
     setWeatherLoaded(true);
   };
 
-  const getForecast = date => {
-    let { icon, time, temperatureLow, temperatureHigh, summary } = globalStore.JSON.daily.data[date];
-    const icon_URL = `./images/icons/${icon}.svg`;
-    // Calculating temperature in Fahrenheit
-    if (!globalStore.tInC) {
-      temperatureLow = CtoF(temperatureLow);
-      temperatureHigh = CtoF(temperatureHigh);
-    }
-
-    return (
-      <div>
-        <div className='icon'>
-          <img src={icon_URL} alt='icon'/>
-        </div>
-        <div className='date'>
-          {getDate(time, {
-              weekday: 'short',
-              month: 'short',
-              day: 'numeric',
-              timeZone: globalStore.JSON.timezone
-            }
-          )}
-        </div>
-        <div className='tToday'>
-          {temperatureLow.toFixed(0)}&deg;
-          /&nbsp;
-          {temperatureHigh.toFixed(0)}&deg;
-          {globalStore.tInC ? 'C' : 'F'}
-        </div>
-        <div className="forecastSummary">{summary}</div>
-        <hr/>
-      </div>
-    );
-  };
-
   const handleTemperatureUnitChange = event => {
     event.preventDefault();
     setGlobalStore({...globalStore, tInC: !globalStore.tInC});
@@ -91,9 +56,9 @@ export default function Weather() {
             <WeatherNow />
           </div>
           <div className='rightPanel'>
-            <div className='dailyWeather'>{getForecast(1)}</div>
-            <div className='dailyWeather'>{getForecast(2)}</div>
-            <div className='dailyWeather'>{getForecast(3)}</div>
+            <DailyWeather date={1} />
+            <DailyWeather date={2} />
+            <DailyWeather date={3} />
             <div className='poweredBy'>Powered by <a href='http://darksky.net/poweredby/'>Dark
               Sky</a></div>
           </div>
