@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { GlobalStoreContext } from './Store';
 import axios from 'axios';
 import WeatherByTheHour from './WeatherByTheHour';
@@ -8,22 +8,23 @@ import { getDate, CtoF } from '../functions/functions';
 export default function Weather() {
 
   const [globalStore, setGlobalStore] = useContext(GlobalStoreContext);
+  const [weatherLoaded, setWeatherLoaded] = useState(false);
 
   // Uncomment this constant if you will not use local proxy as explained below
-  // const API_KEY_DARKSKY = `${process.env.REACT_APP_API_KEY_DS}`;
+  const API_KEY_DARKSKY = `${process.env.REACT_APP_API_KEY_DS}`;
 
   // Change the below URL to reflect your path to proxy.php
   // OR, in non-production environment you may use the commented-out shortcut below
-  let WEATHER_URL_HOME = 'https://reactweatherapp.com/proxy/proxy.php';
-  WEATHER_URL_HOME += `?lat=${globalStore.latitude}&lon=${globalStore.longitude}`;
+  // let WEATHER_URL_HOME = 'https://reactweatherapp.com/proxy/proxy.php';
+  // WEATHER_URL_HOME += `?lat=${globalStore.latitude}&lon=${globalStore.longitude}`;
 
   // If you aren't ready to mess up with local proxy stuff, here goes the shortcut.
   // Just change above WEATHER_URL_HOME with code below (and uncomment constant
   // API_KEY_DARKSKY above):
-  // let WEATHER_URL_HOME = 'https://cors-anywhere.herokuapp.com/';
-  // WEATHER_URL_HOME += `https://api.forecast.io/forecast/${API_KEY_DARKSKY}/`;
-  // WEATHER_URL_HOME += `${globalStore.latitude},${globalStore.longitude}`;
-  // WEATHER_URL_HOME += '?units=si&exclude=flags%2Cminutely';
+  let WEATHER_URL_HOME = 'https://cors-anywhere.herokuapp.com/';
+  WEATHER_URL_HOME += `https://api.forecast.io/forecast/${API_KEY_DARKSKY}/`;
+  WEATHER_URL_HOME += `${globalStore.latitude},${globalStore.longitude}`;
+  WEATHER_URL_HOME += '?units=si&exclude=flags%2Cminutely';
 
   useEffect(() => {
     fetchWeather();
@@ -31,9 +32,10 @@ export default function Weather() {
   }, [globalStore.city]);
 
   const fetchWeather = async () => {
-    setGlobalStore({...globalStore, isWeatherLoaded: false});
+    setWeatherLoaded(false);
     const res = await axios.get(WEATHER_URL_HOME);
-    setGlobalStore({...globalStore, JSON: {...res.data}, isWeatherLoaded: true});
+    setGlobalStore({...globalStore, JSON: res.data});
+    setWeatherLoaded(true);
   };
 
   const getForecast = date => {
@@ -77,7 +79,7 @@ export default function Weather() {
   };
 
   return (
-    globalStore.isWeatherLoaded ?
+    weatherLoaded ?
       <div>
         <WeatherByTheHour />
         <div className='renderedWeather'>
