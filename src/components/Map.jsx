@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import { GlobalStoreContext } from './Store';
-import Header from './Header';
-import Weather from './Weather';
 
 export default function Map(props) {
 
@@ -26,18 +24,14 @@ export default function Map(props) {
   ));
 
   return (
-    <>
-      <Header handleAddressSearch={props.handleAddressSearch} />
-      <Weather />
-      <MyMap
-        googleMapURL={googleMapURL}
-        loadingElement={ <div style={{ height: `100%` }} /> }
-        containerElement={ <div style={{ height: `97vh` }} /> }
-        mapElement={ <div style={{ height: `100%` }} /> }
-        latitude={globalStore.latitude}
-        longitude={globalStore.longitude}
-        onMapClick={props.handleMapClick}
-      />
-    </>
+    <MyMap
+      googleMapURL={googleMapURL}
+      loadingElement={ <div style={{ height: `100%` }} /> }
+      containerElement={ <div style={{ height: `97vh` }} /> }
+      mapElement={ <div style={{ height: `100%` }} /> }
+      latitude={globalStore.latitude}
+      longitude={globalStore.longitude}
+      onMapClick={props.handleMapClick}
+    />
   );
 }
