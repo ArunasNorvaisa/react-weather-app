@@ -1,6 +1,8 @@
 import React, { useEffect, useContext } from 'react';
 import axios from 'axios';
 import Map from './Map';
+import Header from './Header';
+import Weather from './Weather';
 import { GlobalStoreContext } from './Store';
 
 export default function App() {
@@ -96,10 +98,14 @@ export default function App() {
 
   return (
     globalStore.isAppLoaded ?
-      <Map
-        handleMapClick={handleMapClick}
-        handleAddressSearch={handleAddressSearch}
-      /> :
+      <>
+        <Header handleAddressSearch={handleAddressSearch} />
+        <Weather />
+        <Map
+          handleMapClick={handleMapClick}
+          handleAddressSearch={handleAddressSearch}
+        />
+      </> :
     <h2>Application is loading, please be patient...</h2>
   );
 }
