@@ -4,7 +4,7 @@ import { GlobalStoreContext } from './Store';
 function Header(props) {
 
   const [globalStore] = useContext(GlobalStoreContext);
-  const [searchText, setSearchText] = useState(globalStore.city);
+  const [searchText, setSearchText] = useState('');
 
   const handleInputChange = event => {
     setSearchText(event.target.value);
@@ -13,6 +13,7 @@ function Header(props) {
   const handleFormSubmit = event => {
     event.preventDefault();
     props.handleAddressSearch(searchText);
+    setSearchText('');
   };
 
   return (
@@ -26,6 +27,7 @@ function Header(props) {
             type='text'
             id='city_search'
             placeholder={globalStore.city}
+            value={searchText}
             onChange={handleInputChange}
           />
           <img src='./images/icons/search.png' alt='search icon' />
