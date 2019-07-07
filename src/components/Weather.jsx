@@ -29,7 +29,7 @@ export default function Weather() {
   useEffect(() => {
     fetchWeather();
     // eslint-disable-next-line
-  }, [globalStore.city]);
+  }, [globalStore.latitude]);
 
   const fetchWeather = async () => {
     setWeatherLoaded(false);

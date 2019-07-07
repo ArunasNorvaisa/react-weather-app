@@ -11,13 +11,17 @@ const SunCycle = props => {
   let sunPositionY = Math.sin((dayProgress / dayLength) * Math.PI);
 
   // 2 conditions valid at night (before sunrise and after sunset), placing the Sun
-  // on the sunCycle rather than leaving it somewhere below the semicircle
+  // on the sunCycle rather than leaving it somewhere below the semicircle;
+  // 3rd condition valid only if we have white nights (hello, trolls!) ;)
   if (timeNow < props.sunrise) {
     sunPositionX = 0;
     sunPositionY = 0;
   } else if (timeNow > props.sunset) {
     sunPositionX = 2;
     sunPositionY = 0;
+  } else if (props.sunrise === undefined && props.sunset === undefined) {
+    sunPositionX = 1;
+    sunPositionY = 1;
   }
 
   const timeOptions = {
@@ -27,15 +31,18 @@ const SunCycle = props => {
     hour12   : true
   };
 
+  const sunrise = props.sunrise ? getTime(props.sunrise, timeOptions) : 'White night';
+  const sunset = props.sunset ? getTime(props.sunset, timeOptions) : 'White night';
+
   return (
     <div className='sunCycle'>
       <span className='sunrise'>
         <img src='./images/icons/sunrise.svg' alt='Sunrise'/>
-        <span className='sunriseTime'>{getTime(props.sunrise, timeOptions)}</span>
+        <span className='sunriseTime'>{sunrise}</span>
       </span>
       <span className='sunset'>
         <img src='./images/icons/sunset.svg' alt='Sunset'/>
-        <span className='sunsetTime'>{getTime(props.sunset, timeOptions)}</span>
+        <span className='sunsetTime'>{sunset}</span>
       </span>
       <span className='sun'>
         <img
