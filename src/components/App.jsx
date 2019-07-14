@@ -18,7 +18,7 @@ export default function App() {
   const getLocation = () => {
     navigator.geolocation.getCurrentPosition(
       position => {
-        reverseGeocoded(position.coords.latitude, position.coords.longitude);
+        reverseGeocoding(position.coords.latitude, position.coords.longitude);
       },
       err => {
         console.warn(`ERROR(${err.code}): ${err.message}`);
@@ -44,32 +44,6 @@ export default function App() {
     });
   };
 
-  const reverseGeocoded = async (lat, lng) => {
-    const GEO_URL_HOME = `https://maps.googleapis.com/maps/api/geocode/json?key=${API_KEY_GOOGLE}&latlng=${lat},${lng}`;
-    const json = await axios.get(GEO_URL_HOME);
-    setGlobalStore({
-      ...globalStore,
-      latitude: lat,
-      longitude: lng,
-      city: json.data.results[0].address_components[2].short_name,
-      address: json.data.results[0].address_components[2].short_name,
-      isAppLoaded: true
-    });
-  };
-
-  const handleAddressSearch = async name => {
-    const GOOGLE_URL_HOME = `https://maps.googleapis.com/maps/api/geocode/json?address=${name}&key=${API_KEY_GOOGLE}`;
-
-    const json = await axios.get(GOOGLE_URL_HOME);
-    setGlobalStore({
-      ...globalStore,
-      latitude: json.data.results[0].geometry.location.lat,
-      longitude: json.data.results[0].geometry.location.lng,
-      city: json.data.results[0].formatted_address,
-      address: json.data.results[0].formatted_address
-    });
-  };
-
   const reverseGeocoding = async (lat, lng) => {
     const GEO_URL_HOME = `https://maps.googleapis.com/maps/api/geocode/json?key=${API_KEY_GOOGLE}&latlng=${lat},${lng}`;
     const json = await axios.get(GEO_URL_HOME);
@@ -79,7 +53,8 @@ export default function App() {
         city: json.data.results[0].address_components[2].short_name,
         address: json.data.results[0].formatted_address,
         latitude: lat,
-        longitude: lng
+        longitude: lng,
+        isAppLoaded: true
       });
     } else {
       setGlobalStore({
@@ -87,9 +62,27 @@ export default function App() {
         city: "There's nothing here, please check where you click",
         address: "There's nothing here, please check where you click",
         latitude: lat,
-        longitude: lng
+        longitude: lng,
+        isAppLoaded: true
       });
     }
+  };
+
+  const handleAddressSearch = async name => {
+    const GOOGLE_URL_HOME = `https://maps.googleapis.com/maps/api/geocode/json?address=${name}&key=${API_KEY_GOOGLE}`;
+    setGlobalStore({
+      ...globalStore,
+      city: 'Loading...',
+      address: ''
+    });
+    const json = await axios.get(GOOGLE_URL_HOME);
+    setGlobalStore({
+      ...globalStore,
+      latitude: json.data.results[0].geometry.location.lat,
+      longitude: json.data.results[0].geometry.location.lng,
+      city: json.data.results[0].formatted_address,
+      address: json.data.results[0].formatted_address
+    });
   };
 
   const handleMapClick = event => {
