@@ -30,7 +30,7 @@ function Header(props) {
             value={searchText}
             onChange={handleInputChange}
           />
-          <img src='./images/icons/search.png' alt='search icon' />
+          <img src='./images/icons/search.svg' alt='search icon' />
           <button type='submit' />
         </form>
       </div>
