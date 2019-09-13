@@ -1,5 +1,3 @@
-- Currently looking for a front-end internship. Please contact an@reactweatherapp.com. Thanks. :)
-
 # Weather application
 Weather app made with ReactJS. Automatically recognizes user's location, based on browser's settings or IP. Weather can be searched both by location on the map or entering city in the search bar.
 
