@@ -5,9 +5,9 @@ const HourlyWeatherItem = props => {
   const icon_URL = `./images/icons/${props.item.icon}.svg`;
   let temperature;
 
-  props.isTemperatureInC ?
-    temperature = props.item.temperature.toFixed(0) :
-    temperature = CtoF(props.item.temperature).toFixed(0);
+  props.isTemperatureInC
+    ? temperature = props.item.temperature.toFixed(0)
+    : temperature = CtoF(props.item.temperature).toFixed(0);
 
   const timeOptions = {
     timeZone: props.timezone,
