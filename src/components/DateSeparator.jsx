@@ -16,7 +16,7 @@ function DateSeparator(props) {
       timeZone: props.timezone
     };
     const weekday = getDate(unixTime, timeOptions);
-    if(time === '00:00') return weekday;
+    if(time === '00:00' || time === '24:00') return weekday;
     return false;
   };
 
