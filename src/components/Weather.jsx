@@ -41,8 +41,8 @@ export default function Weather() {
   };
 
   return (
-    weatherLoaded ?
-      <div>
+    weatherLoaded
+      ? <div>
         <WeatherByTheHour />
         <div className='renderedWeather'>
           <button className='cOrF' onClick={handleTemperatureUnitChange}>
@@ -60,7 +60,7 @@ export default function Weather() {
               Sky</a></div>
           </div>
         </div>
-      </div> :
-    <h3>Loading weather, please wait...</h3>
+      </div>
+    : <h3>Loading weather, please wait...</h3>
   );
 }
