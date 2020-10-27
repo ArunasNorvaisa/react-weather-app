@@ -1,5 +1,6 @@
 import React from 'react';
 import { getTime } from '../functions/functions';
+import '../css/style.scss';
 
 const SunCycle = props => {
 
@@ -37,16 +38,16 @@ const SunCycle = props => {
   return (
     <div className='sunCycle'>
       <span className='sunrise'>
-        <img src='./images/icons/sunrise.svg' alt='Sunrise'/>
+        <img src={require('../images/icons/sunrise.svg')} alt='Sunrise'/>
         <span className='sunriseTime'>{sunrise}</span>
       </span>
       <span className='sunset'>
-        <img src='./images/icons/sunset.svg' alt='Sunset'/>
+        <img src={require('../images/icons/sunset.svg')} alt='Sunset'/>
         <span className='sunsetTime'>{sunset}</span>
       </span>
       <span className='sun'>
         <img
-          src='./images/icons/sun.svg'
+          src={require('../images/icons/sun.svg')}
           alt='Sun'
           style={{
             left: `calc(${sunPositionX} * 50% - 23px)`,

@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import { GlobalStoreContext } from './Store';
-import { CtoF, getDate } from "../functions/functions";
+import { CtoF, getDate } from '../functions/functions';
+import '../css/style.scss';
 
 function DailyWeather({date}) {
   const [globalStore] = useContext(GlobalStoreContext);
@@ -21,15 +22,15 @@ function DailyWeather({date}) {
   };
 
   return (
-    <div className='dailyWeather'>
+    <div className="dailyWeather">
       <div>
-        <div className='icon'>
+        <div className="icon">
           <img src={icon_URL} alt='icon'/>
         </div>
-        <div className='date'>
+        <div className="date">
           {getDate(time, dateOptions)}
         </div>
-        <div className='tToday'>
+        <div>
           {temperatureLow.toFixed(0)}&deg;
           /&nbsp;
           {temperatureHigh.toFixed(0)}&deg;

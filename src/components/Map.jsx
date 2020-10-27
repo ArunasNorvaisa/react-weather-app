@@ -4,7 +4,7 @@ import { GlobalStoreContext } from './Store';
 
 export default function Map(props) {
 
-  const API_KEY_GOOGLE =`${process.env.REACT_APP_API_KEY_GL}`;
+  const API_KEY_GOOGLE = process.env.REACT_APP_API_KEY_GL;
   const [globalStore] = useContext(GlobalStoreContext);
 
   let googleMapURL = `https://maps.googleapis.com/maps/api/js?key=${API_KEY_GOOGLE}`;

@@ -2,8 +2,10 @@ import React, { useContext } from 'react';
 import SunCycle from './SunCycle';
 import { CtoF, getDate } from '../functions/functions';
 import { GlobalStoreContext } from './Store';
+import '../css/style.scss';
 
 function WeatherNow() {
+
   const [globalStore] = useContext(GlobalStoreContext);
   const icon_URL = `./images/icons/${globalStore.JSON.currently.icon}.svg`;
   const timeNow = Math.round(new Date().getTime()/1000);
@@ -44,19 +46,19 @@ function WeatherNow() {
   };
 
   return (
-    <div className='todayWeather'>
+    <div className="todayWeather">
       <SunCycle
         sunrise={globalStore.JSON.daily.data[0].sunriseTime}
         sunset={globalStore.JSON.daily.data[0].sunsetTime}
         timezone={globalStore.JSON.timezone}
       />
-      <div className='tToday'>{temperatureMin} / {temperatureMax}&deg;{globalStore.tInC ? 'C' : 'F'}</div>
+      <div>{temperatureMin} / {temperatureMax}&deg;{globalStore.tInC ? 'C' : 'F'}</div>
       <div>{globalStore.JSON.currently.summary}</div>
-      <div className='tNow'>{temperatureNow}&deg;{globalStore.tInC ? 'C' : 'F'}
+      <div className="tNow">{temperatureNow}&deg;{globalStore.tInC ? 'C' : 'F'}
         <img src={icon_URL} alt={globalStore.JSON.currently.icon} />
       </div>
       {getPrecipitation()} {/* showing precipitation only if it's expected */}
-      <div className='timeNow'>{getDate(timeNow, timeOptions)}</div>
+      <div className="timeNow">{getDate(timeNow, timeOptions)}</div>
       <hr />
       <div>{globalStore.JSON.hourly.summary}</div>
     </div>

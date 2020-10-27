@@ -7,21 +7,23 @@ import { GlobalStoreContext } from './Store';
 
 export default function App() {
 
-  const API_KEY_GOOGLE =`${process.env.REACT_APP_API_KEY_GL}`;
+  const API_KEY_GOOGLE = process.env.REACT_APP_API_KEY_GL;
+  const API_KEY_OPENWEATHER = process.env.REACT_APP_API_KEY_OW;
   const [globalStore, setGlobalStore] = useContext(GlobalStoreContext);
+  let weatherURL = 'https://api.openweathermap.org/data/2.5/onecall?exclude=minutely&appid=';
+  weatherURL += `${API_KEY_OPENWEATHER}&lat=${globalStore.latitude}&lon=${globalStore.longitude}`;
 
   useEffect(() => {
     getLocation();
-    // eslint-disable-next-line
   }, []);
 
-  const getLocation = () => {
+  function getLocation() {
     navigator.geolocation.getCurrentPosition(
       position => {
         reverseGeocoding(position.coords.latitude, position.coords.longitude);
       },
       err => {
-        console.warn(`ERROR(${err.code}): ${err.message}`);
+        console.error(`ERROR(${err.code}): ${err.message}`);
         getIP();
       },
       {
@@ -29,20 +31,24 @@ export default function App() {
         enableHighAccuracy: false
       }
     );
-  };
+  }
 
-  const getIP = async () => {
+  async function getIP () {
     const IP_URL_HOME = 'https://ipapi.co/json/';
-    const json = await axios.get(IP_URL_HOME);
-    setGlobalStore({
-      ...globalStore,
-      latitude: json.data.latitude,
-      longitude: json.data.longitude,
-      city: json.data.city,
-      address: json.data.city,
-      isAppLoaded: true
-    });
-  };
+    try {
+      const json = await axios.get(IP_URL_HOME);
+      setGlobalStore({
+        ...globalStore,
+        latitude: json.data.latitude,
+        longitude: json.data.longitude,
+        city: json.data.city,
+        address: json.data.city,
+        isAppLoaded: true
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
   const reverseGeocoding = async (lat, lng) => {
     const GEO_URL_HOME = `https://maps.googleapis.com/maps/api/geocode/json?key=${API_KEY_GOOGLE}&latlng=${lat},${lng}`;
@@ -88,6 +94,8 @@ export default function App() {
   const handleMapClick = event => {
     reverseGeocoding(event.latLng.lat(), event.latLng.lng());
   };
+
+  console.log('L97 globalStore ===', globalStore);
 
   return (
     globalStore.isAppLoaded ?

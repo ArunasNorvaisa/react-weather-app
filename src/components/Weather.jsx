@@ -4,6 +4,7 @@ import axios from 'axios';
 import DailyWeather from './DailyWeather';
 import WeatherByTheHour from './WeatherByTheHour';
 import WeatherNow from './WeatherNow';
+import '../css/style.scss';
 
 export default function Weather() {
 
@@ -11,16 +12,16 @@ export default function Weather() {
   const [weatherLoaded, setWeatherLoaded] = useState(false);
 
   // IF YOU ARE NOT USING PROXY, UNCOMMENT FOLLOWING LINES:
-  // const API_KEY_DARKSKY = `${process.env.REACT_APP_API_KEY_DS}`;
-  // let WEATHER_URL_HOME = 'https://cors-anywhere.herokuapp.com/';
-  // WEATHER_URL_HOME += `https://api.forecast.io/forecast/${API_KEY_DARKSKY}/`;
-  // WEATHER_URL_HOME += `${globalStore.latitude},${globalStore.longitude}`;
-  // WEATHER_URL_HOME += '?units=si&exclude=flags%2Cminutely';
+  const API_KEY_DARKSKY = process.env.REACT_APP_API_KEY_DS;
+  let WEATHER_URL_HOME = 'https://cors-anywhere.herokuapp.com/';
+  WEATHER_URL_HOME += `https://api.forecast.io/forecast/${API_KEY_DARKSKY}/`;
+  WEATHER_URL_HOME += `${globalStore.latitude},${globalStore.longitude}`;
+  WEATHER_URL_HOME += '?units=si&exclude=flags%2Cminutely';
 
   // IF YOU ARE USING PROXY, CHANGE BELOW URL TO REFLECT PATH TO proxy.php OR
   // COMMENT THIS VARIABLE IF YOU ARE NOT USING PROXY:
-  let WEATHER_URL_HOME = 'https://reactweatherapp.com/proxy/proxy.php';
-  WEATHER_URL_HOME += `?lat=${globalStore.latitude}&lon=${globalStore.longitude}`;
+  // let WEATHER_URL_HOME = 'https://reactweatherapp.com/proxy/proxy.php';
+  // WEATHER_URL_HOME += `?lat=${globalStore.latitude}&lon=${globalStore.longitude}`;
 
 
   useEffect(() => {
@@ -32,6 +33,7 @@ export default function Weather() {
     setWeatherLoaded(false);
     const res = await axios.get(WEATHER_URL_HOME);
     setGlobalStore({...globalStore, JSON: res.data});
+    // setGlobalStore({...globalStore, JSON: response});
     setWeatherLoaded(true);
   };
 

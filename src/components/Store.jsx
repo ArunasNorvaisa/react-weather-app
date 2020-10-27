@@ -5,8 +5,8 @@ export const GlobalStoreContext = createContext({
   isAppLoaded: false,
   latitude: 0,
   longitude: 0,
-  city: null,
-  address: null,
+  city: '',
+  address: '',
   JSON: {}
 });
 
@@ -16,8 +16,8 @@ function Store ({children}) {
     isAppLoaded: false,
     latitude: 0,
     longitude: 0,
-    city: null,
-    address: null,
+    city: '',
+    address: '',
     JSON: {}
   });
   return (
