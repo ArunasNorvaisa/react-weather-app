@@ -8,10 +8,7 @@ import { GlobalStoreContext } from './Store';
 export default function App() {
 
   const API_KEY_GOOGLE = process.env.REACT_APP_API_KEY_GL;
-  const API_KEY_OPENWEATHER = process.env.REACT_APP_API_KEY_OW;
   const [globalStore, setGlobalStore] = useContext(GlobalStoreContext);
-  let weatherURL = 'https://api.openweathermap.org/data/2.5/onecall?exclude=minutely&appid=';
-  weatherURL += `${API_KEY_OPENWEATHER}&lat=${globalStore.latitude}&lon=${globalStore.longitude}`;
 
   useEffect(() => {
     getLocation();

@@ -7,17 +7,17 @@ import '../css/style.scss';
 function WeatherByTheHour() {
   const [globalStore] = useContext(GlobalStoreContext);
 
-  const items = globalStore.JSON.hourly.data.map(item => {
+  const items = globalStore.JSON.hourly.map(item => {
     return (
-      <Fragment key={item.time}>
+      <Fragment key={item.dt}>
         <div className='renderedHourlyWeather'>
           <DateSeparator
-            key={item.time + 1}
-            time={item.time}
+            key={item.dt + 1}
+            time={item.dt}
             timezone={globalStore.JSON.timezone}
           />
           <HourlyWeatherItem
-            key={item.time}
+            key={item.dt}
             item={item}
             timezone={globalStore.JSON.timezone}
             isTemperatureInC={globalStore.tInC}

@@ -1,17 +1,24 @@
 import React, {useContext} from 'react';
 import { GlobalStoreContext } from './Store';
-import { CtoF, getDate } from '../functions/functions';
+import { KtoC, KtoF, getDate, getIcon } from '../functions/functions';
 import '../css/style.scss';
 
 function DailyWeather({date}) {
   const [globalStore] = useContext(GlobalStoreContext);
 
-  let { icon, time, temperatureLow, temperatureHigh, summary } = globalStore.JSON.daily.data[date];
+  let temperatureLow,
+      temperatureHigh;
+
+  let { dt: time, temp, weather } = globalStore.JSON.daily[date];
+  const icon = getIcon(`${weather[0].icon}`);
   const icon_URL = `./images/icons/${icon}.svg`;
   // Calculating temperature in Fahrenheit
-  if (!globalStore.tInC) {
-    temperatureLow = CtoF(temperatureLow);
-    temperatureHigh = CtoF(temperatureHigh);
+  if (globalStore.tInC) {
+    temperatureLow = KtoC(temp.min);
+    temperatureHigh = KtoC(temp.max);
+  } else {
+    temperatureLow = KtoF(temp.min);
+    temperatureHigh = KtoF(temp.max);
   }
 
   const dateOptions = {
@@ -36,7 +43,7 @@ function DailyWeather({date}) {
           {temperatureHigh.toFixed(0)}&deg;
           {globalStore.tInC ? 'C' : 'F'}
         </div>
-        <div className="forecastSummary">{summary}</div>
+        <div className="forecastSummary">{weather[0].description}</div>
         <hr/>
       </div>
     </div>
