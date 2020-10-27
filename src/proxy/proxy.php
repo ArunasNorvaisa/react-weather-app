@@ -6,15 +6,15 @@ header("Access-Control-Allow-Origin: *");
 // Get the API key
 // !!! Update the path of env.json, do not store it in the same folder as this file !!!
 $env = json_decode(file_get_contents("env.json"), true);
-$api_key = $env["DARKSKY_API_KEY"];
+$api_key = $env["REACT_APP_API_KEY_OW"];
 
 // Get the latitude and longitude from URL params
 $latitude  = $_GET["lat"];
 $longitude = $_GET["lon"];
 
 // Generate the URL
-$weather_url = "https://api.forecast.io/forecast/" . $api_key . "/" . $latitude
-               . "," . $longitude . "?units=si&exclude=flags%2Cminutely";
+$weather_url = "https://api.openweathermap.org/data/2.5/onecall?exclude=minutely&appid="
+              . $api_key . "&lat=" . $latitude . "&lon=" . $longitude;
 
 // Setup cURL
 $curl = curl_init();

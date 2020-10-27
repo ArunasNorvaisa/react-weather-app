@@ -4,7 +4,7 @@ Weather app made with ReactJS. Automatically recognizes user's location, based o
 Made using React hooks (useState, useEffect, useContext) and React context (absolutely unnecessary for a small application like this, but it was fun to learn).
 
 ### Version
-* 2.1.1
+* 3.0.0
 
 ### Demo
 * [https://reactweatherapp.com](https://reactweatherapp.com)
@@ -18,17 +18,17 @@ $ touch .env
 $ touch ./proxy/env.json
 ```
 
-* Get the API keys from [Google](https://developers.google.com/maps/documentation/javascript/get-api-key) and [Dark Sky](https://darksky.net/dev).
+* Get the API keys from [Google](https://developers.google.com/maps/documentation/javascript/get-api-key) and [Open Weather Map](https://openweathermap.org/api).
 * Update .env file in the project root (that was created at the previous step) directory with the following content:
 
 > REACT_APP_API_KEY_GL = INSERT_YOUR_GOOGLE_API_KEY<br>
-> REACT_APP_API_KEY_DS = INSERT_YOUR_DARKSKY_API_KEY
+> REACT_APP_API_KEY_OW = INSERT_YOUR_OPENWEATHERMAP_API_KEY
 
 * Update ./proxy/env.json file with the following content:
 
 ```sh
 {
-  "DARKSKY_API_KEY": "INSERT_YOUR_DARKSKY_API_KEY"
+  "REACT_APP_API_KEY_OW": "INSERT_YOUR_OPENWEATHERMAP_API_KEY"
 }
 ```
 
@@ -46,6 +46,3 @@ $ npm build
 * Star the repo
 * Create PR and make it better
 * Say 'hello' - hello@reactweatherapp.com
-
-##### Disclaimer
-Information displayed in this web application cannot be used for commercial purposes. Weather info is [powered by Dark Sky](http://darksky.net/poweredby/).

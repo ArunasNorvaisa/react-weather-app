@@ -12,7 +12,7 @@ export default function Map(props) {
 
   const MyMap = withScriptjs(withGoogleMap(props =>
     <GoogleMap
-      defaultZoom={7}
+      defaultZoom={9}
       onClick={props.onMapClick}
       defaultCenter={{lat: globalStore.latitude, lng: globalStore.longitude}}
       center={{lat: globalStore.latitude, lng: globalStore.longitude}}

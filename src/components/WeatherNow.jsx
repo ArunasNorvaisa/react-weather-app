@@ -26,16 +26,12 @@ function WeatherNow() {
     temperatureMax = KtoF(globalStore.JSON.daily[0].temp.max).toFixed(0);
   }
 
-  // We'll show precipitation if it's expected only; see final return statement
   const getPrecipitation = () => {
-    if(!!globalStore.JSON.daily[0].pop) {
-      return (
-        <div>
-          {/*{globalStore.JSON.currently.precipType}&nbsp;*/}
-          {(globalStore.JSON.daily[0].pop * 100).toFixed(0)}%
-        </div>
-      );
-    }
+    return (
+      <div>
+        {(globalStore.JSON.hourly[0].pop * 100).toFixed(0)}%
+      </div>
+    );
   };
 
   const timeOptions = {
