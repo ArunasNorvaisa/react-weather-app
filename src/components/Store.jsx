@@ -7,8 +7,7 @@ export const GlobalStoreContext = createContext({
   longitude: 0,
   city: '',
   address: '',
-  JSON: {},
-  error: null
+  JSON: {}
 });
 
 function Store ({children}) {
@@ -19,8 +18,7 @@ function Store ({children}) {
     longitude: 0,
     city: '',
     address: '',
-    JSON: {},
-    error: null
+    JSON: {}
   });
   return (
     <GlobalStoreContext.Provider value={[globalStore, setGlobalStore]}>

@@ -42,16 +42,10 @@ export default function App() {
         longitude: json.data.longitude,
         city: json.data.city,
         address: json.data.city,
-        isAppLoaded: true,
-        error: null
+        isAppLoaded: true
       });
     } catch (err) {
       console.error(`ERROR(${err.code}): ${err.message}`);
-      setGlobalStore({
-        ...globalStore,
-        isAppLoaded: false,
-        error: err
-      });
     }
   }
 
@@ -60,16 +54,29 @@ export default function App() {
 
     try {
       const json = await axios.get(GEO_URL_HOME);
-      if (json.data.status !== 'ZERO_RESULTS') {
-        setGlobalStore({
-          ...globalStore,
-          city: json.data.results[0].address_components[2].short_name,
-          address: json.data.results[0].formatted_address,
-          latitude: lat,
-          longitude: lng,
-          isAppLoaded: true,
-          error: null
-        });
+      if (json.data.results.length !== 0) {
+        if (json.data.results[0].address_components.length > 2) {
+          setGlobalStore({
+            ...globalStore,
+            city: json.data.results[0].address_components[2].short_name,
+            address: json.data.results[0].formatted_address,
+            latitude: lat,
+            longitude: lng,
+            isAppLoaded: true
+          });
+          // Below, we cover places that have Google 'addresses' but generally aren't populated
+          // Baltic Sea is the best example. ;)
+        } else {
+          setGlobalStore({
+            ...globalStore,
+            city: json.data.results[0].address_components[0].short_name,
+            address: json.data.results[0].formatted_address,
+            latitude: lat,
+            longitude: lng,
+            isAppLoaded: true
+          });
+        }
+        // Below, we cover places that haven't Google 'addresses' Pacific Ocean is the best example. ;)
       } else {
         setGlobalStore({
           ...globalStore,
@@ -77,16 +84,14 @@ export default function App() {
           address: "There's nothing here, please check where you click",
           latitude: lat,
           longitude: lng,
-          isAppLoaded: true,
-          error: null
+          isAppLoaded: true
         });
       }
     } catch (err) {
       console.error(`ERROR(${err.code}): ${err.message}`);
       setGlobalStore({
         ...globalStore,
-        isAppLoaded: false,
-        error: err
+        isAppLoaded: false
       });
     }
   }
@@ -97,8 +102,7 @@ export default function App() {
       ...globalStore,
       city: '',
       address: '',
-      isAppLoaded: false,
-      error: null
+      isAppLoaded: false
     });
 
     try {
@@ -109,13 +113,13 @@ export default function App() {
         longitude: json.data.results[0].geometry.location.lng,
         city: json.data.results[0].formatted_address,
         address: json.data.results[0].formatted_address,
+        isAppLoaded: true
       });
     } catch (err) {
       console.error(`ERROR(${err.code}): ${err.message}`);
       setGlobalStore({
         ...globalStore,
-        isAppLoaded: false,
-        error: err
+        isAppLoaded: false
       });
     }
   }
@@ -132,9 +136,7 @@ export default function App() {
         <>
           <Header handleAddressSearch={handleAddressSearch} />
           <Weather />
-          <Map
-            handleMapClick={handleMapClick}
-          />
+          <Map handleMapClick={handleMapClick} />
         </>
       )
       : <div className="loadingDiv"><Ripple size={154} /></div>

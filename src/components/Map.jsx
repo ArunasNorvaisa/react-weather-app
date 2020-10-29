@@ -8,9 +8,6 @@ export default function Map(props) {
   const API_KEY_GOOGLE = process.env.REACT_APP_API_KEY_GL;
   const [globalStore] = useContext(GlobalStoreContext);
 
-  // let googleMapURL = `https://maps.googleapis.com/maps/api/js?key=${API_KEY_GOOGLE}`;
-  // googleMapURL += '&v=3.exp&libraries=geometry,drawing,places';
-
   return (
     <div style={{ height: '100vh', width: '100%' }}>
       <GoogleMapReact

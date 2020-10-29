@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Ripple } from 'react-css-spinners/dist/Ripple';
 import { GlobalStoreContext } from './Store';
 import axios from 'axios';
 import DailyWeather from './DailyWeather';
@@ -29,10 +30,16 @@ export default function Weather() {
 
   const fetchWeather = async () => {
     setWeatherLoaded(false);
-    // const res = await axios.get(WEATHER_URL_HOME);
-    // setGlobalStore({...globalStore, JSON: res.data});
-    setGlobalStore({...globalStore, JSON: response});
-    setWeatherLoaded(true);
+    try {
+      // const res = await axios.get(WEATHER_URL_HOME);
+      // setGlobalStore({...globalStore, JSON: res.data, isAppLoaded: true});
+      await setGlobalStore({...globalStore, JSON: response});
+
+    } catch (err) {
+      console.error(`ERROR(${err.code}): ${err.message}`);
+    } finally {
+      setWeatherLoaded(true);
+    }
   };
 
   const handleTemperatureUnitChange = event => {
@@ -1392,23 +1399,23 @@ export default function Weather() {
 
   return (
     weatherLoaded
-      ? <div>
-        <WeatherByTheHour />
-        <div className='renderedWeather'>
-          <button className='cOrF' onClick={handleTemperatureUnitChange}>
-            Switch to &deg;{globalStore.tInC ? 'F' : 'C'}
-          </button>
-          <div className='leftPanel'>
-            <div className='cityName'>{globalStore.city}</div>
-            <WeatherNow />
-          </div>
-          <div className='rightPanel'>
-            <DailyWeather date={1} />
-            <DailyWeather date={2} />
-            <DailyWeather date={3} />
-          </div>
+    ? <div>
+      <WeatherByTheHour />
+      <div className='renderedWeather'>
+        <button className='cOrF' onClick={handleTemperatureUnitChange}>
+          Switch to &deg;{globalStore.tInC ? 'F' : 'C'}
+        </button>
+        <div className='leftPanel'>
+          <div className='cityName'>{globalStore.city}</div>
+          <WeatherNow />
+        </div>
+        <div className='rightPanel'>
+          <DailyWeather date={1} />
+          <DailyWeather date={2} />
+          <DailyWeather date={3} />
         </div>
       </div>
-    : <h3>Loading weather, please wait...</h3>
+    </div>
+    : <div className="loadingDiv"><Ripple size={154} /></div>
   );
 }
