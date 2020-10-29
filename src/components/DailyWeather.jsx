@@ -12,7 +12,7 @@ function DailyWeather({date}) {
   let { dt: time, temp, weather } = globalStore.JSON.daily[date];
   const icon = getIcon(`${weather[0].icon}`);
   const icon_URL = `./images/icons/${icon}.svg`;
-  // Calculating temperature in Fahrenheit
+
   if (globalStore.tInC) {
     temperatureLow = KtoC(temp.min);
     temperatureHigh = KtoC(temp.max);

@@ -14,6 +14,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new Dotenv(),
     new HtmlWebpackPlugin({
       title: "React Weather App",
       template: "./src/index.html",
@@ -22,7 +23,6 @@ module.exports = {
       filename: "[name].[contenthash].css",
       chunkFilename: "[id].[contenthash].css",
     }),
-    new Dotenv(),
   ],
   module: {
     rules: [
@@ -57,6 +57,6 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [".js", ".jsx", ".scss", "svg", "png", "gif", "jpg"],
+    extensions: [".css", ".js", ".jsx", ".scss", "svg", "png", "gif", "jpg"],
   },
 };

@@ -11,7 +11,6 @@ function WeatherNow() {
   const icon_URL = `./images/icons/${icon}.svg`;
   const timeNow = new Date(globalStore.JSON.current.dt).getTime();
 
-
   let temperatureNow,
       temperatureMin,
       temperatureMax;
@@ -27,9 +26,18 @@ function WeatherNow() {
   }
 
   const getPrecipitation = () => {
+
+    const prepType = () => {
+      if ('rain' in globalStore.JSON.daily[0]) return 'rain ';
+      else if ('snow' in globalStore.JSON.daily[0]) return 'snow ';
+      return '';
+    };
+
     return (
       <div>
-        {(globalStore.JSON.hourly[0].pop * 100).toFixed(0)}%
+        {prepType()}
+        {(globalStore.JSON.daily[0].pop * 100).toFixed(0)}
+        %
       </div>
     );
   };
