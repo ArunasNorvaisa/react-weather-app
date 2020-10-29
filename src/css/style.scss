@@ -22,41 +22,41 @@ header {
   align-items: center;
   background-color: #222;
   color: #fff;
-}
 
-header div {
-  padding: 0.6em;
-}
+  div {
+    padding: 0.6em;
+  }
 
-header form {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  flex-shrink: 1;
-  flex-wrap: nowrap;
-}
+  form {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 1;
+    flex-wrap: nowrap;
 
-header form input {
-  width: 22rem;
-  font-family: 'Ubuntu Condensed', sans-serif;
-  color: #666;
-  border-radius: 1.3em;
-  padding: 0.83em 0.5em 0.83em 2.65em;
-  font-size: 1.3em;
-  border: none;
-}
+    input {
+      width: 22rem;
+      font-family: 'Ubuntu Condensed', sans-serif;
+      color: #666;
+      border-radius: 1.3em;
+      padding: 0.83em 0.5em 0.83em 2.65em;
+      font-size: 1.3em;
+      border: none;
+    }
 
-header form img {
-  position: absolute;
-  left: 10px;
-  top: 9px;
-  color: #666;
-  width: 2rem;
-  height: 2rem;
-}
+    img {
+      position: absolute;
+      left: 10px;
+      top: 9px;
+      color: #666;
+      width: 2rem;
+      height: 2rem;
+    }
 
-header form button {
-  display: none;
+    button {
+      display: none;
+    }
+  }
 }
 
 hr {
@@ -81,10 +81,10 @@ hr {
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
-}
 
-.weatherByTheHour::-webkit-scrollbar {
-  display: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .renderedHourlyWeather {
@@ -108,10 +108,10 @@ hr {
   display: inline-block;
   font-size: 1.1em;
   padding: 3px 10px 3px 5px;
-}
 
-.hourlyWeatherItem img {
-  width: 27px;
+  img {
+    width: 27px;
+  }
 }
 
 .rightPanel hr {
@@ -149,10 +149,10 @@ hr {
 .todayWeather, .todayWeather hr {
   margin: 10px;
   text-align: center;
-}
 
-.todayWeather div {
-  font-size: 2.3rem;
+  div {
+    font-size: 2.3rem;
+  }
 }
 
 .dailyWeather {
@@ -164,10 +164,10 @@ hr {
   align-self: center;
   width: 500px;
   max-width: 32vw;
-}
 
-.dailyWeather .date {
-  font-size: 2.5rem;
+  .date {
+    font-size: 2.5rem;
+  }
 }
 
 .tNow, .todayWeather .tNow {
@@ -178,16 +178,16 @@ hr {
 
 .leftPanel {
   flex-grow: 1;
-}
 
-.leftPanel hr {
-  text-align: center;
-  margin: 10px auto;
-}
+  hr {
+    text-align: center;
+    margin: 10px auto;
+  }
 
-.leftPanel img {
-  width: 4.4rem;
-  margin-left: 19px;
+  img {
+    width: 4.4rem;
+    margin-left: 19px;
+  }
 }
 
 .timeNow {
