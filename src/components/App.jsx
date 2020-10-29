@@ -99,8 +99,8 @@ export default function App() {
     }
   }
 
-  function handleMapClick(event) {
-    reverseGeocoding(event.latLng.lat(), event.latLng.lng());
+  function handleMapClick({lat, lng}) {
+    reverseGeocoding(lat, lng);
   }
 
   console.log('L97 globalStore ===', globalStore);

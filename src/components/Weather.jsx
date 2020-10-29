@@ -25,14 +25,13 @@ export default function Weather() {
 
   useEffect(() => {
     fetchWeather();
-    // eslint-disable-next-line
   }, [globalStore.latitude]);
 
   const fetchWeather = async () => {
     setWeatherLoaded(false);
-    const res = await axios.get(WEATHER_URL_HOME);
-    setGlobalStore({...globalStore, JSON: res.data});
-    // setGlobalStore({...globalStore, JSON: response});
+    // const res = await axios.get(WEATHER_URL_HOME);
+    // setGlobalStore({...globalStore, JSON: res.data});
+    setGlobalStore({...globalStore, JSON: response});
     setWeatherLoaded(true);
   };
 
@@ -40,7 +39,6 @@ export default function Weather() {
     event.preventDefault();
     setGlobalStore({...globalStore, tInC: !globalStore.tInC});
   };
-/*
 
   const response = {
     "lat": 54.9,
@@ -1391,7 +1389,6 @@ export default function Weather() {
       }
     ]
   };
-*/
 
   return (
     weatherLoaded

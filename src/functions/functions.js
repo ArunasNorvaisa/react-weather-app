@@ -11,7 +11,7 @@ export function KtoC(tempK) {
 }
 
 export function KtoF(tempK) {
-  return tempK * 9/5 - 459.67;
+  return tempK * 1.8 - 459.67;
 }
 
 export function getIcon(owIconType) {
