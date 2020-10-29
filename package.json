@@ -5,10 +5,13 @@
   "author": "Arunas Norvaisa",
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "add": "^2.0.6",
     "axios": "^0.21.0",
     "google-map-react": "^2.1.8",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-css-spinners": "^4.0.2",
+    "react-dom": "^17.0.1",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",

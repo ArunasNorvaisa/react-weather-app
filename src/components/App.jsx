@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import axios from 'axios';
+import { Ripple } from 'react-css-spinners/dist/Ripple';
 import Map from './Map';
 import Header from './Header';
 import Weather from './Weather';
@@ -21,7 +22,7 @@ export default function App() {
       },
       err => {
         console.error(`ERROR(${err.code}): ${err.message}`);
-        getIP();
+        getCoordinatesByIP();
       },
       {
         timeout: 6000,
@@ -30,7 +31,7 @@ export default function App() {
     );
   }
 
-  async function getIP () {
+  async function getCoordinatesByIP () {
     const IP_URL_HOME = 'https://ipapi.co/json/';
 
     try {
@@ -41,10 +42,16 @@ export default function App() {
         longitude: json.data.longitude,
         city: json.data.city,
         address: json.data.city,
-        isAppLoaded: true
+        isAppLoaded: true,
+        error: null
       });
     } catch (err) {
       console.error(`ERROR(${err.code}): ${err.message}`);
+      setGlobalStore({
+        ...globalStore,
+        isAppLoaded: false,
+        error: err
+      });
     }
   }
 
@@ -60,7 +67,8 @@ export default function App() {
           address: json.data.results[0].formatted_address,
           latitude: lat,
           longitude: lng,
-          isAppLoaded: true
+          isAppLoaded: true,
+          error: null
         });
       } else {
         setGlobalStore({
@@ -69,11 +77,17 @@ export default function App() {
           address: "There's nothing here, please check where you click",
           latitude: lat,
           longitude: lng,
-          isAppLoaded: true
+          isAppLoaded: true,
+          error: null
         });
       }
     } catch (err) {
       console.error(`ERROR(${err.code}): ${err.message}`);
+      setGlobalStore({
+        ...globalStore,
+        isAppLoaded: false,
+        error: err
+      });
     }
   }
 
@@ -81,8 +95,10 @@ export default function App() {
     const GOOGLE_URL_HOME = `https://maps.googleapis.com/maps/api/geocode/json?address=${name}&key=${API_KEY_GOOGLE}`;
     setGlobalStore({
       ...globalStore,
-      city: 'Loading...',
-      address: ''
+      city: '',
+      address: '',
+      isAppLoaded: false,
+      error: null
     });
 
     try {
@@ -92,10 +108,15 @@ export default function App() {
         latitude: json.data.results[0].geometry.location.lat,
         longitude: json.data.results[0].geometry.location.lng,
         city: json.data.results[0].formatted_address,
-        address: json.data.results[0].formatted_address
+        address: json.data.results[0].formatted_address,
       });
     } catch (err) {
       console.error(`ERROR(${err.code}): ${err.message}`);
+      setGlobalStore({
+        ...globalStore,
+        isAppLoaded: false,
+        error: err
+      });
     }
   }
 
@@ -106,15 +127,16 @@ export default function App() {
   console.log('L97 globalStore ===', globalStore);
 
   return (
-    globalStore.isAppLoaded ?
-      <>
-        <Header handleAddressSearch={handleAddressSearch} />
-        <Weather />
-        <Map
-          handleMapClick={handleMapClick}
-          handleAddressSearch={handleAddressSearch}
-        />
-      </> :
-    <h2>Application is loading, please be patient...</h2>
+    globalStore.isAppLoaded
+      ? (
+        <>
+          <Header handleAddressSearch={handleAddressSearch} />
+          <Weather />
+          <Map
+            handleMapClick={handleMapClick}
+          />
+        </>
+      )
+      : <div className="loadingDiv"><Ripple size={154} /></div>
   );
 }

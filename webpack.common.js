@@ -32,9 +32,13 @@ module.exports = {
         use: "babel-loader",
       },
       {
-        test: /\.s?[ac]ss$/,
+        test: /\.s[ac]ss$/,
         include: path.resolve(__dirname, "src"),
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"]
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
