@@ -1410,9 +1410,7 @@ export default function Weather() {
           <WeatherNow />
         </div>
         <div className='rightPanel'>
-          <DailyWeather date={1} />
-          <DailyWeather date={2} />
-          <DailyWeather date={3} />
+          <DailyWeather />
         </div>
       </div>
     </div>
