@@ -6,21 +6,21 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: {
-    index: "./src/index.jsx",
+    index: './src/index.jsx',
   },
   output: {
-    filename: "[name].[contenthash].js",
-    path: path.resolve(__dirname, "build"),
+    filename: '[name].[contenthash].js',
+    path: path.resolve(__dirname, 'build'),
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: "React Weather App",
-      template: "./src/index.html",
+      title: 'React Weather App',
+      template: './src/index.html',
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].[contenthash].css",
-      chunkFilename: "[id].[contenthash].css",
+      filename: '[name].[contenthash].css',
+      chunkFilename: '[id].[contenthash].css',
     }),
     new Dotenv(),
   ],
@@ -28,27 +28,27 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        include: path.resolve(__dirname, "src"),
-        use: "babel-loader",
+        include: path.resolve(__dirname, 'src'),
+        use: 'babel-loader',
       },
       {
         test: /\.s[ac]ss$/,
-        include: path.resolve(__dirname, "src"),
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        include: path.resolve(__dirname, 'src'),
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"]
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
-        include: path.resolve(__dirname, "src/images"),
+        include: path.resolve(__dirname, 'src/images'),
         use: [
           {
-            loader: "file-loader",
+            loader: 'file-loader',
             options: {
-              name: "[name].[ext]",
-              outputPath: "images/",
+              name: '[name].[ext]',
+              outputPath: 'images/',
               esModule: false,
             },
           },
@@ -57,6 +57,6 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [".js", ".jsx", ".scss", "svg", "png", "gif", "jpg"],
+    extensions: ['.js', '.jsx', '.scss', 'svg', 'png', 'gif', 'jpg'],
   },
 };
