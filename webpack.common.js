@@ -42,13 +42,13 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
-        include: path.resolve(__dirname, 'src/images'),
+        include: path.resolve(__dirname, 'src/static/images'),
         use: [
           {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: 'images/',
+              outputPath: 'static/images/',
               esModule: false,
             },
           },

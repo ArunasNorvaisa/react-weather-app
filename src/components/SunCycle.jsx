@@ -39,16 +39,16 @@ export default function SunCycle(props) {
   return (
     <div className="sunCycle">
       <span className="sunrise">
-        <img src={require('../images/icons/sunrise.svg')} alt="Sunrise"/>
+        <img src={require('../static/images/icons/sunrise.svg')} alt="Sunrise"/>
         <span className="sunriseTime">{sunRise}</span>
       </span>
       <span className="sunset">
-        <img src={require('../images/icons/sunset.svg')} alt="Sunset"/>
+        <img src={require('../static/images/icons/sunset.svg')} alt="Sunset"/>
         <span className="sunsetTime">{sunSet}</span>
       </span>
       <span className="sun">
         <img
-          src={require('../images/icons/sun.svg')}
+          src={require('../static/images/icons/sun.svg')}
           alt='Sun'
           style={{
             left: `calc(${sunPositionX} * 50% - 23px)`,

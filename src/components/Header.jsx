@@ -30,7 +30,7 @@ export default function Header(props) {
             value={searchText}
             onChange={handleInputChange}
           />
-          <img src={require('../images/icons/search.svg')} alt="search icon" />
+          <img src={require('../static/images/icons/search.svg')} alt="search icon" />
           <button type="submit" />
         </form>
       </div>

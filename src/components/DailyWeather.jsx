@@ -10,11 +10,9 @@ export default function DailyWeather() {
 
   const displayedWeather = globalStore.JSON.daily.slice(1, DAYS_TO_DISPLAY + 1) || [];
 
-  console.log('L16 displayedWeather ===', displayedWeather);
-
   function getIconURL(date) {
     const icon = getIcon(`${date.weather[0].icon}`);
-    return `./images/icons/${icon}.svg`;
+    return `./static/images/icons/${icon}.svg`;
   }
 
   function getTemp (temp) {
