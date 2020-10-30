@@ -4,7 +4,7 @@ import DateSeparator from './DateSeparator';
 import { GlobalStoreContext } from './Store';
 import '../css/style.scss';
 
-function WeatherByTheHour() {
+export default function WeatherByTheHour() {
   const [globalStore] = useContext(GlobalStoreContext);
 
   const items = globalStore.JSON.hourly.map(item => {
@@ -29,5 +29,3 @@ function WeatherByTheHour() {
 
   return <div className="weatherByTheHour">{items}</div>;
 }
-
-export default WeatherByTheHour;

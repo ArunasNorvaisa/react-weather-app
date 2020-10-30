@@ -2,7 +2,7 @@ import React from 'react';
 import { getTime, getDate } from '../functions/functions';
 import '../css/style.scss';
 
-function DateSeparator(props) {
+export default function DateSeparator(props) {
 
   const getWeekday = unixTime => {
     let timeOptions = {
@@ -22,5 +22,3 @@ function DateSeparator(props) {
 
   return getWeekday(props.time) && <div className="weekday">{getWeekday(props.time)}</div>;
 }
-
-export default DateSeparator;

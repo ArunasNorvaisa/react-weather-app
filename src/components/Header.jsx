@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { GlobalStoreContext } from './Store';
 
-function Header(props) {
+export default function Header(props) {
 
   const [globalStore] = useContext(GlobalStoreContext);
   const [searchText, setSearchText] = useState('');
@@ -37,5 +37,3 @@ function Header(props) {
     </header>
   );
 }
-
-export default Header;

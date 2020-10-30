@@ -2,7 +2,7 @@ import React from 'react';
 import { getTime } from '../functions/functions';
 import '../css/style.scss';
 
-const SunCycle = props => {
+export default function SunCycle(props) {
   const { sunrise, sunset, timezone } = props;
 
   const dayLength = sunset - sunrise;
@@ -58,6 +58,4 @@ const SunCycle = props => {
       </span>
     </div>
   );
-};
-
-export default SunCycle;
+}

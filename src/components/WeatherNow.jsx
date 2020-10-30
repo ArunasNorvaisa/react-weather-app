@@ -4,7 +4,7 @@ import { KtoC, KtoF, getDate, getIcon } from '../functions/functions';
 import { GlobalStoreContext } from './Store';
 import '../css/style.scss';
 
-function WeatherNow() {
+export default function WeatherNow() {
 
   const [globalStore] = useContext(GlobalStoreContext);
   const icon = getIcon(`${globalStore.JSON.current.weather[0].icon}`);
@@ -71,5 +71,3 @@ function WeatherNow() {
     </div>
   );
 }
-
-export default WeatherNow;

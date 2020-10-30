@@ -1,7 +1,7 @@
 import React from 'react';
 import { KtoC, KtoF, getIcon, getTime } from '../functions/functions';
 
-const HourlyWeatherItem = ({ item, isTemperatureInC, timezone }) => {
+export default function HourlyWeatherItem ({ item, isTemperatureInC, timezone }) {
   const icon = getIcon(`${item.weather[0].icon}`);
   const icon_URL = `./images/icons/${icon}.svg`;
   let temperature;
@@ -37,6 +37,4 @@ const HourlyWeatherItem = ({ item, isTemperatureInC, timezone }) => {
       }
     </div>
   );
-};
-
-export default HourlyWeatherItem;
+}

@@ -3,7 +3,7 @@ import { GlobalStoreContext } from './Store';
 import { KtoC, KtoF, getDate, getIcon } from '../functions/functions';
 import '../css/style.scss';
 
-function DailyWeather() {
+export default function DailyWeather() {
   const [globalStore] = useContext(GlobalStoreContext);
 
   const DAYS_TO_DISPLAY = 3;
@@ -53,5 +53,3 @@ function DailyWeather() {
     </div>
   );
 }
-
-export default DailyWeather;
