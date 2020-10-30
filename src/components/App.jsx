@@ -80,8 +80,8 @@ export default function App() {
       } else {
         setGlobalStore({
           ...globalStore,
-          city: "There's nothing here, please check where you click",
-          address: "There's nothing here, please check where you click",
+          city: 'There\'s nothing here, please check where you click',
+          address: 'There\'s nothing here, please check where you click',
           latitude: lat,
           longitude: lng,
           isAppLoaded: true

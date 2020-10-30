@@ -24,14 +24,14 @@ function Header(props) {
       <div>
         <form onSubmit={handleFormSubmit}>
           <input
-            type='text'
-            id='city_search'
+            type="text"
+            id="city_search"
             placeholder={globalStore.city}
             value={searchText}
             onChange={handleInputChange}
           />
-          <img src={require('../images/icons/search.svg')} alt='search icon' />
-          <button type='submit' />
+          <img src={require('../images/icons/search.svg')} alt="search icon" />
+          <button type="submit" />
         </form>
       </div>
     </header>

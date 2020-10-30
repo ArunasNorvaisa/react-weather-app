@@ -37,16 +37,16 @@ const SunCycle = props => {
   const sunSet = sunset ? getTime(sunset, timeOptions) : 'White night';
 
   return (
-    <div className='sunCycle'>
-      <span className='sunrise'>
-        <img src={require('../images/icons/sunrise.svg')} alt='Sunrise'/>
-        <span className='sunriseTime'>{sunRise}</span>
+    <div className="sunCycle">
+      <span className="sunrise">
+        <img src={require('../images/icons/sunrise.svg')} alt="Sunrise"/>
+        <span className="sunriseTime">{sunRise}</span>
       </span>
-      <span className='sunset'>
-        <img src={require('../images/icons/sunset.svg')} alt='Sunset'/>
-        <span className='sunsetTime'>{sunSet}</span>
+      <span className="sunset">
+        <img src={require('../images/icons/sunset.svg')} alt="Sunset"/>
+        <span className="sunsetTime">{sunSet}</span>
       </span>
-      <span className='sun'>
+      <span className="sun">
         <img
           src={require('../images/icons/sun.svg')}
           alt='Sun'

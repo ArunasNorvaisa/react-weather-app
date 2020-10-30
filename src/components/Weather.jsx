@@ -1401,15 +1401,15 @@ export default function Weather() {
     weatherLoaded
     ? <div>
       <WeatherByTheHour />
-      <div className='renderedWeather'>
-        <button className='cOrF' onClick={handleTemperatureUnitChange}>
+      <div className="renderedWeather">
+        <button className="cOrF" onClick={handleTemperatureUnitChange}>
           Switch to &deg;{globalStore.tInC ? 'F' : 'C'}
         </button>
-        <div className='leftPanel'>
+        <div className="leftPanel">
           <div className='cityName'>{globalStore.city}</div>
           <WeatherNow />
         </div>
-        <div className='rightPanel'>
+        <div className="rightPanel">
           <DailyWeather />
         </div>
       </div>

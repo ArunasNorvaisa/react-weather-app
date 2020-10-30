@@ -27,7 +27,7 @@ function WeatherByTheHour() {
     );
   });
 
-  return <div className='weatherByTheHour'>{items}</div>;
+  return <div className="weatherByTheHour">{items}</div>;
 }
 
 export default WeatherByTheHour;

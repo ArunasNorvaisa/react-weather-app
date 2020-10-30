@@ -36,7 +36,7 @@ function DailyWeather() {
     <div className="dailyWeather" key={i}>
       <div>
         <div className="icon">
-          <img src={getIconURL(day)} alt='icon'/>
+          <img src={getIconURL(day)} alt="icon"/>
         </div>
         <div className="date">
           {getDate(day.dt, dateOptions)}

@@ -20,7 +20,7 @@ function DateSeparator(props) {
     return false;
   };
 
-  return getWeekday(props.time) && <div className='weekday'>{getWeekday(props.time)}</div>;
+  return getWeekday(props.time) && <div className="weekday">{getWeekday(props.time)}</div>;
 }
 
 export default DateSeparator;
