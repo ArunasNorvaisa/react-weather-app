@@ -23,7 +23,6 @@ export default function Weather() {
   // let WEATHER_URL_HOME = 'https://reactweatherapp.com/proxy/proxy.php';
   // WEATHER_URL_HOME += `?lat=${globalStore.latitude}&lon=${globalStore.longitude}`;
 
-
   useEffect(() => {
     fetchWeather();
   }, [globalStore.latitude]);
@@ -34,7 +33,6 @@ export default function Weather() {
       // const res = await axios.get(WEATHER_URL_HOME);
       // setGlobalStore({...globalStore, JSON: res.data, isAppLoaded: true});
       await setGlobalStore({...globalStore, JSON: response});
-
     } catch (err) {
       console.error(`ERROR(${err.code}): ${err.message}`);
     } finally {

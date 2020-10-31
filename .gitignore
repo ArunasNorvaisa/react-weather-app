@@ -20,9 +20,9 @@ yarn.lock
 .env.production.local
 /.idea
 /.idea/workspace.xml
-/public/proxy/env.json
+*env.json
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-/.vscode/settings.json
+/.vscode

@@ -6,6 +6,8 @@ import Header from './Header';
 import Weather from './Weather';
 import { GlobalStoreContext } from './Store';
 
+const urlParams = new URLSearchParams(window.location.search);
+
 export default function App() {
 
   const API_KEY_GOOGLE = process.env.REACT_APP_API_KEY_GL;
@@ -16,19 +18,23 @@ export default function App() {
   }, []);
 
   function getLocation() {
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        reverseGeocoding(position.coords.latitude, position.coords.longitude);
-      },
-      err => {
-        console.error(`ERROR(${err.code}): ${err.message}`);
-        getCoordinatesByIP();
-      },
-      {
-        timeout: 6000,
-        enableHighAccuracy: false
-      }
-    );
+    if(urlParams.has('city')) {
+      handleAddressSearch(urlParams.get('city'));
+    } else {
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          reverseGeocoding(position.coords.latitude, position.coords.longitude);
+        },
+        err => {
+          console.error(`ERROR(${err.code}): ${err.message}`);
+          getCoordinatesByIP();
+        },
+        {
+          timeout: 6000,
+          enableHighAccuracy: false
+        }
+      );
+    }
   }
 
   async function getCoordinatesByIP () {
@@ -44,6 +50,7 @@ export default function App() {
         address: json.data.city,
         isAppLoaded: true
       });
+      urlParams.set('city', [`${json.data.city}`]);
     } catch (err) {
       console.error(`ERROR(${err.code}): ${err.message}`);
     }
@@ -64,6 +71,7 @@ export default function App() {
             longitude: lng,
             isAppLoaded: true
           });
+          urlParams.set('city', [`${json.data.results[0].address_components[2].short_name}`]);
           // Below, we cover places that have Google 'addresses' but generally aren't populated
           // Baltic Sea is the best example. ;)
         } else {
@@ -75,8 +83,9 @@ export default function App() {
             longitude: lng,
             isAppLoaded: true
           });
+          urlParams.set('city', [`${json.data.results[0].address_components[2].short_name}`]);
         }
-        // Below, we cover places that haven't Google 'addresses' Pacific Ocean is the best example. ;)
+        // Below, we cover places that haven't Google addresses. Try Pacific Ocean. ;)
       } else {
         setGlobalStore({
           ...globalStore,
@@ -115,6 +124,7 @@ export default function App() {
         address: json.data.results[0].formatted_address,
         isAppLoaded: true
       });
+      urlParams.set('city', [`${json.data.results[0].formatted_address}`]);
     } catch (err) {
       console.error(`ERROR(${err.code}): ${err.message}`);
       setGlobalStore({
@@ -128,7 +138,8 @@ export default function App() {
     reverseGeocoding(lat, lng);
   }
 
-  console.log('L97 globalStore ===', globalStore);
+  console.log('L141 globalStore ===', globalStore);
+  console.log('L142 urlParams ===', urlParams);
 
   return (
     globalStore.isAppLoaded
