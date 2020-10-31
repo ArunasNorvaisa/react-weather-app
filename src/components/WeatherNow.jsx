@@ -8,7 +8,7 @@ export default function WeatherNow() {
 
   const [globalStore] = useContext(GlobalStoreContext);
   const icon = getIcon(`${globalStore.JSON.current.weather[0].icon}`);
-  const icon_URL = `./static/images/icons/${icon}.svg`;
+  const icon_URL = require(`../static/images/icons/${icon}.svg`);
   const timeNow = new Date(globalStore.JSON.current.dt).getTime();
 
   let temperatureNow,
@@ -26,7 +26,6 @@ export default function WeatherNow() {
   }
 
   const getPrecipitation = () => {
-
     const prepType = () => {
       if ('rain' in globalStore.JSON.daily[0]) return 'rain ';
       else if ('snow' in globalStore.JSON.daily[0]) return 'snow ';
