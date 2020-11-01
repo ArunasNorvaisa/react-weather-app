@@ -6,6 +6,7 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "axios": "^0.21.0",
+    "build-url": "^6.0.1",
     "google-map-react": "^2.1.8",
     "react": "^17.0.1",
     "react-css-spinners": "^4.0.2",

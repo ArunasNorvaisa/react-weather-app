@@ -1,6 +1,7 @@
 import React, { Fragment, useContext } from 'react';
 import GoogleMapReact from 'google-map-react';
 import { GlobalStoreContext } from './Store';
+import '../css/marker.scss';
 
 export default function Map(props) {
 

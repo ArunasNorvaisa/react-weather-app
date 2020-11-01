@@ -1,6 +1,8 @@
 import React, { useEffect, useContext } from 'react';
 import axios from 'axios';
+import buildUrl from 'build-url';
 import { Ripple } from 'react-css-spinners/dist/Ripple';
+
 import Error from './Error';
 import Map from './Map';
 import Header from './Header';
@@ -40,10 +42,10 @@ export default function App() {
   }
 
   async function getCoordinatesByIP () {
-    const IP_URL_HOME = 'https://ipapi.co/json/';
+    const URL = 'https://ipapi.co/json/';
 
     try {
-      const json = await axios.get(IP_URL_HOME);
+      const json = await axios.get(URL);
       setGlobalStore({
         ...globalStore,
         latitude: json.data.latitude,
@@ -61,11 +63,17 @@ export default function App() {
     }
   }
 
-  async function reverseGeocoding(lat, lng) {
-    const GEO_URL_HOME = `https://maps.googleapis.com/maps/api/geocode/json?key=${API_KEY_GOOGLE}&latlng=${lat},${lng}`;
+  async function reverseGeocoding({lat, lng}) {
+    const URL = buildUrl('https://maps.googleapis.com/', {
+      path: 'maps/api/geocode/json',
+      queryParams: {
+        key: API_KEY_GOOGLE,
+        latlng: [lat ,lng]
+      }
+    });
 
     try {
-      const json = await axios.get(GEO_URL_HOME);
+      const json = await axios.get(URL);
       if (json.data.results.length !== 0) {
         if (json.data.results[0].address_components.length > 2) {
           setGlobalStore({
@@ -110,7 +118,13 @@ export default function App() {
   }
 
   async function handleAddressSearch(name) {
-    const GOOGLE_URL_HOME = `https://maps.googleapis.com/maps/api/geocode/json?address=${name}&key=${API_KEY_GOOGLE}`;
+    const URL = buildUrl('https://maps.googleapis.com/', {
+      path: 'maps/api/geocode/json',
+      queryParams: {
+        address: name,
+        key: API_KEY_GOOGLE
+      }
+    });
     setGlobalStore({
       ...globalStore,
       city: '',
@@ -119,7 +133,7 @@ export default function App() {
     });
 
     try {
-      const json = await axios.get(GOOGLE_URL_HOME);
+      const json = await axios.get(URL);
       setGlobalStore({
         ...globalStore,
         latitude: json.data.results[0].geometry.location.lat,
@@ -136,10 +150,6 @@ export default function App() {
         error: err
       });
     }
-  }
-
-  function handleMapClick({lat, lng}) {
-    reverseGeocoding(lat, lng);
   }
 
   console.log('L144 globalStore ===', globalStore);
@@ -159,7 +169,7 @@ export default function App() {
     <>
       <Header handleAddressSearch={handleAddressSearch} />
       <Weather />
-      <Map handleMapClick={handleMapClick} />
+      <Map handleMapClick={reverseGeocoding} />
     </>
   );
 }
