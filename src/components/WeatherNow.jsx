@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import SunCycle from './SunCycle';
 import { KtoC, KtoF, getDate, getIcon } from '../functions/functions';
 import { GlobalStoreContext } from './Store';
-import '../css/style.scss';
 
 export default function WeatherNow() {
 

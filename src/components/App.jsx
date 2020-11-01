@@ -6,6 +6,7 @@ import Map from './Map';
 import Header from './Header';
 import Weather from './Weather';
 import { GlobalStoreContext } from './Store';
+import '../css/style.scss';
 
 const urlParams = new URLSearchParams(window.location.search);
 

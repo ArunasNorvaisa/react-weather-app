@@ -2,7 +2,6 @@ import React, { Fragment, useContext } from 'react';
 import HourlyWeatherItem from './HourlyWeatherItem';
 import DateSeparator from './DateSeparator';
 import { GlobalStoreContext } from './Store';
-import '../css/style.scss';
 
 export default function WeatherByTheHour() {
   const [globalStore] = useContext(GlobalStoreContext);

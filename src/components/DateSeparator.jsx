@@ -1,6 +1,5 @@
 import React from 'react';
 import { getTime, getDate } from '../functions/functions';
-import '../css/style.scss';
 
 export default function DateSeparator(props) {
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import { getTime } from '../functions/functions';
-import '../css/style.scss';
 
 export default function SunCycle(props) {
   const { sunrise, sunset, timezone } = props;

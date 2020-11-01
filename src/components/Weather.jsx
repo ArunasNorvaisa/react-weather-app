@@ -5,7 +5,6 @@ import axios from 'axios';
 import DailyWeather from './DailyWeather';
 import WeatherByTheHour from './WeatherByTheHour';
 import WeatherNow from './WeatherNow';
-import '../css/style.scss';
 
 export default function Weather() {
 
@@ -46,7 +45,7 @@ export default function Weather() {
     setGlobalStore({...globalStore, tInC: !globalStore.tInC});
   };
 
-  const response1 = {
+  const response = {
     "lat": 54.9,
     "lon": 23.97,
     "timezone": "Europe/Vilnius",

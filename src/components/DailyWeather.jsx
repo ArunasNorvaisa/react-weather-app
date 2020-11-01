@@ -1,7 +1,6 @@
 import React, {useContext} from 'react';
 import { GlobalStoreContext } from './Store';
 import { KtoC, KtoF, getDate, getIcon } from '../functions/functions';
-import '../css/style.scss';
 
 export default function DailyWeather() {
   const [globalStore] = useContext(GlobalStoreContext);
