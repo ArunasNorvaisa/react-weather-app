@@ -158,7 +158,7 @@ export default function App() {
     return (
       <div className="loadingDiv">
         <Ripple size={154} />
-        <Error message={globalStore.error.message}/>
+        <Error message={globalStore.error ? globalStore.error.message : 'SOMETHING WRONG HAPPENED'}/>
       </div>
     );
   }
