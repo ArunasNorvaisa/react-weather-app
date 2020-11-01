@@ -35,6 +35,7 @@ export default function Weather() {
       await setGlobalStore({...globalStore, JSON: response});
     } catch (err) {
       console.error(`ERROR(${err.code}): ${err.message}`);
+      setGlobalStore({...globalStore, error: err});
     } finally {
       setWeatherLoaded(true);
     }
@@ -45,7 +46,7 @@ export default function Weather() {
     setGlobalStore({...globalStore, tInC: !globalStore.tInC});
   };
 
-  const response = {
+  const response1 = {
     "lat": 54.9,
     "lon": 23.97,
     "timezone": "Europe/Vilnius",

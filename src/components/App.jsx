@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import axios from 'axios';
 import { Ripple } from 'react-css-spinners/dist/Ripple';
+import Error from './Error';
 import Map from './Map';
 import Header from './Header';
 import Weather from './Weather';
@@ -52,6 +53,10 @@ export default function App() {
       });
     } catch (err) {
       console.error(`ERROR(${err.code}): ${err.message}`);
+      setGlobalStore({
+        ...globalStore,
+        error: err
+      });
     }
   }
 
@@ -97,7 +102,8 @@ export default function App() {
       console.error(`ERROR(${err.code}): ${err.message}`);
       setGlobalStore({
         ...globalStore,
-        isAppLoaded: false
+        isAppLoaded: false,
+        error: err
       });
     }
   }
@@ -125,7 +131,8 @@ export default function App() {
       console.error(`ERROR(${err.code}): ${err.message}`);
       setGlobalStore({
         ...globalStore,
-        isAppLoaded: false
+        isAppLoaded: false,
+        error: err
       });
     }
   }
@@ -134,17 +141,24 @@ export default function App() {
     reverseGeocoding(lat, lng);
   }
 
-  console.log('L141 globalStore ===', globalStore);
+  console.log('L144 globalStore ===', globalStore);
+
+  if(globalStore.error) {
+    return (
+      <div className="loadingDiv">
+        <Ripple size={154} />
+        <Error message={globalStore.error.message}/>
+      </div>
+    );
+  }
+
+  if(!globalStore.isAppLoaded) return <div className="loadingDiv"><Ripple size={154} /></div>;
 
   return (
-    globalStore.isAppLoaded
-      ? (
-        <>
-          <Header handleAddressSearch={handleAddressSearch} />
-          <Weather />
-          <Map handleMapClick={handleMapClick} />
-        </>
-      )
-      : <div className="loadingDiv"><Ripple size={154} /></div>
+    <>
+      <Header handleAddressSearch={handleAddressSearch} />
+      <Weather />
+      <Map handleMapClick={handleMapClick} />
+    </>
   );
 }

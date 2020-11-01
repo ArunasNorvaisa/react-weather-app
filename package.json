@@ -9,7 +9,8 @@
     "google-map-react": "^2.1.8",
     "react": "^17.0.1",
     "react-css-spinners": "^4.0.2",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-toastify": "^6.0.9"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
