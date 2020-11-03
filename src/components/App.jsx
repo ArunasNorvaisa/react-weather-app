@@ -156,8 +156,6 @@ export default function App() {
     reverseGeocoding(lat, lng);
   }
 
-  console.log('L144 globalStore ===', globalStore);
-
   if(globalStore.error) {
     return (
       <div className="loadingDiv">
