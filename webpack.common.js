@@ -26,6 +26,11 @@ module.exports = {
     new Dotenv(),
     new FileManagerPlugin({
       events: {
+        onStart: {
+          delete: [
+            'build'
+          ],
+        },
         onEnd: {
           copy: [
             { source: 'src/static', destination: 'build/static' },
