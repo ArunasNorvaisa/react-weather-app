@@ -63,7 +63,7 @@ export default function App() {
     }
   }
 
-  async function reverseGeocoding({lat, lng}) {
+  async function reverseGeocoding(lat, lng) {
     const URL = buildUrl('https://maps.googleapis.com/', {
       path: 'maps/api/geocode/json',
       queryParams: {
@@ -152,6 +152,10 @@ export default function App() {
     }
   }
 
+  function handleMapClick({lat, lng}) {
+    reverseGeocoding(lat, lng);
+  }
+
   console.log('L144 globalStore ===', globalStore);
 
   if(globalStore.error) {
@@ -169,7 +173,7 @@ export default function App() {
     <>
       <Header handleAddressSearch={handleAddressSearch} />
       <Weather />
-      <Map handleMapClick={reverseGeocoding} />
+      <Map handleMapClick={handleMapClick} />
     </>
   );
 }
