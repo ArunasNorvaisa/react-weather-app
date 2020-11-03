@@ -1,104 +1,177 @@
 import React, { useEffect, useContext } from 'react';
 import axios from 'axios';
+import buildUrl from 'build-url';
+import { Ripple } from 'react-css-spinners/dist/Ripple';
+
+import Error from './Error';
 import Map from './Map';
 import Header from './Header';
 import Weather from './Weather';
 import { GlobalStoreContext } from './Store';
+import '../css/style.scss';
+
+const urlParams = new URLSearchParams(window.location.search);
 
 export default function App() {
 
-  const API_KEY_GOOGLE =`${process.env.REACT_APP_API_KEY_GL}`;
+  const API_KEY_GOOGLE = process.env.REACT_APP_API_KEY_GL;
   const [globalStore, setGlobalStore] = useContext(GlobalStoreContext);
 
   useEffect(() => {
     getLocation();
-    // eslint-disable-next-line
   }, []);
 
-  const getLocation = () => {
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        reverseGeocoding(position.coords.latitude, position.coords.longitude);
-      },
-      err => {
-        console.warn(`ERROR(${err.code}): ${err.message}`);
-        getIP();
-      },
-      {
-        timeout: 6000,
-        enableHighAccuracy: false
-      }
-    );
-  };
+  function getLocation() {
+    if(urlParams.has('search')) {
+      handleAddressSearch(urlParams.get('search'));
+    } else {
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          reverseGeocoding(position.coords.latitude, position.coords.longitude);
+        },
+        err => {
+          console.error(`ERROR(${err.code}): ${err.message}`);
+          getCoordinatesByIP();
+        },
+        {
+          timeout: 6000,
+          enableHighAccuracy: false
+        }
+      );
+    }
+  }
 
-  const getIP = async () => {
-    const IP_URL_HOME = 'https://ipapi.co/json/';
-    const json = await axios.get(IP_URL_HOME);
-    setGlobalStore({
-      ...globalStore,
-      latitude: json.data.latitude,
-      longitude: json.data.longitude,
-      city: json.data.city,
-      address: json.data.city,
-      isAppLoaded: true
-    });
-  };
+  async function getCoordinatesByIP () {
+    const URL = 'https://ipapi.co/json/';
 
-  const reverseGeocoding = async (lat, lng) => {
-    const GEO_URL_HOME = `https://maps.googleapis.com/maps/api/geocode/json?key=${API_KEY_GOOGLE}&latlng=${lat},${lng}`;
-    const json = await axios.get(GEO_URL_HOME);
-    if (json.data.status !== 'ZERO_RESULTS') {
+    try {
+      const json = await axios.get(URL);
       setGlobalStore({
         ...globalStore,
-        city: json.data.results[0].address_components[2].short_name,
-        address: json.data.results[0].formatted_address,
-        latitude: lat,
-        longitude: lng,
+        latitude: json.data.latitude,
+        longitude: json.data.longitude,
+        city: json.data.city,
+        address: json.data.city,
         isAppLoaded: true
       });
-    } else {
+    } catch (err) {
+      console.error(`ERROR(${err.code}): ${err.message}`);
       setGlobalStore({
         ...globalStore,
-        city: "There's nothing here, please check where you click",
-        address: "There's nothing here, please check where you click",
-        latitude: lat,
-        longitude: lng,
-        isAppLoaded: true
+        error: err
       });
     }
-  };
+  }
 
-  const handleAddressSearch = async name => {
-    const GOOGLE_URL_HOME = `https://maps.googleapis.com/maps/api/geocode/json?address=${name}&key=${API_KEY_GOOGLE}`;
+  async function reverseGeocoding(lat, lng) {
+    const URL = buildUrl('https://maps.googleapis.com/', {
+      path: 'maps/api/geocode/json',
+      queryParams: {
+        key: API_KEY_GOOGLE,
+        latlng: [lat ,lng]
+      }
+    });
+
+    try {
+      const json = await axios.get(URL);
+      if (json.data.results.length !== 0) {
+        if (json.data.results[0].address_components.length > 2) {
+          setGlobalStore({
+            ...globalStore,
+            city: json.data.results[0].address_components[2].short_name,
+            address: json.data.results[0].formatted_address,
+            latitude: lat,
+            longitude: lng,
+            isAppLoaded: true
+          });
+          // Below, we cover places that have Google 'addresses' but generally aren't populated
+          // Baltic Sea is the best example. ;)
+        } else {
+          setGlobalStore({
+            ...globalStore,
+            city: json.data.results[0].address_components[0].short_name,
+            address: json.data.results[0].formatted_address,
+            latitude: lat,
+            longitude: lng,
+            isAppLoaded: true
+          });
+        }
+        // Below, we cover places that haven't Google addresses. Try Pacific Ocean. ;)
+      } else {
+        setGlobalStore({
+          ...globalStore,
+          city: 'There\'s nothing here, please check where you click',
+          address: 'There\'s nothing here, please check where you click',
+          latitude: lat,
+          longitude: lng,
+          isAppLoaded: true
+        });
+      }
+    } catch (err) {
+      console.error(`ERROR(${err.code}): ${err.message}`);
+      setGlobalStore({
+        ...globalStore,
+        isAppLoaded: false,
+        error: err
+      });
+    }
+  }
+
+  async function handleAddressSearch(name) {
+    const URL = buildUrl('https://maps.googleapis.com/', {
+      path: 'maps/api/geocode/json',
+      queryParams: {
+        address: name,
+        key: API_KEY_GOOGLE
+      }
+    });
     setGlobalStore({
       ...globalStore,
-      city: 'Loading...',
-      address: ''
+      city: '',
+      address: '',
+      isAppLoaded: false
     });
-    const json = await axios.get(GOOGLE_URL_HOME);
-    setGlobalStore({
-      ...globalStore,
-      latitude: json.data.results[0].geometry.location.lat,
-      longitude: json.data.results[0].geometry.location.lng,
-      city: json.data.results[0].formatted_address,
-      address: json.data.results[0].formatted_address
-    });
-  };
 
-  const handleMapClick = event => {
-    reverseGeocoding(event.latLng.lat(), event.latLng.lng());
-  };
+    try {
+      const json = await axios.get(URL);
+      setGlobalStore({
+        ...globalStore,
+        latitude: json.data.results[0].geometry.location.lat,
+        longitude: json.data.results[0].geometry.location.lng,
+        city: json.data.results[0].formatted_address,
+        address: json.data.results[0].formatted_address,
+        isAppLoaded: true
+      });
+    } catch (err) {
+      console.error(`ERROR(${err.code}): ${err.message}`);
+      setGlobalStore({
+        ...globalStore,
+        isAppLoaded: false,
+        error: err
+      });
+    }
+  }
+
+  function handleMapClick({lat, lng}) {
+    reverseGeocoding(lat, lng);
+  }
+
+  if(globalStore.error) {
+    return (
+      <div className="loadingDiv">
+        <Ripple size={154} />
+        <Error message={globalStore.error ? globalStore.error.message : 'SOMETHING WRONG HAPPENED'}/>
+      </div>
+    );
+  }
+
+  if(!globalStore.isAppLoaded) return <div className="loadingDiv"><Ripple size={154} /></div>;
 
   return (
-    globalStore.isAppLoaded ?
-      <>
-        <Header handleAddressSearch={handleAddressSearch} />
-        <Weather />
-        <Map
-          handleMapClick={handleMapClick}
-          handleAddressSearch={handleAddressSearch}
-        />
-      </> :
-    <h2>Application is loading, please be patient...</h2>
+    <>
+      <Header handleAddressSearch={handleAddressSearch} />
+      <Weather />
+      <Map handleMapClick={handleMapClick} />
+    </>
   );
 }

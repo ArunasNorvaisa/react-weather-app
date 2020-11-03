@@ -1,16 +1,25 @@
 import React, {useContext} from 'react';
 import { GlobalStoreContext } from './Store';
-import { CtoF, getDate } from "../functions/functions";
+import { KtoC, KtoF, getDate, getIcon } from '../functions/functions';
 
-function DailyWeather({date}) {
+export default function DailyWeather() {
   const [globalStore] = useContext(GlobalStoreContext);
 
-  let { icon, time, temperatureLow, temperatureHigh, summary } = globalStore.JSON.daily.data[date];
-  const icon_URL = `./images/icons/${icon}.svg`;
-  // Calculating temperature in Fahrenheit
-  if (!globalStore.tInC) {
-    temperatureLow = CtoF(temperatureLow);
-    temperatureHigh = CtoF(temperatureHigh);
+  const DAYS_TO_DISPLAY = 3;
+
+  const displayedWeather = globalStore.JSON.daily.slice(1, DAYS_TO_DISPLAY + 1) || [];
+
+  function getIconURL(date) {
+    const icon = getIcon(`${date.weather[0].icon}`);
+    return require(`../static/images/icons/${icon}.svg`);
+  }
+
+  function getTemp (temp) {
+    if (globalStore.tInC) {
+      return KtoC(temp).toFixed(0);
+    } else {
+      return KtoF(temp).toFixed(0);
+    }
   }
 
   const dateOptions = {
@@ -20,26 +29,24 @@ function DailyWeather({date}) {
     timeZone: globalStore.JSON.timezone
   };
 
-  return (
-    <div className='dailyWeather'>
+  return displayedWeather.map((day, i) =>
+    <div className="dailyWeather" key={i}>
       <div>
-        <div className='icon'>
-          <img src={icon_URL} alt='icon'/>
+        <div className="icon">
+          <img src={getIconURL(day)} alt="icon"/>
         </div>
-        <div className='date'>
-          {getDate(time, dateOptions)}
+        <div className="date">
+          {getDate(day.dt, dateOptions)}
         </div>
-        <div className='tToday'>
-          {temperatureLow.toFixed(0)}&deg;
+        <div>
+          {getTemp(day.temp.min)}&deg;
           /&nbsp;
-          {temperatureHigh.toFixed(0)}&deg;
+          {getTemp(day.temp.max)}&deg;
           {globalStore.tInC ? 'C' : 'F'}
         </div>
-        <div className="forecastSummary">{summary}</div>
+        <div className="forecastSummary">{day.weather[0].description}</div>
         <hr/>
       </div>
     </div>
   );
 }
-
-export default DailyWeather;
