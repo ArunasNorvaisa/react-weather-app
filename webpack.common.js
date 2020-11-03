@@ -1,6 +1,7 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const FileManagerPlugin = require('filemanager-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -23,6 +24,15 @@ module.exports = {
       chunkFilename: '[id].[contenthash].css',
     }),
     new Dotenv(),
+    new FileManagerPlugin({
+      events: {
+        onEnd: {
+          copy: [
+            { source: 'src/static', destination: 'build/static' },
+          ],
+        },
+      },
+    }),
   ],
   module: {
     rules: [
@@ -42,13 +52,13 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
-        include: path.resolve(__dirname, 'src/static/images'),
+        include: path.resolve(__dirname, 'src/static/images/icons'),
         use: [
           {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: 'static/images/',
+              outputPath: 'static/images/icons',
               esModule: false,
             },
           },
