@@ -20,6 +20,7 @@ header {
   justify-content: space-evenly;
   flex-wrap: wrap;
   align-items: center;
+  font-size: 1.4em;
   background-color: #222;
   color: #fff;
 
@@ -40,7 +41,6 @@ header {
       color: #666;
       border-radius: 1.3em;
       padding: 0.83em 0.5em 0.83em 2.65em;
-      font-size: 1.8em;
       border: none;
     }
 
@@ -104,6 +104,7 @@ hr {
 .renderedHourlyWeather {
   display: flex;
   flex-direction: row;
+  align-items: inherit;
   color: #fff;
 }
 
@@ -125,6 +126,7 @@ hr {
 
   img {
     width: 27px;
+    margin-top: 4px;
   }
 }
 

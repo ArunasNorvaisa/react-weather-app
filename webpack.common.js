@@ -33,7 +33,9 @@ module.exports = {
         },
         onEnd: {
           copy: [
+            { source: 'src/.htaccess', destination: 'build/' },
             { source: 'src/static', destination: 'build/static' },
+            { source: 'src/proxy', destination: 'build/proxy' },
           ],
         },
       },

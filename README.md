@@ -4,7 +4,7 @@ Weather app made with ReactJS. Automatically recognizes user's location, based o
 Made using React hooks (useState, useEffect, useContext) and React context (absolutely unnecessary for a small application like this, but it was fun to learn).
 
 ### Version
-* 3.0.0
+* 3.0.1
 
 ### Demo
 * [https://reactweatherapp.com](https://reactweatherapp.com)
@@ -35,7 +35,7 @@ $ touch ./proxy/env.json
 * Update ./proxy/.htaccess file to reflect your referring domain
 
 ```sh
-$ npm build
+$ npm run build:prod
 ```
 * Open /build/index.html in your browser and, if everything works as intended,
 * Upload contents of BUILD folder to your hosting provider.

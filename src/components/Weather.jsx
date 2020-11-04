@@ -12,15 +12,15 @@ export default function Weather() {
   const [weatherLoaded, setWeatherLoaded] = useState(false);
 
   // IF YOU ARE NOT USING PROXY, UNCOMMENT FOLLOWING LINES:
-  // const API_KEY_OPENWEATHER = process.env.REACT_APP_API_KEY_OW;
-  // let WEATHER_URL_HOME = 'https://cors-anywhere.herokuapp.com/';
-  // WEATHER_URL_HOME += 'https://api.openweathermap.org/data/2.5/onecall?exclude=minutely&appid=';
-  // WEATHER_URL_HOME += `${API_KEY_OPENWEATHER}&lat=${globalStore.latitude}&lon=${globalStore.longitude}`;
+  const API_KEY_OPENWEATHER = process.env.REACT_APP_API_KEY_OW;
+  let WEATHER_URL_HOME = 'https://cors-anywhere.herokuapp.com/';
+  WEATHER_URL_HOME += 'https://api.openweathermap.org/data/2.5/onecall?exclude=minutely&appid=';
+  WEATHER_URL_HOME += `${API_KEY_OPENWEATHER}&lat=${globalStore.latitude}&lon=${globalStore.longitude}`;
 
   // IF YOU ARE USING PROXY, CHANGE BELOW URL TO REFLECT PATH TO proxy.php OR
   // COMMENT THIS VARIABLE IF YOU ARE NOT USING PROXY:
-  let WEATHER_URL_HOME = 'https://reactweatherapp.com/proxy/proxy.php';
-  WEATHER_URL_HOME += `?lat=${globalStore.latitude}&lon=${globalStore.longitude}`;
+  // let WEATHER_URL_HOME = 'https://reactweatherapp.com/proxy/proxy.php';
+  // WEATHER_URL_HOME += `?lat=${globalStore.latitude}&lon=${globalStore.longitude}`;
 
   useEffect(() => {
     fetchWeather();
@@ -46,21 +46,23 @@ export default function Weather() {
 
   return (
     weatherLoaded
-    ? <div>
-      <WeatherByTheHour />
-      <div className="renderedWeather">
-        <button className="cOrF" onClick={handleTemperatureUnitChange}>
-          Switch to &deg;{globalStore.tInC ? 'F' : 'C'}
-        </button>
-        <div className="leftPanel">
-          <div className='cityName'>{globalStore.city}</div>
-          <WeatherNow />
-        </div>
-        <div className="rightPanel">
-          <DailyWeather />
+    ? (
+      <div>
+        <WeatherByTheHour />
+        <div className="renderedWeather">
+          <button className="cOrF" onClick={handleTemperatureUnitChange}>
+            Switch to &deg;{globalStore.tInC ? 'F' : 'C'}
+          </button>
+          <div className="leftPanel">
+            <div className='cityName'>{globalStore.city}</div>
+            <WeatherNow />
+          </div>
+          <div className="rightPanel">
+            <DailyWeather />
+          </div>
         </div>
       </div>
-    </div>
+    )
     : <div className="loadingDiv"><Ripple size={154} /></div>
   );
 }
