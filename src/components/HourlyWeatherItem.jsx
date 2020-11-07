@@ -3,7 +3,7 @@ import { KtoC, KtoF, getIcon, getTime } from '../functions/functions';
 
 export default function HourlyWeatherItem ({ item, isTemperatureInC, timezone }) {
   const icon = getIcon(`${item.weather[0].icon}`);
-  const icon_URL = require(`../static/images/icons/${icon}.svg`);
+  const icon_URL = `../static/images/icons/${icon}.svg`;
   let temperature;
 
   isTemperatureInC

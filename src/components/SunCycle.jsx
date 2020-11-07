@@ -7,7 +7,7 @@ export default function SunCycle(props) {
   const dayLength = sunset - sunrise;
   const timeNow = (new Date() / 1e3).toFixed(0);
   const dayProgress = sunset - timeNow;
-  // We're adding 1 to sunPositionX so it be 0÷2 rather than -1÷1
+  // We're adding 1 to sunPositionX so it would be 0÷2 rather than -1÷1
   let sunPositionX = Math.cos((dayProgress / dayLength) * Math.PI) + 1;
   let sunPositionY = Math.sin((dayProgress / dayLength) * Math.PI);
 
@@ -38,16 +38,16 @@ export default function SunCycle(props) {
   return (
     <div className="sunCycle">
       <span className="sunrise">
-        <img src={require('../static/images/icons/sunrise.svg')} alt="Sunrise"/>
+        <img src="../static/images/icons/sunrise.svg" alt="Sunrise"/>
         <span className="sunriseTime">{sunRise}</span>
       </span>
       <span className="sunset">
-        <img src={require('../static/images/icons/sunset.svg')} alt="Sunset"/>
+        <img src="../static/images/icons/sunset.svg" alt="Sunset"/>
         <span className="sunsetTime">{sunSet}</span>
       </span>
       <span className="sun">
         <img
-          src={require('../static/images/icons/sun.svg')}
+          src="../static/images/icons/sun.svg"
           alt='Sun'
           style={{
             left: `calc(${sunPositionX} * 50% - 23px)`,
