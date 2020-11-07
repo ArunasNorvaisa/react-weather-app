@@ -1,27 +1,15 @@
 import React from 'react';
-import { KtoC, KtoF, getIcon, getTime } from '../functions/functions';
+import useHourlyWeatherItem from '../hooks/useHourlyWeatherItem';
 
-export default function HourlyWeatherItem ({ item, isTemperatureInC, timezone }) {
-  const icon = getIcon(`${item.weather[0].icon}`);
-  const icon_URL = `../static/images/icons/${icon}.svg`;
-  let temperature;
-
-  isTemperatureInC
-    ? temperature = KtoC(item.temp).toFixed(0)
-    : temperature = KtoF(item.temp).toFixed(0);
-
-  const timeOptions = {
-    timeZone: timezone,
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false
-  };
-
-  const prepType = () => {
-    if ('rain' in item) return 'rain ';
-    else if ('snow' in item) return 'snow ';
-    return '';
-  };
+export default function HourlyWeatherItem ({ isTemperatureInC, item, timezone }) {
+  const {
+    icon,
+    icon_URL,
+    temperature,
+    timeOptions,
+    getTime,
+    prepType
+  } = useHourlyWeatherItem({ isTemperatureInC, item, timezone });
 
   return (
     <div className="hourlyWeatherItem">
