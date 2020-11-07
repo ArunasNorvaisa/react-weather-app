@@ -14,7 +14,7 @@ const urlParams = new URLSearchParams(window.location.search);
 
 export default function App() {
 
-  const API_KEY_GOOGLE = process.env.REACT_APP_API_KEY_GL;
+  const API_KEY_GOOGLE = process.env.API_KEY_GOOGLE_GEOCODING;
   const [globalStore, setGlobalStore] = useContext(GlobalStoreContext);
 
   useEffect(() => {
@@ -64,6 +64,14 @@ export default function App() {
   }
 
   async function reverseGeocoding(lat, lng) {
+    // IF YOU ARE USING PROXY, CHANGE BELOW URL TO REFLECT PATH TO geocodingproxy.php OR
+    // COMMENT THIS VARIABLE OUT IF YOU ARE NOT USING PROXY:
+    // const URL = buildUrl('https://reactweatherapp.com/', {
+    //   path: 'proxy/geocodingproxy.php',
+    //   queryParams: { lat, lng }
+    // });
+
+    // IF YOU ARE NOT USING PROXY, UNCOMMENT FOLLOWING LINES:
     const URL = buildUrl('https://maps.googleapis.com/', {
       path: 'maps/api/geocode/json',
       queryParams: {
@@ -117,14 +125,23 @@ export default function App() {
     }
   }
 
-  async function handleAddressSearch(name) {
+  async function handleAddressSearch(address) {
+    // IF YOU ARE USING PROXY, CHANGE BELOW URL TO REFLECT PATH TO geocodingproxy.php OR
+    // COMMENT THIS VARIABLE OUT IF YOU ARE NOT USING PROXY:
+    // const URL = buildUrl('https://reactweatherapp.com/', {
+    //   path: 'proxy/geocodingproxy.php',
+    //   queryParams: { address }
+    // });
+
+    // IF YOU ARE NOT USING PROXY, UNCOMMENT FOLLOWING LINES:
     const URL = buildUrl('https://maps.googleapis.com/', {
       path: 'maps/api/geocode/json',
       queryParams: {
-        address: name,
+        address,
         key: API_KEY_GOOGLE
       }
     });
+
     setGlobalStore({
       ...globalStore,
       city: '',
