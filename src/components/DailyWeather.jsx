@@ -11,7 +11,7 @@ export default function DailyWeather() {
 
   function getIconURL(date) {
     const icon = getIcon(`${date.weather[0].icon}`);
-    return require(`../static/images/icons/${icon}.svg`);
+    return `../static/images/icons/${icon}.svg`;
   }
 
   function getTemp (temp) {

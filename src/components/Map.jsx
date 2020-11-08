@@ -5,7 +5,7 @@ import '../css/marker.scss';
 
 export default function Map(props) {
 
-  const API_KEY_GOOGLE = process.env.REACT_APP_API_KEY_GL;
+  const API_KEY_GOOGLE = process.env.API_KEY_GOOGLE_MAPS;
   const [globalStore] = useContext(GlobalStoreContext);
 
   return (
