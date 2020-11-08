@@ -27,8 +27,17 @@ and 1 (one) from [Open Weather Map](https://openweathermap.org/api).
 > API_KEY_GOOGLE_MAPS = YOUR_GOOGLE_MAPS_API_KEY<br>
 > API_KEY_OW = YOUR_OPENWEATHERMAP_API_KEY
 
+This will prevent keys to be uploaded to the git repository, however anyone
+ with at least half of the brain still be able to see them in plain text. 
+
+##### If (and ONLY if) you care about security of your API keys:
+
+We'll be using 2 PHP proxies to access the Openweathermap and Google geocoding
+ services from the backend, so the keys wouldn't be exposed to anyone who
+  knows how to use browser's dev tools. 
+
 * Update ./proxy/env.json file with the following content (please note the
- quotes, unlike in .env file they are required here):
+ quotes - they are required here, unlike in `.env`):
 
 ```sh
 {
@@ -38,14 +47,23 @@ and 1 (one) from [Open Weather Map](https://openweathermap.org/api).
 ```
 
 * Update ./proxy/.htaccess file to reflect your referring domain.
+* Read comments in /components/Weather.jsx and /components/App.jsx to either
+ enable or disable proxy.
+ 
+ ### Run your App:
+ 
+ ```sh
+ $ npm run start (OR $yarn run start)
+ ```
+App will be accessible at `http://localhost:8080`
+
+### Build your App:
 
 ```sh
 $ npm run build:prod (OR $yarn run build:prod)
 ```
 * Open /build/index.html in your browser and, if everything works as intended,
 * Upload contents of BUILD folder to your hosting provider.
-* If you have CORS/proxy related problems, read comments in /components
-* /Weather.jsx and /components/App.jsx to either enable or disable proxy.
 
 ### Support:
 
