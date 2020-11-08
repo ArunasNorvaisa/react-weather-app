@@ -80,6 +80,8 @@ export default function App() {
       }
     });
 
+    window.history.replaceState(location.origin, document.title, location.origin);
+
     try {
       const json = await axios.get(URL);
       if (json.data.results.length !== 0) {
@@ -148,6 +150,9 @@ export default function App() {
       address: '',
       isAppLoaded: false
     });
+
+    const newURL = location.origin + '?search=' + encodeURI(address);
+    window.history.pushState(newURL, document.title, newURL);
 
     try {
       const json = await axios.get(URL);
