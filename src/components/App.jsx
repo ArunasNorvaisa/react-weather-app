@@ -71,7 +71,7 @@ export default function App() {
     //   queryParams: { lat, lng }
     // });
 
-    // IF YOU ARE NOT USING PROXY, UNCOMMENT FOLLOWING LINES:
+    // IF YOU ARE NOT USING PROXY, UNCOMMENT FOLLOWING VARIABLE:
     const URL = buildUrl('https://maps.googleapis.com/', {
       path: 'maps/api/geocode/json',
       queryParams: {
