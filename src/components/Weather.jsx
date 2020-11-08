@@ -12,7 +12,7 @@ export default function Weather() {
   const [globalStore, setGlobalStore] = useContext(GlobalStoreContext);
   const [weatherLoaded, setWeatherLoaded] = useState(false);
 
-  // IF YOU ARE NOT USING PROXY, COMMENT OUT THE FOLLOWING 2 VARIABLES:
+  // IF YOU ARE NOT USING PROXY, UNCOMMENT THE FOLLOWING 2 VARIABLES:
   const API_KEY_OPENWEATHER = process.env.API_KEY_OW;
   let WEATHER_URL_HOME = buildUrl('https://cors-anywhere.herokuapp.com/', {
     path: 'https://api.openweathermap.org/data/2.5/onecall',
@@ -25,7 +25,7 @@ export default function Weather() {
   });
 
   // IF YOU ARE USING PROXY, CHANGE BELOW URL TO REFLECT PATH TO weatherproxy.php OR
-  // UNCOMMENT THIS VARIABLE OUT IF YOU ARE NOT USING PROXY:
+  // COMMENT THIS VARIABLE OUT IF YOU ARE NOT USING PROXY:
   // let WEATHER_URL_HOME = buildUrl('https://reactweatherapp.com', {
   //   path: 'proxy/weatherproxy.php',
   //   queryParams: {
