@@ -64,14 +64,14 @@ export default function App() {
   }
 
   async function reverseGeocoding(lat, lng) {
-    // IF YOU ARE USING PROXY, CHANGE BELOW URL TO REFLECT PATH TO geocodingproxy.php OR
-    // COMMENT THIS VARIABLE OUT IF YOU ARE NOT USING PROXY:
+    // IF YOU ARE NOT USING PROXY, CHANGE BELOW URL TO REFLECT PATH TO geocodingproxy.php OR
+    // COMMENT THIS VARIABLE OUT IF YOU ARE USING PROXY:
     // const URL = buildUrl('https://reactweatherapp.com/', {
     //   path: 'proxy/geocodingproxy.php',
     //   queryParams: { lat, lng }
     // });
 
-    // IF YOU ARE NOT USING PROXY, UNCOMMENT FOLLOWING VARIABLE:
+    // IF YOU ARE USING PROXY, COMMENT FOLLOWING VARIABLE OUT:
     const URL = buildUrl('https://maps.googleapis.com/', {
       path: 'maps/api/geocode/json',
       queryParams: {
@@ -128,14 +128,14 @@ export default function App() {
   }
 
   async function handleAddressSearch(address) {
-    // IF YOU ARE USING PROXY, CHANGE BELOW URL TO REFLECT PATH TO geocodingproxy.php OR
-    // COMMENT THIS VARIABLE OUT IF YOU ARE NOT USING PROXY:
+    // IF YOU ARE NOT USING PROXY, CHANGE BELOW URL TO REFLECT PATH TO geocodingproxy.php OR
+    // COMMENT THIS VARIABLE OUT IF YOU ARE USING PROXY:
     // const URL = buildUrl('https://reactweatherapp.com/', {
-    //   path: 'proxy/geocodingproxy.php',
-    //   queryParams: { address }
+      // path: 'proxy/geocodingproxy.php',
+      // queryParams: { address }
     // });
 
-    // IF YOU ARE NOT USING PROXY, UNCOMMENT FOLLOWING LINES:
+    // IF YOU ARE USING PROXY, COMMENT FOLLOWING VARIABLE OUT:
     const URL = buildUrl('https://maps.googleapis.com/', {
       path: 'maps/api/geocode/json',
       queryParams: {
