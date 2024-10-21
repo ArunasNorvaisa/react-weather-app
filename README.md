@@ -6,7 +6,7 @@ Weather app made with ReactJS. Automatically recognizes user's location, based o
 Made using React hooks (useState, useEffect, useContext) and React context (absolutely unnecessary for a small application like this, but it was fun to learn).
 
 ### Version
-* 3.1.0
+* 3.1.1
 
 ### Demo
 * [https://reactweatherapp.com](https://reactweatherapp.com)
