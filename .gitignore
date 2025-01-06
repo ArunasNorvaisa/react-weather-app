@@ -7,10 +7,10 @@
 /coverage
 
 # production
-/build
+/dist
 
 # misc
-# yarn.lock
+yarn.lock
 .DS_Store
 .env
 .env.local

@@ -1,14 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './components/App';
-import Store from './components/Store';
+import { createRoot } from "react-dom/client";
+import App from "./components/App";
+import Store from "./components/Store";
 
-function Index() {
-  return (
-    <Store>
-      <App />
-    </Store>
-  );
-}
-
-ReactDOM.render(<Index />, document.getElementById('app'));
+createRoot(document.getElementById("app")).render(
+  <Store>
+    <App />
+  </Store>,
+);

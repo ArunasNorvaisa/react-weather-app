@@ -1,26 +1,30 @@
-import React from 'react';
-import { KtoC, KtoF, getIcon, getTime } from '../functions/functions';
+import { useContext } from "react";
+import { getIcon, getTime, KtoC, KtoF } from "../functions/functions";
+import { GlobalStoreContext } from "../components/Store.jsx";
 
-export default function useHourlyWeatherItem ({ item, isTemperatureInC, timezone }) {
+export default function useHourlyWeatherItem({
+  item,
+  isTemperatureInC,
+  timezone,
+}) {
+  const [globalStore] = useContext(GlobalStoreContext);
   const icon = getIcon(`${item.weather[0].icon}`);
-  const icon_URL = require(`../static/images/icons/${icon}.svg`);
-  let temperature;
-
-  isTemperatureInC
-    ? temperature = KtoC(item.temp).toFixed(0)
-    : temperature = KtoF(item.temp).toFixed(0);
+  const icon_URL = `/images/icons/${icon}.svg`;
+  const temperature = isTemperatureInC
+    ? KtoC(item.temp).toFixed(0)
+    : KtoF(item.temp).toFixed(0);
 
   const timeOptions = {
     timeZone: timezone,
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
   };
 
   const prepType = () => {
-    if ('rain' in item) return 'rain ';
-    else if ('snow' in item) return 'snow ';
-    return '';
+    const weatherTypes = ["rain", "snow"];
+    const prepType = weatherTypes.find((type) => type in item);
+    return prepType ? `${prepType} ` : "";
   };
 
   return {
@@ -29,6 +33,6 @@ export default function useHourlyWeatherItem ({ item, isTemperatureInC, timezone
     temperature,
     timeOptions,
     getTime,
-    prepType
+    prepType,
   };
 }

@@ -1,17 +1,23 @@
 # Weather application
+
 <img src="https://arunas.org/2020_11_03_12_31_54_React_Weather_App_Opera.png" alt="React weather app" style="width:500px;margin:10px auto" />
 
-Weather app made with ReactJS. Automatically recognizes user's location, based on browser's settings or IP. Weather can be searched both by location on the map or entering city in the search bar.
+Weather app made with ReactJS. Automatically recognizes user's location, based on browser's settings or IP. Weather can
+be searched both by location on the map or entering city in the search bar.
 
-Made using React hooks (useState, useEffect, useContext) and React context (absolutely unnecessary for a small application like this, but it was fun to learn).
+Made using React hooks (useState, useEffect, useContext) and React context (absolutely unnecessary for a small
+application like this, but it was fun to learn).
 
 ### Version
-* 3.1.1
+
+* 4.0.0
 
 ### Demo
+
 * [https://reactweatherapp.com](https://reactweatherapp.com)
 
 ### Usage:
+
 ```sh
 $ git clone git@github.com:ArunasNorvaisa/react-weather-app.git
 $ cd react-weather-app
@@ -20,26 +26,27 @@ $ touch .env
 $ touch ./proxy/env.json
 ```
 
-* Get 2 (two) API keys from 
-[Google](https://developers.google.com/maps/documentation/javascript/get-api-key)
-and 1 (one) from [Open Weather Map](https://openweathermap.org/api).
+* Get 2 (two) API keys from
+  [Google](https://developers.google.com/maps/documentation/javascript/get-api-key)
+  and 1 (one) from [Open Weather Map](https://openweathermap.org/api).
 * Update .env file in the project root (that was created at the previous step) directory with the following content:
 
-> API_KEY_GOOGLE_GEOCODING = YOUR_GOOGLE_GEOCODING_API_KEY<br>
-> API_KEY_GOOGLE_MAPS = YOUR_GOOGLE_MAPS_API_KEY<br>
-> API_KEY_OW = YOUR_OPENWEATHERMAP_API_KEY
+> VITE_API_KEY_GOOGLE_GEOCODING = YOUR_GOOGLE_GEOCODING_API_KEY<br>
+> VITE_API_KEY_GOOGLE_MAPS = YOUR_GOOGLE_MAPS_API_KEY<br>
+> VITE_API_KEY_OW = YOUR_OPENWEATHERMAP_API_KEY<br>
+> VITE_HTML_TITLE = "React Weather App"
 
 This will prevent keys to be uploaded to the git repository, however anyone
- with at least half of the brain still be able to see them in plain text. 
+with at least half of the brain still be able to see them in plain text.
 
 ##### If (and ONLY if) you care about security of your API keys:
 
 We'll be using 2 PHP proxies to access the Openweathermap and Google geocoding
- services from the backend, so the keys wouldn't be exposed to anyone who
-  knows how to use browser's dev tools. 
+services from the backend, so the keys wouldn't be exposed to anyone who
+knows how to use browser's dev tools.
 
 * Update ./proxy/env.json file with the following content (please note the
- quotes - they are required here, unlike in `.env`):
+  quotes - they are required here, unlike in `.env`):
 
 ```sh
 {
@@ -50,22 +57,24 @@ We'll be using 2 PHP proxies to access the Openweathermap and Google geocoding
 
 * Update ./proxy/.htaccess file to reflect your referring domain.
 * Read comments in /components/Weather.jsx and /components/App.jsx to either
- enable or disable proxy.
- 
- ### Run your App:
- 
+  enable or disable proxy.
+
+### Run your App:
+
  ```sh
- $ npm run start (OR $yarn run start)
+ $ npm run vite (OR $yarn run vite)
  ```
-App will be accessible at `http://localhost:8080`
+
+App will be accessible at `http://localhost:5173`
 
 ### Build your App:
 
 ```sh
-$ npm run build:prod (OR $yarn run build:prod)
+$ npm run build (OR $yarn run build)
 ```
-* Open /build/index.html in your browser and, if everything works as intended,
-* Upload contents of BUILD folder to your hosting provider.
+
+* Open /dist/index.html in your browser and, if everything works as intended,
+* Upload contents of DIST folder to your hosting provider.
 
 ### Support:
 
