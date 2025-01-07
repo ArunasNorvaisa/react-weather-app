@@ -1,5 +1,4 @@
-import React from 'react';
-import { getTime } from '../functions/functions';
+import { getTime } from "../functions/functions";
 
 export default function SunCycle(props) {
   const { sunrise, sunset, timezone } = props;
@@ -26,32 +25,32 @@ export default function SunCycle(props) {
   }
 
   const timeOptions = {
-    timeZone : timezone,
-    hour     : '2-digit',
-    minute   : '2-digit',
-    hour12   : true
+    timeZone: timezone,
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
   };
 
-  const sunRise = sunrise ? getTime(sunrise, timeOptions) : 'White night';
-  const sunSet = sunset ? getTime(sunset, timeOptions) : 'White night';
+  const sunRise = sunrise ? getTime(sunrise, timeOptions) : "White night";
+  const sunSet = sunset ? getTime(sunset, timeOptions) : "White night";
 
   return (
     <div className="sunCycle">
       <span className="sunrise">
-        <img src="../static/images/icons/sunrise.svg" alt="Sunrise"/>
+        <img src="/images/icons/sunrise.svg" alt="Sunrise" />
         <span className="sunriseTime">{sunRise}</span>
       </span>
       <span className="sunset">
-        <img src="../static/images/icons/sunset.svg" alt="Sunset"/>
+        <img src="/images/icons/sunset.svg" alt="Sunset" />
         <span className="sunsetTime">{sunSet}</span>
       </span>
       <span className="sun">
         <img
-          src="../static/images/icons/sun.svg"
-          alt='Sun'
+          src="/images/icons/sun.svg"
+          alt="Sun"
           style={{
             left: `calc(${sunPositionX} * 50% - 23px)`,
-            bottom: `calc((${sunPositionY} * 100%) - 12px)`
+            bottom: `calc((${sunPositionY} * 100%) - 12px)`,
           }}
         />
       </span>
