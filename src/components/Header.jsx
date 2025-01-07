@@ -1,9 +1,9 @@
-import { useContext, useState } from "react";
-import { GlobalStoreContext } from "./Store";
+import { useContext, useState } from 'react';
+import { GlobalStoreContext } from './Store';
 
 export default function Header(props) {
-  const [globalStore] = useContext(GlobalStoreContext);
-  const [searchText, setSearchText] = useState("");
+  const { globalState } = useContext(GlobalStoreContext);
+  const [searchText, setSearchText] = useState('');
 
   const handleInputChange = (event) => {
     setSearchText(event.target.value);
@@ -12,27 +12,24 @@ export default function Header(props) {
   const handleFormSubmit = (event) => {
     event.preventDefault();
     props.handleAddressSearch(searchText);
-    setSearchText("");
+    setSearchText('');
   };
 
   return (
     <header>
-      <div>Latitude: {globalStore.latitude.toFixed(4)}</div>
-      <div>Longitude: {globalStore.longitude.toFixed(4)}</div>
-      <div>Address: {globalStore.address}</div>
+      <div>Latitude: {globalState.latitude.toFixed(4)}</div>
+      <div>Longitude: {globalState.longitude.toFixed(4)}</div>
+      <div>Address: {globalState.address}</div>
       <div>
         <form onSubmit={handleFormSubmit}>
           <input
             type="text"
             id="city_search"
-            placeholder={globalStore.city}
+            placeholder={globalState.city}
             value={searchText}
             onChange={handleInputChange}
           />
-          <img
-            src={new URL("/images/icons/search.svg", import.meta.url).href}
-            alt="search icon"
-          />
+          <img src={new URL('/images/icons/search.svg', import.meta.url).href} alt="search icon" />
           <button type="submit" />
         </form>
       </div>

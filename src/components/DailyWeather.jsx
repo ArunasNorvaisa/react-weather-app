@@ -1,50 +1,25 @@
-import { useContext } from "react";
-import { GlobalStoreContext } from "./Store";
-import { getDate, getIcon, KtoC, KtoF } from "../functions/functions";
+import { useContext } from 'react';
+import { GlobalStoreContext } from './Store';
+import DailyWeatherItem from './DailyWeatherItem.jsx';
+import { DATE_TIME_OPTIONS } from '../model/model.js';
 
 export default function DailyWeather() {
-  const [globalStore] = useContext(GlobalStoreContext);
-
+  const { globalState } = useContext(GlobalStoreContext);
   const DAYS_TO_DISPLAY = 3;
 
-  const displayedWeather =
-    globalStore.JSON.daily.slice(1, DAYS_TO_DISPLAY + 1) || [];
-
-  function getIconURL(date) {
-    const icon = getIcon(`${date.weather[0].icon}`);
-    return `/images/icons/${icon}.svg`;
-  }
-
-  function getTemp(temp) {
-    if (globalStore.tInC) {
-      return KtoC(temp).toFixed(0);
-    } else {
-      return KtoF(temp).toFixed(0);
-    }
-  }
+  const displayedWeather = globalState.jsonData.daily.slice(1, DAYS_TO_DISPLAY + 1) || [];
+  const isCelsius = globalState.tInC;
 
   const dateOptions = {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-    timeZone: globalStore.JSON.timezone,
+    ...DATE_TIME_OPTIONS.date.shortWithWeekday,
+    timeZone: globalState.jsonData.timezone
   };
 
-  return displayedWeather.map((day, i) => (
-    <div className="dailyWeather" key={i}>
-      <div>
-        <div className="icon">
-          <img src={getIconURL(day)} alt="icon" />
-        </div>
-        <div className="date">{getDate(day.dt, dateOptions)}</div>
-        <div>
-          {getTemp(day.temp.min)}&deg; /&nbsp;
-          {getTemp(day.temp.max)}&deg;
-          {globalStore.tInC ? "C" : "F"}
-        </div>
-        <div className="forecastSummary">{day.weather[0].description}</div>
-        <hr />
-      </div>
+  return (
+    <div className="dailyWeatherContainer">
+      {displayedWeather.map((day) => (
+        <DailyWeatherItem key={day.dt} day={day} dateOptions={dateOptions} isCelsius={isCelsius} />
+      ))}
     </div>
-  ));
+  );
 }

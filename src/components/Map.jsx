@@ -1,21 +1,22 @@
-import { Fragment, useContext } from "react";
-import GoogleMapReact from "google-map-react";
-import { GlobalStoreContext } from "./Store";
-import "../css/marker.scss";
+import { Fragment, useContext } from 'react';
+import GoogleMapReact from 'google-map-react';
+import { GlobalStoreContext } from './Store';
+import '../css/marker.scss';
 
-export default function Map(props) {
+export default function Map({ handleMapClick }) {
   const API_KEY_GOOGLE = import.meta.env.VITE_API_KEY_GOOGLE_MAPS;
-  const [globalStore] = useContext(GlobalStoreContext);
+  const { globalState } = useContext(GlobalStoreContext);
+  const { latitude, longitude } = globalState;
 
   return (
-    <div style={{ height: "100vh", width: "100%" }}>
+    <div style={{ height: '100vh', width: '100%' }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: API_KEY_GOOGLE }}
-        center={{ lat: globalStore.latitude, lng: globalStore.longitude }}
+        center={{ lat: latitude, lng: longitude }}
         defaultZoom={9}
-        onClick={props.handleMapClick}
+        onClick={handleMapClick}
       >
-        <Marker lat={globalStore.latitude} lng={globalStore.longitude} />
+        <Marker lat={latitude} lng={longitude} />
       </GoogleMapReact>
     </div>
   );

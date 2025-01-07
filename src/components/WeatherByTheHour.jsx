@@ -1,26 +1,16 @@
-import { Fragment, useContext } from "react";
-import HourlyWeatherItem from "./HourlyWeatherItem";
-import DateSeparator from "./DateSeparator";
-import { GlobalStoreContext } from "./Store";
+import { Fragment } from 'react';
+import HourlyWeatherItem from './HourlyWeatherItem';
+import DateSeparator from './DateSeparator';
 
-export default function WeatherByTheHour() {
-  const [globalStore] = useContext(GlobalStoreContext);
+export default function WeatherByTheHour(props) {
+  const { hourlyWeatherItems, timezone, tInC } = props;
 
-  const items = globalStore.JSON.hourly.map((item) => {
+  const items = hourlyWeatherItems.map((item) => {
     return (
       <Fragment key={item.dt}>
         <div className="renderedHourlyWeather">
-          <DateSeparator
-            key={item.dt + 1}
-            time={item.dt}
-            timezone={globalStore.JSON.timezone}
-          />
-          <HourlyWeatherItem
-            key={item.dt}
-            item={item}
-            timezone={globalStore.JSON.timezone}
-            isTemperatureInC={globalStore.tInC}
-          />
+          <DateSeparator key={item.dt + 1} unixTime={item.dt} timezone={timezone} />
+          <HourlyWeatherItem key={item.dt} item={item} timezone={timezone} isTemperatureInC={tInC} />
         </div>
       </Fragment>
     );

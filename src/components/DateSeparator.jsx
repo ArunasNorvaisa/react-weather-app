@@ -1,23 +1,19 @@
-import React from 'react';
-import { getTime, getDate } from '../functions/functions';
+import { DATE_TIME_OPTIONS, getDate, getTime } from '../model/model.js';
 
-export default function DateSeparator(props) {
-
-  const getWeekday = unixTime => {
-    let timeOptions = {
-      timeZone: props.timezone,
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false
-    };
-    const time = getTime(unixTime, timeOptions);
-    timeOptions = {
-      weekday: 'long',
-      timeZone: props.timezone
-    };
-    if(time === '00:00' || time === '24:00') return getDate(unixTime, timeOptions);
-    return false;
+export default function DateSeparator({ unixTime, timezone }) {
+  const timeOptions = {
+    ...DATE_TIME_OPTIONS.time.noSeconds24hours,
+    timeZone: timezone
   };
 
-  return getWeekday(props.time) && <div className="weekday">{getWeekday(props.time)}</div>;
+  const dateOptions = {
+    ...DATE_TIME_OPTIONS.date.weekdayOnly,
+    timeZone: timezone
+  };
+
+  const time = getTime(unixTime, timeOptions);
+
+  const displayDateSeparator = time === '00:00' || time === '24:00';
+
+  return displayDateSeparator && <div className="weekday">{getDate(unixTime, dateOptions)}</div>;
 }

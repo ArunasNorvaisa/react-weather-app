@@ -1,56 +1,42 @@
-import { useContext } from "react";
-import { getDate, getIcon, KtoC, KtoF } from "../functions/functions";
-import { GlobalStoreContext } from "../components/Store";
+import { useContext } from 'react';
+import { DATE_TIME_OPTIONS, iconCodeToFileMapper, kelvinsToCelcius, kelvinsToFahrenheit } from '../model/model.js';
+import { GlobalStoreContext } from '../components/Store';
 
 export default function useWeatherNow() {
-  const [globalStore] = useContext(GlobalStoreContext);
-  const icon = getIcon(`${globalStore.JSON.current.weather[0].icon}`);
+  const { globalState } = useContext(GlobalStoreContext);
+  const { jsonData, tInC } = globalState;
+  const { current, daily, timezone } = jsonData;
+  const { weather, temp, sunrise, sunset, dt } = current;
 
-  let temperatureNow, temperatureMin, temperatureMax;
-
-  if (globalStore.tInC) {
-    temperatureNow = KtoC(globalStore.JSON.current.temp).toFixed(0);
-    temperatureMin = KtoC(globalStore.JSON.daily[0].temp.min).toFixed(0);
-    temperatureMax = KtoC(globalStore.JSON.daily[0].temp.max).toFixed(0);
-  } else {
-    temperatureNow = KtoF(globalStore.JSON.current.temp).toFixed(0);
-    temperatureMin = KtoF(globalStore.JSON.daily[0].temp.min).toFixed(0);
-    temperatureMax = KtoF(globalStore.JSON.daily[0].temp.max).toFixed(0);
-  }
-
-  const getPrecipitation = () => {
-    const todayWeather = globalStore.JSON.daily[0];
-    const weatherTypes = ["rain", "snow"];
-    const prepType = weatherTypes.find((type) => type in todayWeather) || "";
-
-    return `${prepType} ${(todayWeather.pop * 100).toFixed(0)}%`;
+  const icon = iconCodeToFileMapper[`${weather[0].icon}`] ?? 'clear-day';
+  const toTemp = tInC ? kelvinsToCelcius : kelvinsToFahrenheit;
+  const temperatures = {
+    now: toTemp(temp),
+    min: toTemp(daily[0].temp.min),
+    max: toTemp(daily[0].temp.max)
   };
 
-  const timeOptions = {
-    timeZone: globalStore.JSON.timezone,
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
+  const { pop, ...weatherTypes } = daily[0];
+  const prepType = ['rain', 'snow'].find((type) => type in weatherTypes) || '';
+  const precipitation = `${prepType} ${(pop * 100).toFixed(0)}%`;
+
+  const dateOptions = {
+    ...DATE_TIME_OPTIONS.date.fullWithTime,
+    timeZone: timezone
   };
 
   return {
+    dateOptions,
     icon,
     icon_URL: `/images/icons/${icon}.svg`,
-    sunrise: globalStore.JSON.current.sunrise,
-    sunset: globalStore.JSON.current.sunset,
-    temperatureMax,
-    temperatureMin,
-    temperatureNow,
-    timeNow: new Date(globalStore.JSON.current.dt).getTime(),
-    timeOptions,
-    timezone: globalStore.JSON.timezone,
-    tInC: globalStore.tInC,
-    weatherDescription: globalStore.JSON.current.weather[0].description,
-    weatherMain: globalStore.JSON.current.weather[0].main,
-    getDate,
-    getPrecipitation,
+    precipitation,
+    sunrise,
+    sunset,
+    tInC,
+    temperatures,
+    timeNow: dt,
+    timezone,
+    weatherDescription: daily[0].summary,
+    weatherMain: weather[0].main
   };
 }

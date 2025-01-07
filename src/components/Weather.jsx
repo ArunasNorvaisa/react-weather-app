@@ -1,84 +1,35 @@
-import { useContext, useEffect, useState } from "react";
-import { SpinnerRoundOutlined } from "spinners-react";
-import { GlobalStoreContext } from "./Store";
-import axios from "axios";
-import buildUrl from "build-url";
-import DailyWeather from "./DailyWeather";
-import WeatherByTheHour from "./WeatherByTheHour";
-import WeatherNow from "./WeatherNow";
+import { SpinnerRoundOutlined } from 'spinners-react';
+import DailyWeather from './DailyWeather';
+import WeatherByTheHour from './WeatherByTheHour';
+import WeatherNow from './WeatherNow';
+import useWeather from '../hooks/useWeather.js';
 
 export default function Weather() {
-  const [globalStore, setGlobalStore] = useContext(GlobalStoreContext);
-  const [weatherLoaded, setWeatherLoaded] = useState(false);
+  const { city, hourlyWeatherItems, weatherLoaded, timezone, tInC, handleTemperatureUnitChange } = useWeather();
 
-  // IF YOU ARE USING PROXY, COMMENT THE FOLLOWING 2 VARIABLES OUT:
-  const API_KEY_OPENWEATHER = import.meta.env.VITE_API_KEY_OW;
-  const WEATHER_URL_HOME = buildUrl("https://cors-anywhere.herokuapp.com/", {
-    path: "https://api.openweathermap.org/data/2.5/onecall",
-    queryParams: {
-      exclude: "minutely",
-      appid: API_KEY_OPENWEATHER,
-      lat: globalStore.latitude,
-      lon: globalStore.longitude,
-    },
-  });
+  if (!weatherLoaded) {
+    return (
+      <div className="loadingDiv">
+        <SpinnerRoundOutlined size={88} thickness={100} speed={134} color="rgba(172, 57, 128, 1)" />
+      </div>
+    );
+  }
 
-  // IF YOU ARE USING PROXY, CHANGE BELOW URL TO REFLECT PATH TO weatherproxy.php AND
-  // unCOMMENT THIS VARIABLE OUT. IF YOU ARE NOT USING PROXY, LEAVE THEM COMMENTED:
-  // const WEATHER_URL_HOME = buildUrl("https://YOUR_WEBSITE.com", {
-  //   path: "/proxy/weatherproxy.php",
-  //   queryParams: {
-  //     lat: globalStore.latitude,
-  //     lon: globalStore.longitude,
-  //   },
-  // });
-
-  useEffect(() => {
-    fetchWeather();
-  }, [globalStore.latitude]);
-
-  const fetchWeather = async () => {
-    setWeatherLoaded(false);
-    try {
-      const res = await axios.get(WEATHER_URL_HOME);
-      setGlobalStore({ ...globalStore, JSON: res.data, isAppLoaded: true });
-    } catch (err) {
-      console.error(`ERROR(${err.code}): ${err.message}`);
-      setGlobalStore({ ...globalStore, error: err });
-    } finally {
-      setWeatherLoaded(true);
-    }
-  };
-
-  const handleTemperatureUnitChange = (event) => {
-    event.preventDefault();
-    setGlobalStore({ ...globalStore, tInC: !globalStore.tInC });
-  };
-
-  return weatherLoaded ? (
+  return (
     <div>
-      <WeatherByTheHour />
+      <WeatherByTheHour hourlyWeatherItems={hourlyWeatherItems} timezone={timezone} tInC={tInC} />
       <div className="renderedWeather">
         <button className="cOrF" onClick={handleTemperatureUnitChange}>
-          Switch to &deg;{globalStore.tInC ? "F" : "C"}
+          Switch to &deg;{tInC ? 'F' : 'C'}
         </button>
         <div className="leftPanel">
-          <div className="cityName">{globalStore.city}</div>
+          <div className="cityName">{city}</div>
           <WeatherNow />
         </div>
         <div className="rightPanel">
           <DailyWeather />
         </div>
       </div>
-    </div>
-  ) : (
-    <div className="loadingDiv">
-      <SpinnerRoundOutlined
-        size={88}
-        thickness={100}
-        speed={134}
-        color="rgba(172, 57, 128, 1)"
-      />
     </div>
   );
 }

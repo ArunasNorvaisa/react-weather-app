@@ -56,7 +56,7 @@ knows how to use browser's dev tools.
 ```
 
 * Update ./proxy/.htaccess file to reflect your referring domain.
-* Read comments in /components/Weather.jsx and /components/App.jsx to either
+* Read comments in /hooks/useWeather.js and /hooks/useApp.js to either
   enable or disable proxy.
 
 ### Run your App:
