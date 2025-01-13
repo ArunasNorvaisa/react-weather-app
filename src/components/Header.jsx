@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { GlobalStoreContext } from './Store';
 
-export default function Header(props) {
+export default function Header({ handleAddressSearch }) {
   const { globalState } = useContext(GlobalStoreContext);
   const [searchText, setSearchText] = useState('');
 
@@ -11,7 +11,7 @@ export default function Header(props) {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    props.handleAddressSearch(searchText);
+    handleAddressSearch(searchText);
     setSearchText('');
   };
 
@@ -29,7 +29,7 @@ export default function Header(props) {
             value={searchText}
             onChange={handleInputChange}
           />
-          <img src={new URL('/images/icons/search.svg', import.meta.url).href} alt="search icon" />
+          <img src="/images/icons/search.svg" alt="search icon" />
           <button type="submit" />
         </form>
       </div>
