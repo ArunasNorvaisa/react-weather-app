@@ -7,7 +7,7 @@ const urlParams = new URLSearchParams(window.location.search);
 
 export default function useApp() {
   const API_KEY_GOOGLE = import.meta.env.VITE_API_KEY_GOOGLE_GEOCODING;
-  const { globalState, setGlobalState, setError, setIsAppLoaded, resetStore } = useContext(GlobalStoreContext);
+  const { globalState, setGlobalState, setError, setAppLoaded, resetStore } = useContext(GlobalStoreContext);
 
   useEffect(() => {
     getLocation();
@@ -35,7 +35,7 @@ export default function useApp() {
 
   async function getCoordinatesByIP() {
     const url = 'https://ipapi.co/json/';
-    setIsAppLoaded(false);
+    setAppLoaded(false);
 
     try {
       const axiosResponse = await axios.get(url);
@@ -110,7 +110,7 @@ export default function useApp() {
     } catch (err) {
       console.error(`ERROR(${err.code}): ${err.message}`);
       setError(err);
-      setIsAppLoaded(false);
+      setAppLoaded(false);
     }
   }
 
@@ -149,7 +149,7 @@ export default function useApp() {
     } catch (err) {
       console.error(`ERROR(${err.code}): ${err.message}`);
       setError(err);
-      setIsAppLoaded(false);
+      setAppLoaded(false);
     }
   }
 

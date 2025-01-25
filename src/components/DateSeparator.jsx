@@ -1,19 +1,21 @@
+import { memo } from 'react';
 import { DATE_TIME_OPTIONS, getDate, getTime } from '../model/model.js';
 
-export default function DateSeparator({ unixTime, timezone }) {
-  const timeOptions = {
-    ...DATE_TIME_OPTIONS.time.noSeconds24hours,
-    timeZone: timezone
-  };
+const {
+  time: { noSeconds24hours },
+  date: { weekdayOnly }
+} = DATE_TIME_OPTIONS;
 
-  const dateOptions = {
-    ...DATE_TIME_OPTIONS.date.weekdayOnly,
-    timeZone: timezone
-  };
+function DateSeparator({ unixTime, timezone }) {
+  const time = getTime(unixTime, { ...noSeconds24hours, timeZone: timezone });
 
-  const time = getTime(unixTime, timeOptions);
+  if (time !== '00:00' && time !== '24:00') {
+    return;
+  }
 
-  const displayDateSeparator = time === '00:00' || time === '24:00';
+  const date = getDate(unixTime, { ...weekdayOnly, timeZone: timezone });
 
-  return displayDateSeparator && <div className="weekday">{getDate(unixTime, dateOptions)}</div>;
+  return <div className="weekday">{date}</div>;
 }
+
+export default memo(DateSeparator);

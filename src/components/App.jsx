@@ -1,5 +1,5 @@
 import { SpinnerRoundOutlined } from 'spinners-react';
-import Error from './Error';
+import ErrorToast from './ErrorToast';
 import Map from './Map';
 import Header from './Header';
 import Weather from './Weather';
@@ -12,7 +12,7 @@ export default function App() {
   if (globalState.error) {
     return (
       <div className="loadingDiv">
-        <Error message={globalState.error ? globalState.error.message : 'SOMETHING WRONG HAPPENED'} />
+        <ErrorToast message={globalState.error.message ?? 'SOMETHING WRONG HAPPENED'} />
       </div>
     );
   }

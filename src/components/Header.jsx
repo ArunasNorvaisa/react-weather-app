@@ -11,26 +11,29 @@ export default function Header({ handleAddressSearch }) {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    handleAddressSearch(searchText);
+    handleAddressSearch(searchText.trim()); // Trim the input value
     setSearchText('');
   };
 
+  const { latitude, longitude, address, city } = globalState;
+
   return (
     <header>
-      <div>Latitude: {globalState.latitude.toFixed(4)}</div>
-      <div>Longitude: {globalState.longitude.toFixed(4)}</div>
-      <div>Address: {globalState.address}</div>
+      <div>Latitude: {latitude.toFixed(4)}</div>
+      <div>Longitude: {longitude.toFixed(4)}</div>
+      <div>Address: {address}</div>
       <div>
-        <form onSubmit={handleFormSubmit}>
+        <form onSubmit={handleFormSubmit} aria-label="Search by address">
           <input
             type="text"
             id="city_search"
-            placeholder={globalState.city}
+            placeholder={city}
             value={searchText}
             onChange={handleInputChange}
+            aria-label="Enter address to search"
           />
           <img src="/images/icons/search.svg" alt="search icon" />
-          <button type="submit" />
+          <button type="submit" aria-label="Submit search" />
         </form>
       </div>
     </header>
