@@ -18,7 +18,16 @@ export default function Weather() {
   return (
     <div>
       <WeatherByTheHour hourlyWeatherItems={hourlyWeatherItems} timezone={timezone} tInC={tInC} />
-      <div className="renderedWeather">
+      <div
+        className="renderedWeather"
+        // style={{
+        //   backgroundColor: 'rgba(8, 8, 8, .68)',
+        //   backgroundImage: `url(https://picsum.photos/1920/1080?random=${window.crypto.randomUUID()})`,
+        //   backgroundPosition: 'center center',
+        //   backgroundRepeat: 'no-repeat',
+        //   backgroundSize: 'cover'
+        // }}
+      >
         <button className="cOrF" onClick={handleTemperatureUnitChange}>
           Switch to &deg;{tInC ? 'F' : 'C'}
         </button>
