@@ -8,3 +8,4 @@
 3.0.0 - changed weather data provider to OpenWeather, major code upgrade;
 3.1.1 - updated outdated dependencies, solved all related security issues;
 4.0.0 - Webpack => Vite.
+4.0.1 - updated outdated dependencies

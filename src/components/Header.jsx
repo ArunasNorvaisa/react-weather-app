@@ -11,7 +11,7 @@ export default function Header({ handleAddressSearch }) {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    handleAddressSearch(searchText.trim()); // Trim the input value
+    handleAddressSearch(searchText.trim());
     setSearchText('');
   };
 
